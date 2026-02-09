@@ -30,6 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Agent instruction ingestion and canonical ai-agents repo reference (#18)
 - Created https://github.com/brucedombrowski/ai-agents with model-agnostic templates and Claude implementation (#18)
 - Repo scope audit: clean divisions confirmed, upstream reference added to CLAUDE.md (#19)
+- Origin story: methodology evolved from CAD/house project and SpeakUp through 16 repos (#21)
+- `build.sh` now generates `whitepaper-review.md` via pandoc for human review (#20)
+- `whitepaper-review.md` — GitHub-flavored Markdown for selectable-text review (#20)
 - Introduction contributions list expanded from 4 to 5 items (added traceability framework and standards-based review)
 - Abstract now mentions five-phase methodology and version control
 - Reproducibility section updated with current metrics (14 issues, 9 commits, v0.5.0)

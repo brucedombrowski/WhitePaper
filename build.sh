@@ -40,6 +40,12 @@ pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > 
 echo "  [4/4] pdflatex (cross-references)"
 pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > /dev/null 2>&1
 
+# Generate reviewable Markdown (GitHub-flavored, selectable text)
+if command -v pandoc &> /dev/null; then
+    echo "  [5/5] pandoc (markdown for review)"
+    pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null
+fi
+
 # Verify output
 if [ -f "$SCRIPT_DIR/$BASE_NAME.pdf" ]; then
     PAGES=$(pdfinfo "$SCRIPT_DIR/$BASE_NAME.pdf" 2>/dev/null | grep "Pages:" | awk '{print $2}' || echo "?")
