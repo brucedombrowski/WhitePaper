@@ -168,19 +168,36 @@ Human insights during this session:
 
 Paper grew to 18 pages.
 
+## Session 10: Additional Figures, Consistency Review & Fixes (2026-02-09)
+
+**Issues**: [#31](https://github.com/brucedombrowski/WhitePaper/issues/31)
+
+Continued embedding publication-quality figures and fixing consistency issues:
+
+- **Figure 6**: Cumulative commits across all repos (placed in Concurrent Multi-Project Scalability discussion)
+- **Figure 7**: Security Toolkit directory evolution via git-of-theseus (placed in Security Toolkit case study — scripts/ and tests/ grow in lockstep)
+- **Fixed**: "2.7 major versions" → "94 version tags" — original phrasing incorrectly treated SemVer v2.7.3 as "2.7 major versions"
+- **Updated**: Commit count 24 → 26 in reproducibility metrics
+- **Updated**: Figure cross-references in reproducibility section
+
+Human corrections:
+- "2.7 major versions doesn't make sense" — you can have unlimited minor versions; what matters is number of releases (git tags)
+
+Paper: 20 pages, 7 figures, 400K.
+
 ## Current State
 
 | Metric | Value |
 |--------|-------|
-| Paper | 18 pages, two-column format |
-| Figures | 2 TikZ + 10 generated charts |
+| Paper | 20 pages, two-column format |
+| Figures | 2 TikZ + 5 embedded charts (7 total in paper), 10 generated charts |
 | Tables | 4 (verification, CLI switches, agent config, QA standards) |
 | Case studies | 3 (SendCUIEmail, Decisions, Security Toolkit) |
 | References | 20 BibTeX entries |
 | Agents | 5 (agents.json) |
-| GitHub issues | 30 (1 closed, 29 open) |
-| Commits | 23+ on main |
-| Version | v0.6.0 (unreleased) |
+| GitHub issues | 30 (25 closed, 5 open) |
+| Commits | 26 on main |
+| Version | v0.6.0 (tagging) |
 | Security scans | 4 (2 pass, 1 review, 1 fail) |
 | Ecosystem repos | 7 (WhitePaper, ai-agents, systems-engineering, Scrum, SendCUIEmail, Security, Decisions) |
 | Visualizations | 10 charts (PNG/PDF/TikZ) + 40s gource video |
@@ -193,6 +210,6 @@ Paper grew to 18 pages.
 - [x] ~~Git data visualizations~~ (10 charts + gource video)
 - [x] ~~Training slide deck~~ (`git-workflow-training.pptx`)
 - [ ] 30-minute training video (#30)
-- [ ] Define complete user git workflow desk instruction (#29)
+- [x] ~~Define complete user git workflow desk instruction~~ (`DI-GIT-001` in systems-engineering, #29)
 - [ ] Run full multi-agent session using `claude --agents "$(cat agents.json)"`
 - [ ] Submit to conference or preprint server

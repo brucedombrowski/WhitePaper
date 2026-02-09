@@ -626,6 +626,28 @@ preventing stale attestations from being presented as current evidence.
 This maps directly to the continuous monitoring requirements of NIST
 CA-7.
 
+## Codebase Structure Evolution
+
+Code survival analysis using git-of-theseus reveals how the toolkit’s
+codebase structure evolved over its 463-commit history.
+Figure <a href="#fig:theseus-dirs" data-reference-type="ref"
+data-reference="fig:theseus-dirs">2</a> shows that the `scripts/`
+(implementation) and `tests/` (verification) directories grew in
+lockstep throughout the development period—from approximately 10,000 and
+3,000 lines respectively at project inception to 27,000 and 8,000 lines
+at the time of writing. This parallel growth indicates disciplined test
+coverage practices maintained throughout AI-assisted development: new
+scanning capabilities were consistently accompanied by corresponding
+test cases.
+
+<figure id="fig:theseus-dirs" data-latex-placement="htbp">
+<embed src="visualizations/theseus_directories.pdf" />
+<figcaption>Security Verification Toolkit codebase structure evolution
+(git-of-theseus). The <code>scripts/</code> and <code>tests/</code>
+directories grow in lockstep, indicating consistent test coverage
+practices throughout AI-assisted development.</figcaption>
+</figure>
+
 ## Multi-Agent Development
 
 The toolkit itself was developed using a multi-agent architecture with
@@ -635,8 +657,8 @@ uses GitHub issues as the communication channel—the same interaction
 logging pattern adopted in this paper’s methodology. This represents a
 mature implementation of the multi-agent compliance workflow described
 in Section <a href="#sec:agents" data-reference-type="ref"
-data-reference="sec:agents">7</a>, validated across 2.7 major versions
-and over 140 GitHub issues.
+data-reference="sec:agents">7</a>, validated across 94 version tags and
+over 140 GitHub issues.
 
 # Multi-Agent Workflow
 
@@ -644,7 +666,7 @@ Claude Code’s `--agents` mode enables orchestrated workflows where
 multiple specialized agents collaborate on a project. For government
 compliance work, we propose the role-based agent architecture shown in
 Figure <a href="#fig:agents" data-reference-type="ref"
-data-reference="fig:agents">2</a>.
+data-reference="fig:agents">3</a>.
 
 <figure id="fig:agents" data-latex-placement="htbp">
 
@@ -881,6 +903,13 @@ data-reference="sec:scrum">7.4</a>; and this paper documents the
 methodology used across all projects, creating a feedback loop that
 improves each project’s compliance posture.
 
+Figure <a href="#fig:cumulative-commits" data-reference-type="ref"
+data-reference="fig:cumulative-commits">4</a> illustrates this
+concurrent development pattern: the cumulative commit timeline shows
+multiple repositories advancing simultaneously, with the Security
+Verification Toolkit exhibiting the steepest growth curve while other
+projects progress in parallel bursts.
+
 This cross-project learning is facilitated by the `CLAUDE.md`
 convention: insights captured in one project’s instructions propagate to
 others when the engineer applies the same patterns (semantic versioning,
@@ -907,6 +936,15 @@ artifacts* is a distinctive advantage of the AI-assisted approach: the
 agent can update its own instructions, rebuild its infrastructure, and
 continue producing deliverables without the context-switching penalty
 that a human author would incur.
+
+<figure id="fig:cumulative-commits" data-latex-placement="htbp">
+<embed src="visualizations/cumulative_commits.pdf" />
+<figcaption>Cumulative commits across all seven repositories over the
+three-week development period. The Security Verification Toolkit (green,
+dotted) dominates with 463 commits and exhibits the steepest growth
+curve. Multiple repositories advance concurrently, demonstrating the
+scalability of the AI-assisted review-centric workflow.</figcaption>
+</figure>
 
 The scope of this concurrent work extends beyond software compliance.
 The author’s AI-assisted workflow originated with a CAD-based house
@@ -1020,11 +1058,11 @@ Applied to the seven repositories in this ecosystem (totaling 636
 commits and 34,000+ lines of code over three weeks), the visualizations
 revealed several patterns.
 Figure <a href="#fig:repo-comparison" data-reference-type="ref"
-data-reference="fig:repo-comparison">3</a> shows the ecosystem overview:
+data-reference="fig:repo-comparison">5</a> shows the ecosystem overview:
 the Security Verification Toolkit dominates with 463 commits, 26,630
 lines of code, and 94 version tags.
 Figure <a href="#fig:ecosystem-timeline" data-reference-type="ref"
-data-reference="fig:ecosystem-timeline">4</a> shows the active
+data-reference="fig:ecosystem-timeline">6</a> shows the active
 development windows—multiple repositories developed concurrently by a
 single engineer with AI agent support. Additional findings include:
 `scripts/` and `tests/` directories grew in lockstep (indicating
@@ -1051,7 +1089,7 @@ single engineer using AI agent assistance.</figcaption>
 </figure>
 
 Figure <a href="#fig:commit-patterns" data-reference-type="ref"
-data-reference="fig:commit-patterns">5</a> shows the temporal
+data-reference="fig:commit-patterns">7</a> shows the temporal
 distribution of commits: peak activity occurs at 17:00 UTC (noon
 Eastern) and 03:00–04:00 UTC (late night), with near-zero weekend
 commits. This pattern—high weekday intensity with no weekend work—is
@@ -1165,16 +1203,15 @@ development sessions, with each issue labeled according to the scheme
 described in
 Section <a href="#sec:methodology-git" data-reference-type="ref"
 data-reference="sec:methodology-git">3.5</a>. The git history contains
-24 semantically versioned commits (v0.1.0 through v0.5.0, with ongoing
+26 semantically versioned commits (v0.1.0 through v0.5.0, with ongoing
 work toward v0.6.0), each corresponding to a distinct
 compliance-relevant action. The repository also contains a visualization
 toolkit that generates 10 publication-quality charts from git data
 across the ecosystem, providing quantitative evidence of development
 activity
 (Figures <a href="#fig:repo-comparison" data-reference-type="ref"
-data-reference="fig:repo-comparison">3</a>
-and <a href="#fig:ecosystem-timeline" data-reference-type="ref"
-data-reference="fig:ecosystem-timeline">4</a>). Together, these records
+data-reference="fig:repo-comparison">5</a>–<a href="#fig:commit-patterns" data-reference-type="ref"
+data-reference="fig:commit-patterns">7</a>). Together, these records
 provide sufficient information for an independent team to reproduce the
 development process or for an auditor to verify that every artifact has
 a documented provenance chain.

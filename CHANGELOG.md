@@ -48,12 +48,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New subsection: Git Data Visualization — pipeline description, tool inventory, findings (#27)
 - Training slide deck: `visualizations/git-workflow-training.pptx` (14 slides) (#30)
 - Issue #30: 30-minute training video concept with content outline
+- Figure 6: Cumulative commits timeline embedded in Concurrent Multi-Project Scalability discussion
+- Figure 7: Security Toolkit directory evolution (git-of-theseus) embedded in Security Toolkit case study
 - Introduction contributions list expanded from 4 to 5 items (added traceability framework and standards-based review)
 - Abstract now mentions five-phase methodology and version control
 - Reproducibility section updated with current metrics (14 issues, 9 commits, v0.5.0)
 - Conclusion expanded with version control/audit trail discussion and meta-methodology paragraph
 
 ### Fixed
+- "2.7 major versions" → "94 version tags" in Security Toolkit Multi-Agent Development subsection
+- Commit count 24 → 26 in reproducibility metrics
 - "Four phases" → "five phases" in two locations (Phase 5 intro, Workflow Orchestration)
 - Missing listing reference for `lst:agentsmd` in Phase 2 text
 
