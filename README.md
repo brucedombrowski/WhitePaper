@@ -6,7 +6,7 @@ A methodology for using git version control and AI coding agents to meet federal
 
 **Title**: Git and AI Coding Agents for Government Compliance: A Methodology for Federal Information Security Requirements
 
-**Format**: 22-page academic paper, two-column, IEEE-style
+**Format**: 25-page academic paper, two-column, IEEE-style
 
 **Key argument**: Git provides the tamper-evident audit trail (NIST SP 800-53 CM-3); AI coding agents draft compliance artifacts under human review (AC-5). Together they shift the engineer's role from author to reviewer while maintaining human-in-the-loop oversight. The methodology is agent-platform agnostic.
 
@@ -35,7 +35,7 @@ Produces `whitepaper.pdf`, `whitepaper-review.md`, and `whitepaper-review.html`.
 
 ```
 whitepaper.tex          Main paper (LaTeX)
-references.bib          BibTeX references (23 entries)
+references.bib          BibTeX references (25 entries)
 build.sh                Reproducible build script
 agents.json             Multi-agent configuration (5 agents)
 PROCESS.md              Session-by-session development log

@@ -104,20 +104,33 @@ requirement to its implementation and test.
 ## AI-Assisted Software Development
 
 The application of large language models to software engineering has
-been studied extensively (Fan et al. 2023). Code generation tools such
-as GitHub Copilot, Amazon CodeWhisperer, and Anthropic’s Claude have
-demonstrated capability in producing syntactically correct code across
-multiple languages. However, the application of LLMs to
-*compliance-oriented* development—where correctness encompasses not just
-functional behavior but regulatory adherence—remains underexplored.
+been studied extensively (Fan et al. 2023), with recent surveys covering
+both documentation automation (Radosky and Polasek 2026) and the
+emerging role of autonomous coding agents (Huang et al. 2025). Code
+generation tools such as GitHub Copilot, Amazon CodeWhisperer, and
+Anthropic’s Claude have demonstrated capability in producing
+syntactically correct code across multiple languages. In the public
+sector, Ng et al. (Ng et al. 2024) report 21–28% productivity
+improvements from AI coding assistants at GovTech Singapore, along with
+governance recommendations for using cloud-based tools with open-source
+code and self-hosted alternatives for confidential government projects—a
+distinction that directly parallels the adoption pathway discussed in
+Section <a href="#sec:discussion" data-reference-type="ref"
+data-reference="sec:discussion">8</a>.
 
-Prior work on AI-assisted documentation generation has focused primarily
-on API documentation (Khan and Uddin 2022) and code comments. The
-generation of *regulatory* documentation—where the AI must reason about
-the relationship between code implementations and published
-standards—presents distinct challenges including citation accuracy,
-regulatory interpretation, and the need for conservative (rather than
-creative) text generation.
+However, the application of LLMs to *compliance-oriented*
+development—where correctness encompasses not just functional behavior
+but regulatory adherence—remains underexplored. Marino et al. (Marino et
+al. 2025) benchmark LLMs’ ability to assess regulatory compliance (EU AI
+Act), demonstrating that frontier models can approximate expert
+judgment, but their work focuses on compliance *assessment* rather than
+artifact *generation*. Prior work on AI-assisted documentation
+generation has focused primarily on API documentation (Khan and Uddin
+2022) and code comments. The generation of *regulatory*
+documentation—where the AI must reason about the relationship between
+code implementations and published standards—presents distinct
+challenges including citation accuracy, regulatory interpretation, and
+the need for conservative (rather than creative) text generation.
 
 The current generation of AI coding tools spans a spectrum of
 integration depth. *Inline completion* tools (GitHub Copilot, Amazon
@@ -137,12 +150,13 @@ traceability relationships between them.
 
 The critical property for compliance applications is an *explicit
 approval model*: every file write, command execution, and code edit
-requires human confirmation. While this introduces friction compared to
-fully autonomous agents, it produces a natural audit trail of
-human-approved actions—precisely the evidence of human oversight that
-government compliance frameworks (NIST SP 800-53 AC-5, SA-11) require.
-Tool permission systems also enable the separation-of-duties pattern
-described in Section <a href="#sec:agents" data-reference-type="ref"
+requires human confirmation. Huang et al. (Huang et al. 2025) confirm
+that professional developers maintain deliberate oversight of AI agents’
+design decisions rather than delegating control—a pattern that aligns
+with the human-in-the-loop oversight government compliance frameworks
+(NIST SP 800-53 AC-5, SA-11) require. Tool permission systems also
+enable the separation-of-duties pattern described in
+Section <a href="#sec:agents" data-reference-type="ref"
 data-reference="sec:agents">7</a>, where review agents are denied write
 access at the tool level rather than by convention. Claude Code
 implements this model; other agentic tools vary in the granularity of
@@ -1658,6 +1672,15 @@ Nos. 800-63B. National Institute of Standards; Technology.
 
 </div>
 
+<div id="ref-huang2025devcontrol" class="csl-entry">
+
+Huang, Ruanqianqian, Avery Reyna, Sorin Lerner, Haijun Xia, and Brian
+Hempel. 2025. “Professional Software Developers Don’t Vibe, They
+Control: AI Agent Use for Coding in 2025.” *arXiv Preprint
+arXiv:2512.14012*.
+
+</div>
+
 <div id="ref-ieee1028" class="csl-entry">
 
 IEEE Computer Society. 2008. *<span class="nocase">IEEE 1028: Standard
@@ -1708,6 +1731,14 @@ Institute of Standards; Technology.
 
 </div>
 
+<div id="ref-marino2025airegbench" class="csl-entry">
+
+Marino, Bill, Rosco Hunter, Zubair Jamali, et al. 2025. “AIReg-Bench:
+Benchmarking Language Models That Assess AI Regulation Compliance.”
+*arXiv Preprint arXiv:2510.01474*.
+
+</div>
+
 <div id="ref-fips1402" class="csl-entry">
 
 National Institute of Standards and Technology. 2001a.
@@ -1731,6 +1762,23 @@ National Institute of Standards and Technology. 2004.
 *<span class="nocase">FIPS 199: Standards for Security Categorization of
 Federal Information and Information Systems</span>*. NIST.
 <https://csrc.nist.gov/publications/detail/fips/199/final>.
+
+</div>
+
+<div id="ref-ng2024govtech" class="csl-entry">
+
+Ng, Kevin KB, Liyana Fauzi, Leon Leow, and Jaren Ng. 2024. “Harnessing
+the Potential of Gen-AI Coding Assistants in Public Sector Software
+Development.” *arXiv Preprint arXiv:2409.17434*.
+
+</div>
+
+<div id="ref-radosky2026llmdoc" class="csl-entry">
+
+Radosky, Ladislav, and Ivan Polasek. 2026. “Large Language Models in
+Software Documentation and Modeling: A Literature Review and Findings.”
+*IEEE 24th World Symposium on Applied Machine Intelligence and
+Informatics (SAMI 2026)*.
 
 </div>
 
