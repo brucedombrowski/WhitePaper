@@ -168,7 +168,7 @@ Listing~\ref{lst:req-json} shows an excerpt from the SendCUIEmail requirements d
 }
 \end{lstlisting}
 
-The developer's role shifts from \textit{authoring} requirements to \textit{reviewing} them---verifying that the AI's interpretation of the standard is correct and that no requirements are omitted. This review-centric workflow is faster than drafting from scratch while preserving the technical judgment that compliance demands.
+Requirement text uses RFC~2119 \cite{rfc2119} keywords (SHALL, SHOULD, MAY) to distinguish mandatory from recommended requirements, following the convention established in IETF and NIST publications. The developer's role shifts from \textit{authoring} requirements to \textit{reviewing} them---verifying that the AI's interpretation of the standard is correct and that no requirements are omitted. This review-centric workflow is faster than drafting from scratch while preserving the technical judgment that compliance demands.
 
 \subsection{Phase 2: Implementation with Compliance Awareness}
 
@@ -221,7 +221,7 @@ Table~\ref{tab:verification-excerpt} shows an excerpt from the SendCUIEmail veri
 REQ-1.1 & \texttt{Encrypt.ps1}: \texttt{[Aes]::Create()} call & Inspection \\
 REQ-1.2 & \texttt{\$KEY\_SIZE = 32} (256 bits) & Inspection \\
 REQ-2.3 & \texttt{\$ITERATIONS = 100000} & Inspection \\
-REQ-3.1 & \texttt{RandomNumberGenerator} usage & Inspection \\
+REQ-3.1 & {\small\texttt{RandomNumberGenerator}} usage & Inspection \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -234,15 +234,15 @@ REQ-3.1 & \texttt{RandomNumberGenerator} usage & Inspection \\
 
 SendCUIEmail is a PowerShell-based tool for encrypting files before email transmission, designed for environments where Public Key Infrastructure (PKI) or S/MIME certificate exchange is impractical. The tool addresses a common gap in federal and contractor environments: the need to transmit CUI securely when the only available channel is unencrypted email.
 
-The project's compliance scope spans six federal standards and publications:
+The project's compliance scope spans six federal standards and regulations:
 
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{FIPS 197}: AES algorithm specification
-    \item \textbf{FIPS 140-2}: Cryptographic module validation
-    \item \textbf{NIST SP 800-132}: Password-based key derivation
-    \item \textbf{NIST SP 800-38A}: Block cipher modes of operation
-    \item \textbf{NIST SP 800-90A}: Random number generation
-    \item \textbf{32 CFR Part 2002}: CUI marking and handling
+    \item \textbf{FIPS 197} \cite{fips197}: AES algorithm specification
+    \item \textbf{FIPS 140-2} \cite{fips1402}: Cryptographic module validation
+    \item \textbf{NIST SP 800-132} \cite{nist800132}: Password-based key derivation
+    \item \textbf{NIST SP 800-38A} \cite{nist80038a}: Block cipher modes of operation
+    \item \textbf{NIST SP 800-90A} \cite{nist80090a}: Random number generation
+    \item \textbf{32 CFR Part 2002} \cite{32cfr2002}: CUI marking and handling
 \end{enumerate}
 
 \subsection{AI-Assisted Artifacts}
@@ -251,7 +251,7 @@ Over the course of development, Claude Code assisted in producing the following 
 
 \subsubsection{Requirements Document (REQ-2026-001)}
 
-A JSON-formatted requirements specification containing 28 requirements across six categories: encryption algorithm, key derivation, random number generation, password handling, file format, and platform requirements. The JSON source-of-truth enables automated generation of formatted PDF documents via a Python build script.
+A JSON-formatted requirements specification containing 29 requirements across six categories: encryption algorithm, key derivation, random number generation, password handling, file format, and platform requirements. The JSON source-of-truth enables automated generation of formatted PDF documents via a Python build script.
 
 \subsubsection{Decision Memoranda (DM-2026-001 through DM-2026-007)}
 
@@ -260,7 +260,7 @@ Seven formal decision memos documenting design choices:
 \begin{itemize}[leftmargin=*]
     \item \textbf{DM-001}: Cross-platform support strategy
     \item \textbf{DM-002}: File size limit rationale (10~MB)
-    \item \textbf{DM-003}: Password transmission method (out-of-band per NIST SP 800-63B)
+    \item \textbf{DM-003}: Password transmission method (out-of-band per NIST SP 800-63B \cite{nist80063b})
     \item \textbf{DM-004}: Verification document numbering scheme
     \item \textbf{DM-005}: Multi-category CUI support per 32~CFR~2002.20(a)(3)
     \item \textbf{DM-006}: Beta readiness assessment
@@ -269,15 +269,16 @@ Seven formal decision memos documenting design choices:
 
 \subsubsection{Verification Document (VER-2026-001)}
 
-A line-by-line code verification mapping all 28 requirements to specific implementation evidence in the source code, including file paths, function names, and configuration values.
+A line-by-line code verification mapping all 29 requirements to specific implementation evidence in the source code, including file paths, function names, and configuration values.
 
 \subsection{Cryptographic Implementation}
 
 The core encryption implementation demonstrates how AI-assisted development can produce compliant code. The encrypted file format is:
 
-\begin{equation}
-\text{Output} = \text{Salt}_{128} \| \text{IV}_{128} \| \text{AES-256-CBC}(K, \text{IV}, \text{Plaintext})
-\end{equation}
+\begin{multline}
+\text{Output} = \text{Salt}_{128} \| \text{IV}_{128} \| {} \\
+\text{AES-256-CBC}(K, \text{IV}, \text{Plaintext})
+\end{multline}
 
 where $K$ is derived via PBKDF2-HMAC-SHA256:
 
@@ -285,15 +286,15 @@ where $K$ is derived via PBKDF2-HMAC-SHA256:
 K = \text{PBKDF2}(\text{password}, \text{Salt}, 100000, 256)
 \end{equation}
 
-The implementation uses exclusively platform-provided cryptographic libraries (\texttt{System.Security.Cryptography}), avoiding third-party dependencies that would complicate FIPS validation. When Windows FIPS mode is enabled, the tool leverages CMVP Certificate \#4515 for validated cryptographic operations.
+The implementation uses exclusively platform-provided cryptographic libraries (\texttt{System.Security.Cryptography}), avoiding third-party dependencies that would complicate FIPS validation. When Windows FIPS mode is enabled, the tool leverages CMVP-validated cryptographic modules (e.g., Certificate \#4515, Kernel Mode Cryptographic Primitives Library, validated under FIPS 140-2 on Windows 10; specific certificate numbers vary by Windows version).
 
 \subsection{Recipient Experience Design}
 
 A significant AI-assisted design contribution was the recipient decryption workflow. The tool generates a self-contained HTML instruction document (\texttt{Decrypt\_Instructions.html}) with an embedded PowerShell one-liner:
 
-\begin{lstlisting}[style=powershell, caption={Decryption one-liner (simplified)}, label={lst:oneliner}]
+\begin{lstlisting}[style=powershell, caption={Decryption logic (simplified from production code)}, label={lst:oneliner}]
 $f=Read-Host "File"
-$p=Read-Host "Password" -AsSecureString
+$p=Read-Host "Password"
 $d=[IO.File]::ReadAllBytes($f)
 $k=[Rfc2898DeriveBytes]::new(
     $p,$d[0..15],100000,"SHA256")
@@ -306,7 +307,7 @@ $c=$a.CreateDecryptor()
     ($f-replace'\.Locked$',''),$c)
 \end{lstlisting}
 
-This design requires no software installation by recipients---only PowerShell, which is built into every modern Windows installation. The AI agent helped iterate on this one-liner to minimize its length while maintaining readability and compliance with the cryptographic parameter requirements.
+This design requires no software installation by recipients---only PowerShell, which is built into every modern Windows installation. The production code uses \texttt{SecureString} with \texttt{SecureStringToBSTR} conversion and file picker dialogs; the listing above is a functionally correct simplification using plaintext password input for clarity. The AI agent helped iterate on the production one-liner to minimize its length while maintaining compliance with the cryptographic parameter requirements.
 
 % ============================================================
 \section{Case Study: Decision Documentation System}
@@ -352,22 +353,22 @@ Claude Code's \texttt{--agents} mode enables orchestrated workflows where multip
 
 Agent definitions are stored in a JSON configuration file that specifies each agent's role, model selection, permitted tools, and a detailed system prompt encoding compliance context. Table~\ref{tab:agent-config} summarizes the five-agent configuration developed for this paper.
 
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \centering
 \caption{Agent configuration summary (agents.json)}
 \label{tab:agent-config}
-\begin{tabularx}{\columnwidth}{lllX}
+\begin{tabularx}{\textwidth}{llllX}
 \toprule
-\textbf{Agent} & \textbf{Model} & \textbf{Phase} & \textbf{Key Capability} \\
+\textbf{Agent} & \textbf{Model} & \textbf{Phase} & \textbf{QA Standard} & \textbf{Key Capability} \\
 \midrule
-project-setup & Sonnet & Setup & Repo structure, build config, templates \\
-requirements & Opus & Phase 1 & Standard interpretation, JSON requirements \\
-implementation & Sonnet & Phase 2 & Compliant code within REQ constraints \\
-documentation & Sonnet & Phase 3 & DMs, VERs, LaTeX artifacts \\
-review & Opus & Phase 4 & Audit with no write access (read-only) \\
+project-setup & Sonnet & Setup & --- & Repo structure, build config, templates \\
+requirements & Opus & Phase 1 & IEEE 29148 & Standard interpretation, JSON requirements \\
+implementation & Sonnet & Phase 2 & --- & Compliant code within REQ constraints \\
+documentation & Sonnet & Phase 3 & MIL-STD-498 & Decision memos, verification docs, LaTeX \\
+review & Opus & Phase 4 & IEEE 1028, NIST 800-53 AC-5 & Audit with no write access (read-only) \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{table*}
 
 Model selection reflects the cognitive demands of each role: the \texttt{requirements} and \texttt{review} agents use Opus for its stronger reasoning over regulatory interpretation and cross-reference validation, while \texttt{implementation} and \texttt{documentation} use Sonnet for its favorable speed-to-quality ratio on structured, template-following tasks. Notably, the \texttt{review} agent is denied write and edit tools, enforcing a separation-of-duties principle where auditors identify problems but do not fix them.
 
@@ -413,12 +414,36 @@ Government frameworks increasingly require evidence of human oversight in automa
 
 The \texttt{CLAUDE.md} convention further supports compliance by encoding organizational and project-specific constraints that persist across sessions. An organization's compliance officer could define \texttt{CLAUDE.md} templates that encode mandatory requirements, ensuring that all AI-assisted development within the organization operates within approved boundaries.
 
+\subsection{Standards-Based Review Process}
+
+The review agent itself operates according to established QA standards, making the review process auditable and reproducible. Table~\ref{tab:qa-standards} maps each aspect of the review process to its governing standard.
+
+\begin{table*}[htbp]
+\centering
+\caption{QA standards applied to the AI-assisted review process}
+\label{tab:qa-standards}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Standard} & \textbf{Control} & \textbf{Application} \\
+\midrule
+IEEE 1028 \cite{ieee1028} & Software Reviews & Review structure: severity classification (CRITICAL/MINOR), findings format, disposition \\
+IEEE 29148 \cite{ieee29148} & Requirements Engineering & Traceability verification: standard $\rightarrow$ requirement $\rightarrow$ implementation $\rightarrow$ test \\
+NIST SP 800-53 \cite{nist80053} & AC-5: Separation of Duties & Review agent denied write/edit tools; auditors cannot modify what they audit \\
+NIST SP 800-53 \cite{nist80053} & SA-11: Developer Testing & Claims verified against source files; assertions checked against implementation \\
+ISO/IEC 25010 \cite{iso25010} & Software Quality & Documentation quality: completeness, accuracy, consistency checks \\
+MIL-STD-498 \cite{milstd498} & A.5.19: Traceability & Cross-reference integrity between REQ, VER, DM, and source code \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+This standards-based approach ensures that the review process itself can withstand audit scrutiny---a critical consideration for government programs where the QA methodology must be as defensible as the artifacts it evaluates. All review findings are documented as GitHub issues with structured severity, recommendation, and standard-violated fields, providing a traceable audit record per IEEE~1028.
+
 \subsection{Limitations}
 
 Several limitations should be noted:
 
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Model knowledge currency}: LLM training data has a cutoff date, meaning recent revisions to standards (e.g., updates to NIST SP 800-171 Rev.~3) may not be reflected. Developers must verify that AI-cited standards are current.
+    \item \textbf{Model knowledge currency}: LLM training data has a cutoff date, meaning recent revisions to standards (e.g., updates to NIST SP 800-171 Rev.~3, or the transition from FIPS 140-2 to FIPS 140-3 for new CMVP submissions since 2021) may not be reflected. Developers must verify that AI-cited standards are current.
     \item \textbf{No formal verification}: AI-generated compliance claims are assertions, not proofs. They do not substitute for formal testing, independent audit, or certification processes such as CMVP validation.
     \item \textbf{Organizational specificity}: Government compliance is highly context-dependent. The same standard may be interpreted differently across agencies, and AI agents lack organizational knowledge without explicit instruction.
     \item \textbf{Classification boundaries}: AI tools operating in cloud-connected modes are unsuitable for classified work. The methodology presented here applies only to unclassified and CUI environments.

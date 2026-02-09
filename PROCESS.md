@@ -111,7 +111,7 @@ Expanded `agents.json` from 1 agent to 5 agents, matching the roles described in
 | `project-setup` | sonnet | Repository structure, build config, templates | Read, Write, Edit, Bash, Glob, Grep |
 | `requirements` | opus | Extract/validate requirements from federal standards | Read, Write, Edit, Glob, Grep, WebFetch, WebSearch |
 | `implementation` | sonnet | Write compliant code per REQ documents | Read, Write, Edit, Bash, Glob, Grep |
-| `documentation` | opus | Decision memos, verification docs, LaTeX artifacts | Read, Write, Edit, Bash, Glob, Grep |
+| `documentation` | sonnet | Decision memos, verification docs, LaTeX artifacts | Read, Write, Edit, Bash, Glob, Grep |
 | `review` | opus | Audit artifacts for completeness and accuracy | Read, Glob, Grep, Bash |
 
 ### Design Decisions
