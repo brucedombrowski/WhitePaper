@@ -78,6 +78,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ecosystem stats: 636 → 642 commits, "three weeks" → "four weeks" (26 days actual)
 - "Four phases" → "five phases" in two locations (Phase 5 intro, Workflow Orchestration)
 - Missing listing reference for `lst:agentsmd` in Phase 2 text
+- Scrum section vendor-specific model refs: "Opus"/"Sonnet" → reasoning/throughput-optimized (#34)
+- Stale reproducibility metrics: 31→33 issues, 28→39 commits, 6→7 tags, 5→6 figures (#34)
+- All 4 overfull hbox warnings: TikZ figures resized, equation split, table font reduced (#34)
+- CLAUDE.md: added solution-agnostic writing conventions and model reference guidelines (#34)
 
 ## [0.5.0] - 2026-02-09
 
