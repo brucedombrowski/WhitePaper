@@ -93,9 +93,10 @@ Claude Code, Anthropic's command-line interface for the Claude family of models,
 This paper makes the following contributions:
 
 \begin{enumerate}[leftmargin=*]
-    \item A methodology for using AI agents in government compliance software development, structured around the documentation requirements of NIST and DoD frameworks.
-    \item Three case studies demonstrating AI-assisted development of compliance artifacts: SendCUIEmail (a CUI encryption tool), a LaTeX-based decision memoranda system, and a Security Verification Toolkit implementing automated NIST control verification.
-    \item An evaluation of AI-generated compliance artifacts including requirements documents, decision memos, and verification matrices.
+    \item A five-phase methodology for using AI agents in government compliance software development, from requirements capture through version-controlled interaction traceability.
+    \item Three case studies demonstrating AI-assisted development of compliance artifacts: SendCUIEmail (a CUI encryption tool), a LaTeX-based decision memoranda system, and a Security Verification Toolkit implementing automated NIST SP 800-53 control verification.
+    \item An audit traceability framework using git (configuration management) and GitHub issues (interaction logging) to provide bidirectional provenance between human directives and AI-generated artifacts.
+    \item A standards-based review process mapped to IEEE~1028, NIST SP 800-53, and ISO/IEC~25010, with enforced separation of duties between authoring and auditing agents.
     \item A discussion of the \texttt{--agents} mode workflow for multi-agent collaboration on compliance projects.
 \end{enumerate}
 
@@ -666,7 +667,7 @@ Several limitations should be noted:
 
 This paper itself was produced using the methodology it describes. The white paper repository maintains a two-tier documentation structure: \texttt{PROCESS.md} provides a human-readable executive summary of each development session, while GitHub issues serve as the authoritative, machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 9 GitHub issues spanning 4 development sessions, with each issue labeled according to the scheme described in Section~\ref{sec:methodology-git}. The git history contains 6 commits, each corresponding to a distinct compliance-relevant action. Together, these records provide sufficient information for an independent team to reproduce the development process or for an auditor to verify that every artifact has a documented provenance chain.
+As of this writing, the repository contains 14 GitHub issues spanning 6 development sessions, with each issue labeled according to the scheme described in Section~\ref{sec:methodology-git}. The git history contains 9 semantically versioned commits (v0.1.0 through v0.5.0, with ongoing work toward v0.6.0), each corresponding to a distinct compliance-relevant action. Together, these records provide sufficient information for an independent team to reproduce the development process or for an auditor to verify that every artifact has a documented provenance chain.
 
 This dual-track approach---git for configuration management, GitHub issues for interaction traceability---mirrors the separation between configuration management (NIST SP 800-53 CM-3) and audit logging (NIST SP 800-53 AU-3) that government frameworks prescribe. The combination ensures that the process is documented at both the artifact level (what changed) and the decision level (why it changed).
 

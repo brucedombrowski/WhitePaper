@@ -20,6 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Figure 2: Multi-agent architecture diagram (TikZ) (#14)
 - Abstract updated to mention five-phase methodology and version control
 
+### Changed
+- Introduction contributions list expanded from 4 to 5 items (added traceability framework and standards-based review)
+- Abstract now mentions five-phase methodology and version control
+- Reproducibility section updated with current metrics (14 issues, 9 commits, v0.5.0)
+
 ### Fixed
 - "Four phases" → "five phases" in two locations (Phase 5 intro, Workflow Orchestration)
 - Missing listing reference for `lst:agentsmd` in Phase 2 text
