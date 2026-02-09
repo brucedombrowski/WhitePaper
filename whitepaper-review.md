@@ -109,6 +109,34 @@ standards—presents distinct challenges including citation accuracy,
 regulatory interpretation, and the need for conservative (rather than
 creative) text generation.
 
+The current generation of AI coding tools spans a spectrum of
+integration depth. *Inline completion* tools (GitHub Copilot, Amazon
+CodeWhisperer, Tabnine) operate within the editor, suggesting code as
+the developer types. These tools excel at reducing keystroke-level
+effort but lack the broader project context needed for compliance
+work—they cannot read a NIST standard reference and produce a
+corresponding requirements document. *Chat-based* tools (ChatGPT,
+Gemini) provide conversational interfaces but operate in isolation from
+the developer’s file system, requiring manual copy-paste of code and
+artifacts. *Agentic* tools (Claude Code, Cursor, Windsurf, Aider)
+operate directly within the developer’s environment, reading and writing
+files, executing commands, and maintaining session context. This agentic
+architecture is essential for compliance work, where the AI must
+simultaneously reason about source code, published standards, and the
+traceability relationships between them.
+
+The distinguishing property of Claude Code for compliance applications
+is its *explicit approval model*: every file write, command execution,
+and code edit requires human confirmation. While this introduces
+friction compared to fully autonomous agents, it produces a natural
+audit trail of human-approved actions—precisely the evidence of human
+oversight that government compliance frameworks (NIST SP 800-53 AC-5,
+SA-11) require. The tool permission system also enables the
+separation-of-duties pattern described in
+Section <a href="#sec:agents" data-reference-type="ref"
+data-reference="sec:agents">7</a>, where review agents are denied write
+access at the tool level rather than by convention.
+
 ## Claude Code Architecture
 
 Claude Code (Anthropic 2025) operates as a command-line agent with
@@ -224,12 +252,16 @@ judgment that compliance demands.
 ## Phase 2: Implementation with Compliance Awareness
 
 During implementation, the Claude Code agent operates within the
-project’s `CLAUDE.md` context, which encodes the compliance standards
-and architectural constraints. The `AGENTS.md` file (used in the
-SendCUIEmail project) provides persistent instructions that survive
-across sessions, as shown in
+project’s instruction files, which encode compliance standards and
+architectural constraints. `CLAUDE.md` provides project-wide
+instructions (build commands, repository scope, conventions), while
+`AGENTS.md` defines role-specific compliance context (applicable
+standards, verification methods, regulatory constraints). Both files
+persist across sessions, ensuring that every agent invocation begins
+with the correct compliance posture.
 Listing <a href="#lst:agentsmd" data-reference-type="ref"
-data-reference="lst:agentsmd">[lst:agentsmd]</a>:
+data-reference="lst:agentsmd">[lst:agentsmd]</a> shows the compliance
+context from the SendCUIEmail project:
 
 ```
 ## Compliance Standards
