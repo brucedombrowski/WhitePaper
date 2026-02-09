@@ -1,0 +1,9 @@
+# PII Allowlist for WhitePaper
+# Format: file:line:hash  # justification
+#
+# The LaTeX log file (whitepaper.log) contains "15000+600000" which matches
+# the international phone number pattern. This is a false positive — it is a
+# TeX capacity statistic, not PII. The .log file is also in .gitignore.
+#
+# Note: .log files are gitignored and excluded from the repository.
+# This allowlist exists for completeness when scanning the working directory.

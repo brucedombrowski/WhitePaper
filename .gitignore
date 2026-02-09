@@ -27,3 +27,6 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Security scan results (host-specific, regenerate with scan.sh)
+.scans/
