@@ -98,6 +98,7 @@ This paper makes the following contributions:
     \item An audit traceability framework using git (configuration management) and GitHub issues (interaction logging) to provide bidirectional provenance between human directives and AI-generated artifacts.
     \item A standards-based review process mapped to IEEE~1028, NIST SP 800-53, and ISO/IEC~25010, with enforced separation of duties between authoring and auditing agents.
     \item A multi-agent architecture for compliance projects, with role-based separation of duties and quantitative output analysis.
+    \item A practical adoption pathway from commercial AI tools through open-source validation to enterprise deployment within FedRAMP-authorized environments.
 \end{enumerate}
 
 % ============================================================
@@ -841,7 +842,7 @@ A practical barrier to adopting AI-assisted compliance workflows within governme
 
 Critically, the open-source development stage forces the engineer to solve problems \textit{generically}. Because the repositories are public, no CUI, PII, or proprietary information can appear in the code, templates, or documentation. This constraint---which might seem limiting---is in fact an advantage: the resulting artifacts are inherently safe to share, demonstrate, and review without security concerns. The open-source work serves as a ``clean room'' implementation that the organization's in-house work can inherit. The same templates that encrypt hypothetical files in SendCUIEmail can encrypt real CUI in production; the same scanning scripts that verify compliance on synthetic test data can verify it on organizational systems.
 
-This pathway directly addresses the classification boundary limitation (Limitation~4 below): rather than requiring AI tools to operate within the classification boundary, the methodology is developed \textit{outside} the boundary with synthetic data, then applied inside it with organizational tooling and data. The AI agent assists in creating the framework; the human applies it to the classified context. The 16~repositories, 642~commits, and 136~release tags described in this paper represent the open-source validation stage of this pipeline---a body of evidence an engineer can present to organizational leadership before requesting formal adoption.
+This pathway directly addresses the classification boundary limitation (Limitation~4 below): rather than requiring AI tools to operate within the classification boundary, the methodology is developed \textit{outside} the boundary with synthetic data, then applied inside it with organizational tooling and data. The AI agent assists in creating the framework; the human applies it to the classified context. The 642~commits, 136~release tags, and 34,000+ lines of code across seven measured repositories---part of a broader 16-repository ecosystem---represent the open-source validation stage of this pipeline, a body of evidence an engineer can present to organizational leadership before requesting formal adoption.
 
 \subsubsection{Enterprise Deployment Options}
 

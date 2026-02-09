@@ -66,6 +66,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Abstract includes quantitative claims and "agent-platform agnostic" statement
 - Future Work: cross-platform validation with alternative AI tools
 - README.md updated with new title, key argument, quantitative results
+- New subsection: Adoption Pathway — commercial tools → open-source → enterprise (#35, #36, #37)
+- Enterprise Deployment Options: FedRAMP High/IL4-5, ZDR, VPC isolation, SOC 2 (#38)
+- Inter-Organizational Data Sharing: FedRAMP environments for government-contractor git workflows (#39)
+- `@misc` bib entries: DFARS 252.204-7012, FedRAMP — 25 references total
+- Introduction contributions list expanded from 5 to 6 items (added adoption pathway)
 
 ### Fixed
 - "The final phase" → "The verification phase" (stale from 4-phase era)
@@ -82,6 +87,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Stale reproducibility metrics: 31→33 issues, 28→39 commits, 6→7 tags, 5→6 figures (#34)
 - All 4 overfull hbox warnings: TikZ figures resized, equation split, table font reduced (#34)
 - CLAUDE.md: added solution-agnostic writing conventions and model reference guidelines (#34)
+- "16 repositories, 642 commits" → distinguished 7-repo measured set from 16-repo ecosystem (#34)
+- Limitation #4: updated to acknowledge FedRAMP High/IL4-5 for CUI; only Secret/TS out of scope
+- Reproducibility metrics: 39 issues, 45 commits, 8 tags, v0.8.0
 
 ## [0.5.0] - 2026-02-09
 

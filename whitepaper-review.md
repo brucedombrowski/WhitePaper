@@ -63,6 +63,10 @@ This paper makes the following contributions:
 5.  A multi-agent architecture for compliance projects, with role-based
     separation of duties and quantitative output analysis.
 
+6.  A practical adoption pathway from commercial AI tools through
+    open-source validation to enterprise deployment within
+    FedRAMP-authorized environments.
+
 # Background and Related Work
 
 ## Government Compliance Landscape
@@ -1319,11 +1323,11 @@ This pathway directly addresses the classification boundary limitation
 the classification boundary, the methodology is developed *outside* the
 boundary with synthetic data, then applied inside it with organizational
 tooling and data. The AI agent assists in creating the framework; the
-human applies it to the classified context. The 16 repositories,
-642 commits, and 136 release tags described in this paper represent the
-open-source validation stage of this pipeline—a body of evidence an
-engineer can present to organizational leadership before requesting
-formal adoption.
+human applies it to the classified context. The 642 commits, 136 release
+tags, and 34,000+ lines of code across seven measured repositories—part
+of a broader 16-repository ecosystem—represent the open-source
+validation stage of this pipeline, a body of evidence an engineer can
+present to organizational leadership before requesting formal adoption.
 
 ### Enterprise Deployment Options
 
