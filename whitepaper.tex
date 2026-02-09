@@ -226,6 +226,33 @@ REQ-3.1 & {\small\texttt{RandomNumberGenerator}} usage & Inspection \\
 \end{tabularx}
 \end{table}
 
+\subsection{Phase 5: Version Control and Interaction Traceability}
+\label{sec:methodology-git}
+
+The four development phases above produce artifacts, but compliance also demands \textit{evidence of process}---a verifiable record of who made which decisions, when changes were introduced, and how human-agent interactions shaped the final deliverables. We use git version control and GitHub issues as complementary traceability mechanisms.
+
+\subsubsection{Git as Audit Trail}
+
+Every meaningful action---creating a requirements document, fixing a review finding, adding a compliance scan---is captured as an atomic git commit on the project's main branch. Each commit message describes the compliance-relevant change (e.g., ``Fix all 13 review findings from issue~\#1; add QA standards framework''). This produces a linear, tamper-evident history that auditors can inspect with standard tooling (\texttt{git log}, \texttt{git diff}).
+
+Git's properties align directly with government configuration management requirements. NIST SP 800-53 CM-3 (Configuration Change Control) requires organizations to ``document, approve, and track changes to the system'' \cite{nist80053}. The git commit log serves as this change record: each commit is cryptographically hashed, timestamped, attributed to an author, and linked to its parent commits. Unlike informal change logs, git history cannot be silently altered without breaking the hash chain.
+
+The Security Verification Toolkit case study (Section~\ref{sec:casestudy-toolkit}) embeds the git commit hash directly into its compliance attestation PDFs, binding each attestation to a specific, reproducible configuration state.
+
+\subsubsection{GitHub Issues as Interaction Log}
+
+While git captures \textit{what changed}, GitHub issues capture \textit{why it changed} and \textit{who directed the change}. All human-agent interactions in this project are logged as GitHub issues using a structured labeling scheme:
+
+\begin{itemize}[leftmargin=*]
+    \item \texttt{human-prompt}: A human directive to the AI agent (e.g., ``expand agents.json with additional agent roles'')
+    \item \texttt{agent-output}: Agent-generated analysis or findings (e.g., ``13 review findings per IEEE 1028 inspection'')
+    \item \texttt{decision}: A design or process decision with rationale (e.g., ``IT security standards are standard review criteria'')
+\end{itemize}
+
+This labeling scheme creates a queryable audit record. An auditor can filter by \texttt{human-prompt} to see every directive the human issued, by \texttt{agent-output} to see every AI-generated analysis, or by \texttt{decision} to trace the rationale for each design choice. The combination provides bidirectional traceability between human intent and AI action---a key requirement when demonstrating human-in-the-loop oversight to government auditors.
+
+All five agents in the multi-agent configuration (Section~\ref{sec:agents}) include interaction logging in their system prompts, requiring them to create GitHub issues for every substantive human-agent exchange. This ensures that the audit trail is comprehensive regardless of which agent is active.
+
 % ============================================================
 \section{Case Study: SendCUIEmail}
 \label{sec:casestudy-sendcui}
@@ -499,7 +526,11 @@ Several limitations should be noted:
 
 \subsection{Reproducibility and Process Documentation}
 
-This paper itself was produced using the methodology it describes. The white paper repository includes a \texttt{PROCESS.md} file documenting the steps taken, the Claude Code interactions involved, and the artifacts produced. This meta-documentation serves both as a reproducibility aid and as a demonstration of the process documentation capabilities discussed in Section~\ref{sec:methodology}.
+This paper itself was produced using the methodology it describes. The white paper repository maintains a two-tier documentation structure: \texttt{PROCESS.md} provides a human-readable executive summary of each development session, while GitHub issues serve as the authoritative, machine-queryable record of all human-agent interactions.
+
+As of this writing, the repository contains 9 GitHub issues spanning 4 development sessions, with each issue labeled according to the scheme described in Section~\ref{sec:methodology-git}. The git history contains 6 commits, each corresponding to a distinct compliance-relevant action. Together, these records provide sufficient information for an independent team to reproduce the development process or for an auditor to verify that every artifact has a documented provenance chain.
+
+This dual-track approach---git for configuration management, GitHub issues for interaction traceability---mirrors the separation between configuration management (NIST SP 800-53 CM-3) and audit logging (NIST SP 800-53 AU-3) that government frameworks prescribe. The combination ensures that the process is documented at both the artifact level (what changed) and the decision level (why it changed).
 
 % ============================================================
 \section{Future Work}

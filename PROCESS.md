@@ -59,16 +59,32 @@ Added `scan.sh` wrapper script and `.allowlists/` for documented exceptions.
 
 Paper grew to 12 pages, 19 references, 3 case studies.
 
+## Session 5: Git & GitHub Issues as Methodology (2026-02-09)
+
+**Issues**: [#9](https://github.com/brucedombrowski/WhitePaper/issues/9)
+
+Added dedicated treatment of git and GitHub issues as integral parts of the compliance methodology:
+
+- New **Phase 5: Version Control and Interaction Traceability** subsection in Methodology
+  - Git as audit trail (commit hashes, CM-3 alignment, tamper-evident history)
+  - GitHub issues as structured interaction log (`human-prompt`, `agent-output`, `decision` labels)
+  - Bidirectional traceability between human intent and AI action
+- Expanded **Reproducibility and Process Documentation** in Discussion
+  - Two-tier documentation (PROCESS.md executive summary + GitHub issues as authoritative record)
+  - Mapped to NIST SP 800-53 CM-3 (configuration management) and AU-3 (audit logging)
+
+Paper grew to 13 pages.
+
 ## Current State
 
 | Metric | Value |
 |--------|-------|
-| Paper | 12 pages, two-column format |
+| Paper | 13 pages, two-column format |
 | Case studies | 3 (SendCUIEmail, Decisions, Security Toolkit) |
 | References | 19 BibTeX entries |
 | Agents | 5 (agents.json) |
-| GitHub issues | 8 (1 closed, 7 open) |
-| Commits | 5 on main |
+| GitHub issues | 9 (1 closed, 8 open) |
+| Commits | 7 on main |
 | Security scans | 4 (2 pass, 1 review, 1 fail) |
 
 ## Future Work
