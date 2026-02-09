@@ -275,7 +275,7 @@ This pattern enables the AI agent to produce new decision memos by following the
 
 \subsection{Phase 4: Verification}
 
-The final phase produces verification documents that map each requirement to its implementation evidence. The agent reads the source code, locates the relevant implementation for each requirement, and generates a verification matrix with file paths, line numbers, and explanatory text.
+The verification phase produces documents that map each requirement to its implementation evidence. The agent reads the source code, locates the relevant implementation for each requirement, and generates a verification matrix with file paths, line numbers, and explanatory text.
 
 Table~\ref{tab:verification-excerpt} shows an excerpt from the SendCUIEmail verification document.
 
@@ -435,14 +435,14 @@ Each decision memo follows the format required by many government programs: iden
 \section{Case Study: Security Verification Toolkit}
 \label{sec:casestudy-toolkit}
 
-The third case study examines the Security Verification Toolkit \cite{nist80053}, a pure-Bash security scanning and compliance documentation system under active development (currently v2.7.3) that automates the verification of federal security controls. Like all three case studies in this paper, the toolkit is under active development and is presented as a case study in AI-assisted compliance tooling, not as a finished product. Unlike SendCUIEmail (which implements a single compliance function) or the Decision Documentation System (which manages process artifacts), the toolkit addresses the \textit{continuous compliance verification} challenge: demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171 controls through automated scanning and attestation generation.
+The third case study examines the Security Verification Toolkit, a pure-Bash security scanning and compliance documentation system under active development (currently v2.7.3) that automates the verification of federal security controls. Like all three case studies in this paper, the toolkit is under active development and is presented as a case study in AI-assisted compliance tooling, not as a finished product. Unlike SendCUIEmail (which implements a single compliance function) or the Decision Documentation System (which manages process artifacts), the toolkit addresses the \textit{continuous compliance verification} challenge: demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171 controls through automated scanning and attestation generation.
 
 \subsection{Scope and Standards}
 
 The toolkit implements 14 NIST SP 800-53 controls and 11 NIST SP 800-171 controls across eight security control families, with each scan mapped to its governing control in machine-readable JSON. The standards addressed include:
 
 \begin{itemize}[leftmargin=*]
-    \item \textbf{NIST SP 800-53} \cite{nist80053}: RA-5 (Vulnerability Scanning), CM-6 (Configuration Settings), CM-8 (Component Inventory), SA-11 (Developer Testing), SI-2/3/4/5/12 (Information Integrity), SC-8 (Transmission Protection), MP-6 (Media Sanitization), CA-2 (Assessment)
+    \item \textbf{NIST SP 800-53} \cite{nist80053}: AU-2/3 (Audit Events and Records), CA-2 (Assessment), CM-6/8 (Configuration), MP-6 (Media Sanitization), RA-5 (Vulnerability Scanning), SA-11 (Developer Testing), SC-8 (Transmission Protection), SI-2/3/4/5/12 (Information Integrity)
     \item \textbf{NIST SP 800-171} \cite{nist800171}: 11 corresponding CUI protection requirements
     \item \textbf{NIST SP 800-88} \cite{nist80088}: Media sanitization (secure deletion)
     \item \textbf{BOD 22-01} \cite{bod2201}: CISA Known Exploited Vulnerabilities cross-referencing
@@ -477,7 +477,7 @@ The toolkit's design philosophy---\textit{``You are only as good as your last sc
 
 \subsection{Codebase Structure Evolution}
 
-Code survival analysis using git-of-theseus reveals how the toolkit's codebase structure evolved over its 463-commit history. Figure~\ref{fig:theseus-dirs} shows that the \texttt{scripts/} (implementation) and \texttt{tests/} (verification) directories grew in lockstep throughout the development period---from approximately 10,000 and 3,000 lines respectively at project inception to 27,000 and 8,000 lines at the time of writing. This parallel growth indicates disciplined test coverage practices maintained throughout AI-assisted development: new scanning capabilities were consistently accompanied by corresponding test cases.
+Code survival analysis using git-of-theseus reveals how the toolkit's codebase structure evolved over its 463-commit history. Figure~\ref{fig:theseus-dirs} shows that the \texttt{scripts/} (implementation) and \texttt{tests/} (verification) directories grew in lockstep throughout the development period---from approximately 10,000 and 3,000 lines respectively at the start of the analyzed period to 27,000 and 8,000 lines at the time of writing. This parallel growth indicates disciplined test coverage practices maintained throughout AI-assisted development: new scanning capabilities were consistently accompanied by corresponding test cases.
 
 \begin{figure}[htbp]
 \centering
@@ -671,7 +671,7 @@ This shift has two implications. First, it is faster: reviewing a draft is consi
 
 \subsection{Concurrent Multi-Project Scalability}
 
-The review-centric workflow has a second-order implication: because the human's role shifts from author to reviewer, a single engineer can oversee multiple AI-assisted projects concurrently. During the development of this paper, the author maintained five active projects simultaneously---SendCUIEmail (CUI encryption), a decision documentation system, a Security Verification Toolkit, this white paper, and a Scrum-based agent orchestration system---each with its own Claude Code sessions, agents, and compliance artifacts.
+The review-centric workflow has a second-order implication: because the human's role shifts from author to reviewer, a single engineer can oversee multiple AI-assisted projects concurrently. During the development of this paper, the author maintained five active projects simultaneously---SendCUIEmail (CUI encryption), a decision documentation system, a Security Verification Toolkit, this white paper, and a Scrum-based agent orchestration system---each with its own Claude Code sessions, agents, and compliance artifacts. These five projects span seven git repositories tracked in this paper's visualization data, with additional supporting repositories (agent templates, process framework) bringing the total to 16.
 
 Critically, these projects are not merely concurrent; they \textit{cross-pollinate}. Patterns discovered in one project feed into others: the Security Verification Toolkit's scanning infrastructure was applied to the white paper repository (Section~\ref{sec:casestudy-toolkit}); the SendCUIEmail project's agent conventions (\texttt{AGENTS.md}) informed the multi-agent architecture described in Section~\ref{sec:agents}; the Scrum repo's team structure informed Section~\ref{sec:scrum}; and this paper documents the methodology used across all projects, creating a feedback loop that improves each project's compliance posture.
 
@@ -684,7 +684,7 @@ Moreover, the methodology itself is refined iteratively as the projects progress
 \begin{figure*}[htbp]
 \centering
 \includegraphics[width=\textwidth]{visualizations/cumulative_commits.pdf}
-\caption{Cumulative commits across all seven repositories over the three-week development period. The Security Verification Toolkit (green, dotted) dominates with 463 commits and exhibits the steepest growth curve. Multiple repositories advance concurrently, demonstrating the scalability of the AI-assisted review-centric workflow.}
+\caption{Cumulative commits across all seven repositories over the four-week development period. The Security Verification Toolkit (green, dotted) dominates with 463 commits and exhibits the steepest growth curve. Multiple repositories advance concurrently, demonstrating the scalability of the AI-assisted review-centric workflow.}
 \label{fig:cumulative-commits}
 \end{figure*}
 
@@ -702,7 +702,7 @@ This pattern was validated in practice: a team lead adopted GitLab for versionin
 
 When whole-team review is required, the branch-and-merge-request workflow provides structured approval entirely within the browser. Branch protection rules enforce that (1) all changes to the main branch must go through a merge request, (2) required reviewers must approve before merge, and (3) the author cannot approve their own changes. These guardrails map directly to NIST SP 800-53 CM-3 (change control), AC-5 (separation of duties), and AU-3 (audit trail). Once configured, they are enforced automatically---the merge button is physically disabled until all conditions are met.
 
-The generated visualizations (Section~\ref{sec:visualization}) serve a similar accessibility function. A chart showing 636 commits across 7 repositories in 3 weeks communicates project scope more effectively to a non-technical audience than any paragraph. The animated tree visualization (gource) showing file creation and modification over time has proven particularly effective for conveying the scale and structure of development activity to stakeholders unfamiliar with version control concepts.
+The generated visualizations (Section~\ref{sec:visualization}) serve a similar accessibility function. A chart showing 636 commits across 7 repositories in under four weeks communicates project scope more effectively to a non-technical audience than any paragraph. The animated tree visualization (gource) showing file creation and modification over time has proven particularly effective for conveying the scale and structure of development activity to stakeholders unfamiliar with version control concepts.
 
 \subsection{Git Data Visualization}
 \label{sec:visualization}
@@ -720,7 +720,7 @@ The toolkit comprises both custom analysis scripts and established open-source t
     \item \textbf{Custom cross-repo analysis}: Cumulative commit timelines, daily activity by repository, code churn (additions vs. deletions), commit pattern analysis (hour of day, day of week), and ecosystem timeline (Gantt-style active development windows).
 \end{itemize}
 
-Applied to the seven repositories in this ecosystem (totaling 636 commits and 34,000+ lines of code over three weeks), the visualizations revealed several patterns. Figure~\ref{fig:repo-comparison} shows the ecosystem overview: the Security Verification Toolkit dominates with 463 commits, 26,630 lines of code, and 94 version tags. Figure~\ref{fig:ecosystem-timeline} shows the active development windows---multiple repositories developed concurrently by a single engineer with AI agent support. Additional findings include: \texttt{scripts/} and \texttt{tests/} directories grew in lockstep (indicating disciplined test coverage); development activity concentrated on weekdays with near-zero weekend commits; and the code cohort analysis confirmed that all code is 2026-vintage---consistent with a rapidly growing project where code survival analysis is not yet meaningful but growth trajectories are clearly visible.
+Applied to the seven repositories in this ecosystem (totaling 636 commits and 34,000+ lines of code over four weeks), the visualizations revealed several patterns. Figure~\ref{fig:repo-comparison} shows the ecosystem overview: the Security Verification Toolkit dominates with 463 commits, 26,630 lines of code, and 94 version tags. Figure~\ref{fig:ecosystem-timeline} shows the active development windows---multiple repositories developed concurrently by a single engineer with AI agent support. Additional findings include: \texttt{scripts/} and \texttt{tests/} directories grew in lockstep (indicating disciplined test coverage); development activity concentrated on weekdays with near-zero weekend commits; and the code cohort analysis confirmed that all code is 2026-vintage---consistent with a rapidly growing project where code survival analysis is not yet meaningful but growth trajectories are clearly visible.
 
 \begin{figure*}[htbp]
 \centering
@@ -793,7 +793,7 @@ Several limitations should be noted:
 
 This paper itself was produced using the methodology it describes. The white paper repository maintains a two-tier documentation structure: \texttt{PROCESS.md} provides a human-readable executive summary of each development session, while GitHub issues serve as the authoritative, machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 30 GitHub issues spanning 9 development sessions, with each issue labeled according to the scheme described in Section~\ref{sec:methodology-git}. The git history contains 26 semantically versioned commits (v0.1.0 through v0.5.0, with ongoing work toward v0.6.0), each corresponding to a distinct compliance-relevant action. The repository also contains a visualization toolkit that generates 10 publication-quality charts from git data across the ecosystem, providing quantitative evidence of development activity (Figures~\ref{fig:repo-comparison}--\ref{fig:commit-patterns}). Together, these records provide sufficient information for an independent team to reproduce the development process or for an auditor to verify that every artifact has a documented provenance chain.
+As of this writing, the repository contains 31 GitHub issues spanning 10 development sessions, with each issue labeled according to the scheme described in Section~\ref{sec:methodology-git}. The git history contains 28 semantically versioned commits across 6 release tags (v0.1.0 through v0.6.0), each corresponding to a distinct compliance-relevant action. The repository also contains a visualization toolkit that generates 10 publication-quality charts from git data across the ecosystem, of which 5 are included as figures in this paper (Figures~\ref{fig:repo-comparison}--\ref{fig:commit-patterns}). Together, these records provide sufficient information for an independent team to reproduce the development process or for an auditor to verify that every artifact has a documented provenance chain.
 
 This dual-track approach---git for configuration management, GitHub issues for interaction traceability---mirrors the separation between configuration management (NIST SP 800-53 CM-3) and audit logging (NIST SP 800-53 AU-3) that government frameworks prescribe. The combination ensures that the process is documented at both the artifact level (what changed) and the decision level (why it changed).
 

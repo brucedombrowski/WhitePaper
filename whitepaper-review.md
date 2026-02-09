@@ -273,11 +273,10 @@ documentation package.
 
 ## Phase 4: Verification
 
-The final phase produces verification documents that map each
-requirement to its implementation evidence. The agent reads the source
-code, locates the relevant implementation for each requirement, and
-generates a verification matrix with file paths, line numbers, and
-explanatory text.
+The verification phase produces documents that map each requirement to
+its implementation evidence. The agent reads the source code, locates
+the relevant implementation for each requirement, and generates a
+verification matrix with file paths, line numbers, and explanatory text.
 
 Table <a href="#tab:verification-excerpt" data-reference-type="ref"
 data-reference="tab:verification-excerpt">2</a> shows an excerpt from
@@ -540,18 +539,17 @@ selected approach, and rationale with regulatory references.
 
 # Case Study: Security Verification Toolkit
 
-The third case study examines the Security Verification Toolkit (Force
-2020), a pure-Bash security scanning and compliance documentation system
-under active development (currently v2.7.3) that automates the
-verification of federal security controls. Like all three case studies
-in this paper, the toolkit is under active development and is presented
-as a case study in AI-assisted compliance tooling, not as a finished
-product. Unlike SendCUIEmail (which implements a single compliance
-function) or the Decision Documentation System (which manages process
-artifacts), the toolkit addresses the *continuous compliance
-verification* challenge: demonstrating ongoing adherence to NIST SP
-800-53 and NIST SP 800-171 controls through automated scanning and
-attestation generation.
+The third case study examines the Security Verification Toolkit, a
+pure-Bash security scanning and compliance documentation system under
+active development (currently v2.7.3) that automates the verification of
+federal security controls. Like all three case studies in this paper,
+the toolkit is under active development and is presented as a case study
+in AI-assisted compliance tooling, not as a finished product. Unlike
+SendCUIEmail (which implements a single compliance function) or the
+Decision Documentation System (which manages process artifacts), the
+toolkit addresses the *continuous compliance verification* challenge:
+demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171
+controls through automated scanning and attestation generation.
 
 ## Scope and Standards
 
@@ -560,10 +558,10 @@ controls across eight security control families, with each scan mapped
 to its governing control in machine-readable JSON. The standards
 addressed include:
 
-- **NIST SP 800-53** (Force 2020): RA-5 (Vulnerability Scanning), CM-6
-  (Configuration Settings), CM-8 (Component Inventory), SA-11 (Developer
-  Testing), SI-2/3/4/5/12 (Information Integrity), SC-8 (Transmission
-  Protection), MP-6 (Media Sanitization), CA-2 (Assessment)
+- **NIST SP 800-53** (Force 2020): AU-2/3 (Audit Events and Records),
+  CA-2 (Assessment), CM-6/8 (Configuration), MP-6 (Media Sanitization),
+  RA-5 (Vulnerability Scanning), SA-11 (Developer Testing), SC-8
+  (Transmission Protection), SI-2/3/4/5/12 (Information Integrity)
 
 - **NIST SP 800-171** (Ross et al. 2020): 11 corresponding CUI
   protection requirements
@@ -634,11 +632,11 @@ Figure <a href="#fig:theseus-dirs" data-reference-type="ref"
 data-reference="fig:theseus-dirs">2</a> shows that the `scripts/`
 (implementation) and `tests/` (verification) directories grew in
 lockstep throughout the development period—from approximately 10,000 and
-3,000 lines respectively at project inception to 27,000 and 8,000 lines
-at the time of writing. This parallel growth indicates disciplined test
-coverage practices maintained throughout AI-assisted development: new
-scanning capabilities were consistently accompanied by corresponding
-test cases.
+3,000 lines respectively at the start of the analyzed period to 27,000
+and 8,000 lines at the time of writing. This parallel growth indicates
+disciplined test coverage practices maintained throughout AI-assisted
+development: new scanning capabilities were consistently accompanied by
+corresponding test cases.
 
 <figure id="fig:theseus-dirs" data-latex-placement="htbp">
 <embed src="visualizations/theseus_directories.pdf" />
@@ -886,7 +884,10 @@ development of this paper, the author maintained five active projects
 simultaneously—SendCUIEmail (CUI encryption), a decision documentation
 system, a Security Verification Toolkit, this white paper, and a
 Scrum-based agent orchestration system—each with its own Claude Code
-sessions, agents, and compliance artifacts.
+sessions, agents, and compliance artifacts. These five projects span
+seven git repositories tracked in this paper’s visualization data, with
+additional supporting repositories (agent templates, process framework)
+bringing the total to 16.
 
 Critically, these projects are not merely concurrent; they
 *cross-pollinate*. Patterns discovered in one project feed into others:
@@ -940,7 +941,7 @@ that a human author would incur.
 <figure id="fig:cumulative-commits" data-latex-placement="htbp">
 <embed src="visualizations/cumulative_commits.pdf" />
 <figcaption>Cumulative commits across all seven repositories over the
-three-week development period. The Security Verification Toolkit (green,
+four-week development period. The Security Verification Toolkit (green,
 dotted) dominates with 463 commits and exhibits the steepest growth
 curve. Multiple repositories advance concurrently, demonstrating the
 scalability of the AI-assisted review-centric workflow.</figcaption>
@@ -1013,12 +1014,12 @@ The generated visualizations
 (Section <a href="#sec:visualization" data-reference-type="ref"
 data-reference="sec:visualization">8.5</a>) serve a similar
 accessibility function. A chart showing 636 commits across 7
-repositories in 3 weeks communicates project scope more effectively to a
-non-technical audience than any paragraph. The animated tree
-visualization (gource) showing file creation and modification over time
-has proven particularly effective for conveying the scale and structure
-of development activity to stakeholders unfamiliar with version control
-concepts.
+repositories in under four weeks communicates project scope more
+effectively to a non-technical audience than any paragraph. The animated
+tree visualization (gource) showing file creation and modification over
+time has proven particularly effective for conveying the scale and
+structure of development activity to stakeholders unfamiliar with
+version control concepts.
 
 ## Git Data Visualization
 
@@ -1055,7 +1056,7 @@ open-source tools:
   (Gantt-style active development windows).
 
 Applied to the seven repositories in this ecosystem (totaling 636
-commits and 34,000+ lines of code over three weeks), the visualizations
+commits and 34,000+ lines of code over four weeks), the visualizations
 revealed several patterns.
 Figure <a href="#fig:repo-comparison" data-reference-type="ref"
 data-reference="fig:repo-comparison">5</a> shows the ecosystem overview:
@@ -1198,17 +1199,16 @@ white paper repository maintains a two-tier documentation structure:
 development session, while GitHub issues serve as the authoritative,
 machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 30 GitHub issues spanning 9
+As of this writing, the repository contains 31 GitHub issues spanning 10
 development sessions, with each issue labeled according to the scheme
 described in
 Section <a href="#sec:methodology-git" data-reference-type="ref"
 data-reference="sec:methodology-git">3.5</a>. The git history contains
-26 semantically versioned commits (v0.1.0 through v0.5.0, with ongoing
-work toward v0.6.0), each corresponding to a distinct
-compliance-relevant action. The repository also contains a visualization
-toolkit that generates 10 publication-quality charts from git data
-across the ecosystem, providing quantitative evidence of development
-activity
+28 semantically versioned commits across 6 release tags (v0.1.0 through
+v0.6.0), each corresponding to a distinct compliance-relevant action.
+The repository also contains a visualization toolkit that generates 10
+publication-quality charts from git data across the ecosystem, of which
+5 are included as figures in this paper
 (Figures <a href="#fig:repo-comparison" data-reference-type="ref"
 data-reference="fig:repo-comparison">5</a>–<a href="#fig:commit-patterns" data-reference-type="ref"
 data-reference="fig:commit-patterns">7</a>). Together, these records
