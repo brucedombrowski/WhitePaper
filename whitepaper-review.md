@@ -1016,16 +1016,39 @@ open-source tools:
   pattern analysis (hour of day, day of week), and ecosystem timeline
   (Gantt-style active development windows).
 
-Applied to the six repositories in this ecosystem (totaling 636 commits
-and 34,000+ lines of code over three weeks), the visualizations revealed
-several patterns: the Security Verification Toolkit dominates the
-ecosystem with 463 commits and 94 version tags; `scripts/` and `tests/`
-directories grew in lockstep (indicating disciplined test coverage); and
-development activity concentrated on weekdays with near-zero weekend
-commits. The code cohort analysis confirmed that all code in the
-ecosystem is 2026-vintage—consistent with a rapidly growing project
-where code survival analysis is not yet meaningful but growth
-trajectories are clearly visible.
+Applied to the seven repositories in this ecosystem (totaling 636
+commits and 34,000+ lines of code over three weeks), the visualizations
+revealed several patterns.
+Figure <a href="#fig:repo-comparison" data-reference-type="ref"
+data-reference="fig:repo-comparison">3</a> shows the ecosystem overview:
+the Security Verification Toolkit dominates with 463 commits, 26,630
+lines of code, and 94 version tags.
+Figure <a href="#fig:ecosystem-timeline" data-reference-type="ref"
+data-reference="fig:ecosystem-timeline">4</a> shows the active
+development windows—multiple repositories developed concurrently by a
+single engineer with AI agent support. Additional findings include:
+`scripts/` and `tests/` directories grew in lockstep (indicating
+disciplined test coverage); development activity concentrated on
+weekdays with near-zero weekend commits; and the code cohort analysis
+confirmed that all code is 2026-vintage—consistent with a rapidly
+growing project where code survival analysis is not yet meaningful but
+growth trajectories are clearly visible.
+
+<figure id="fig:repo-comparison" data-latex-placement="htbp">
+<embed src="visualizations/repo_comparison.pdf" />
+<figcaption>Repository ecosystem overview. Left: total commits per
+repository. Center: lines of code. Right: version tags (releases). The
+Security Verification Toolkit dominates all three metrics, reflecting
+its maturity as the most actively developed case study.</figcaption>
+</figure>
+
+<figure id="fig:ecosystem-timeline" data-latex-placement="htbp">
+<embed src="visualizations/ecosystem_timeline.pdf" />
+<figcaption>Active development windows for each repository. Bar length
+indicates the period between first and last commit; labels show total
+commit counts. Multiple repositories were developed concurrently by a
+single engineer using AI agent assistance.</figcaption>
+</figure>
 
 These visualizations serve dual purpose: they are research artifacts
 that quantify the development activity described in this paper, and they
@@ -1118,16 +1141,24 @@ white paper repository maintains a two-tier documentation structure:
 development session, while GitHub issues serve as the authoritative,
 machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 14 GitHub issues spanning 6
+As of this writing, the repository contains 30 GitHub issues spanning 9
 development sessions, with each issue labeled according to the scheme
 described in
 Section <a href="#sec:methodology-git" data-reference-type="ref"
-data-reference="sec:methodology-git">3.5</a>. The git history contains 9
-semantically versioned commits (v0.1.0 through v0.5.0, with ongoing work
-toward v0.6.0), each corresponding to a distinct compliance-relevant
-action. Together, these records provide sufficient information for an
-independent team to reproduce the development process or for an auditor
-to verify that every artifact has a documented provenance chain.
+data-reference="sec:methodology-git">3.5</a>. The git history contains
+24 semantically versioned commits (v0.1.0 through v0.5.0, with ongoing
+work toward v0.6.0), each corresponding to a distinct
+compliance-relevant action. The repository also contains a visualization
+toolkit that generates 10 publication-quality charts from git data
+across the ecosystem, providing quantitative evidence of development
+activity
+(Figures <a href="#fig:repo-comparison" data-reference-type="ref"
+data-reference="fig:repo-comparison">3</a>
+and <a href="#fig:ecosystem-timeline" data-reference-type="ref"
+data-reference="fig:ecosystem-timeline">4</a>). Together, these records
+provide sufficient information for an independent team to reproduce the
+development process or for an auditor to verify that every artifact has
+a documented provenance chain.
 
 This dual-track approach—git for configuration management, GitHub issues
 for interaction traceability—mirrors the separation between
