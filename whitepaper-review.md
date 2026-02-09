@@ -1075,10 +1075,17 @@ both the compliance artifacts *and* the auditable process documentation
 for those artifacts suggests a path toward significantly reducing the
 overhead of government compliance work.
 
-As government agencies and contractors face increasing pressure to
-demonstrate compliance across expanding regulatory frameworks,
-AI-assisted tooling offers a practical path to maintaining documentation
-quality without proportional increases in engineering effort. The
+The motivation is ultimately practical: better products, better service,
+lower cost, and—perhaps underappreciated—a better engineering
+experience. AI-assisted compliance development produces more consistent
+documentation (fewer gaps, stronger traceability), delivers faster (the
+review-centric workflow eliminates the authoring bottleneck), and
+requires fewer personnel (one engineer with AI agents can sustain the
+documentation overhead that traditionally demands a dedicated compliance
+team). As government agencies and contractors face increasing pressure
+to demonstrate compliance across expanding regulatory frameworks,
+AI-assisted tooling offers a path to improving all three
+simultaneously—rather than trading quality for speed or cost. The
 methodology, agent configurations, and process documentation presented
 here provide a foundation for teams seeking to adopt this approach.
 
