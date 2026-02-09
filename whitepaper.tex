@@ -330,7 +330,7 @@ All five agents in the multi-agent configuration (Section~\ref{sec:agents}) incl
 
 \subsection{Project Overview}
 
-SendCUIEmail is a PowerShell-based tool for encrypting files before email transmission, designed for environments where Public Key Infrastructure (PKI) or S/MIME certificate exchange is impractical. The tool addresses a common gap in federal and contractor environments: the need to transmit CUI securely when the only available channel is unencrypted email.
+SendCUIEmail is a PowerShell-based tool for encrypting files before email transmission, under active development (currently v0.17.3, pre-release). It is designed for environments where Public Key Infrastructure (PKI) or S/MIME certificate exchange is impractical. The tool addresses a common gap in federal and contractor environments: the need to transmit CUI securely when the only available channel is unencrypted email.
 
 The project's compliance scope spans six federal standards and regulations:
 
@@ -411,7 +411,7 @@ This design requires no software installation by recipients---only PowerShell, w
 \section{Case Study: Decision Documentation System}
 \label{sec:casestudy-decisions}
 
-The LaTeX/Decisions repository demonstrates AI-assisted creation of a reusable documentation system for formal decision memoranda. Government programs frequently require Decision Memoranda (DMs) to document technical and policy choices with traceable rationale.
+The LaTeX/Decisions repository (v0.4, under active development) demonstrates AI-assisted creation of a reusable documentation system for formal decision memoranda. Government programs frequently require Decision Memoranda (DMs) to document technical and policy choices with traceable rationale.
 
 \subsection{Template Architecture}
 
@@ -435,7 +435,7 @@ Each decision memo follows the format required by many government programs: iden
 \section{Case Study: Security Verification Toolkit}
 \label{sec:casestudy-toolkit}
 
-The third case study examines the Security Verification Toolkit \cite{nist80053}, a pure-Bash security scanning and compliance documentation system that automates the verification of federal security controls. Unlike SendCUIEmail (which implements a single compliance function) or the Decision Documentation System (which manages process artifacts), the toolkit addresses the \textit{continuous compliance verification} challenge: demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171 controls through automated scanning and attestation generation.
+The third case study examines the Security Verification Toolkit \cite{nist80053}, a pure-Bash security scanning and compliance documentation system under active development (currently v2.7.3) that automates the verification of federal security controls. Like all three case studies in this paper, the toolkit is under active development and is presented as a case study in AI-assisted compliance tooling, not as a finished product. Unlike SendCUIEmail (which implements a single compliance function) or the Decision Documentation System (which manages process artifacts), the toolkit addresses the \textit{continuous compliance verification} challenge: demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171 controls through automated scanning and attestation generation.
 
 \subsection{Scope and Standards}
 
@@ -661,6 +661,7 @@ Several limitations should be noted:
     \item \textbf{No formal verification}: AI-generated compliance claims are assertions, not proofs. They do not substitute for formal testing, independent audit, or certification processes such as CMVP validation.
     \item \textbf{Organizational specificity}: Government compliance is highly context-dependent. The same standard may be interpreted differently across agencies, and AI agents lack organizational knowledge without explicit instruction.
     \item \textbf{Classification boundaries}: AI tools operating in cloud-connected modes are unsuitable for classified work. The methodology presented here applies only to unclassified and CUI environments.
+    \item \textbf{Case study maturity}: All three case study projects are under active development and have not reached production release status (SendCUIEmail v0.17.3, Decisions v0.4, Security Toolkit v2.7.3). The compliance artifacts and methodology demonstrated here reflect a development-phase workflow; production deployment would require additional validation, independent testing, and formal authority-to-operate processes.
 \end{enumerate}
 
 \subsection{Reproducibility and Process Documentation}

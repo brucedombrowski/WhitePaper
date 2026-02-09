@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Introduction "dual burden" broadened to acknowledge safety-critical (DO-178C, IEC 61508) and information-critical (HIPAA, SOX) domains (#15)
+- All three case studies now state version numbers and active-development status (#15)
+- New limitation: "Case study maturity" noting all projects are pre-production (#15)
 - Introduction contributions list expanded from 4 to 5 items (added traceability framework and standards-based review)
 - Abstract now mentions five-phase methodology and version control
 - Reproducibility section updated with current metrics (14 issues, 9 commits, v0.5.0)
