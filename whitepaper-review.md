@@ -1333,11 +1333,11 @@ that major AI providers now offer. These options address the security
 and privacy requirements that prevent organizations from sending
 sensitive data to public cloud endpoints:
 
-- **Government cloud regions**: AI models deployed within FedRAMP High
-  and DoD IL4/5 authorized environments (e.g., Claude in AWS GovCloud
-  via Amazon Bedrock, Claude on Google Cloud Vertex AI). These
-  deployments inherit the cloud provider’s existing government
-  authorization boundary.
+- **Government cloud regions**: AI models deployed within FedRAMP
+  (General Services Administration 2024) High and DoD IL4/5 authorized
+  environments (e.g., Claude in AWS GovCloud via Amazon Bedrock, Claude
+  on Google Cloud Vertex AI). These deployments inherit the cloud
+  provider’s existing government authorization boundary.
 
 - **Zero data retention (ZDR)**: Endpoints where no prompts, outputs, or
   metadata are persisted beyond real-time processing. Customer data is
@@ -1348,8 +1348,8 @@ sensitive data to public cloud endpoints:
   traverses the public internet.
 
 - **Compliance certifications**: SOC 2 Type II audits, FedRAMP
-  authorization, and DFARS 252.204-7012 compliance for contractors
-  handling CUI.
+  authorization, and DFARS 252.204-7012 (Department of Defense 2016)
+  compliance for contractors handling CUI.
 
 For a government contractor, the deployment path is concrete: the
 organization procures AI model access through an existing
@@ -1365,13 +1365,15 @@ deployment also enable compliant data sharing between government
 agencies and their contractors. A defense contractor collaborating with
 a government program office can operate shared git repositories within a
 FedRAMP High environment, with both parties subject to the same security
-controls. DFARS 252.204-7012 requires contractors to implement NIST SP
-800-171 controls when handling CUI; FedRAMP-authorized platforms provide
-the infrastructure to meet these requirements. The git-based methodology
-described in this paper—where every change is attributed, timestamped,
-and cryptographically hashed—maps directly to the configuration
-management (CM-3) and audit logging (AU-3) controls that both parties
-must demonstrate. Shared repositories with branch protection rules
+controls. DFARS 252.204-7012 (Department of Defense 2016) requires
+contractors to implement NIST SP 800-171 (Ross et al. 2020) controls
+when handling CUI; FedRAMP-authorized platforms (General Services
+Administration 2024) provide the infrastructure to meet these
+requirements. The git-based methodology described in this paper—where
+every change is attributed, timestamped, and cryptographically
+hashed—maps directly to the configuration management (CM-3) and audit
+logging (AU-3) controls that both parties must demonstrate. Shared
+repositories with branch protection rules
 (Section <a href="#sec:discussion" data-reference-type="ref"
 data-reference="sec:discussion">8</a>) enforce separation of duties
 across organizational boundaries, providing the same AC-5 compliance for
@@ -1423,13 +1425,13 @@ white paper repository maintains a two-tier documentation structure:
 development session, while GitHub issues serve as the authoritative,
 machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 33 GitHub issues spanning 11
+As of this writing, the repository contains 39 GitHub issues spanning 11
 development sessions, with each issue labeled according to the scheme
 described in
 Section <a href="#sec:methodology-git" data-reference-type="ref"
 data-reference="sec:methodology-git">3.5</a>. The git history contains
-39 semantically versioned commits across 7 release tags (v0.1.0 through
-v0.7.0), each corresponding to a distinct compliance-relevant action.
+45 semantically versioned commits across 8 release tags (v0.1.0 through
+v0.8.0), each corresponding to a distinct compliance-relevant action.
 The repository also contains a visualization toolkit that generates 10
 publication-quality charts from git data across the ecosystem, of which
 6 are included as figures in this paper
@@ -1464,8 +1466,11 @@ Several directions merit further investigation:
     $`\leftrightarrow`$ verification $`\leftrightarrow`$ code).
 
 4.  **FedRAMP and CMMC application**: Extending the methodology to
-    broader compliance frameworks such as FedRAMP authorization packages
-    and CMMC assessments.
+    broader compliance frameworks such as FedRAMP (General Services
+    Administration 2024) authorization packages and CMMC assessments,
+    leveraging the enterprise deployment options described in
+    Section <a href="#sec:discussion" data-reference-type="ref"
+    data-reference="sec:discussion">8</a>.
 
 5.  **Comparative studies**: Quantitative comparison of AI-assisted vs.
     manual compliance documentation effort across multiple projects and
@@ -1580,6 +1585,15 @@ U.S. Department of Defense.
 
 </div>
 
+<div id="ref-dfars7012" class="csl-entry">
+
+Department of Defense. 2016. *<span class="nocase">DFARS 252.204-7012:
+Safeguarding Covered Defense Information and Cyber Incident
+Reporting</span>*. Defense Federal Acquisition Regulation Supplement.
+<https://www.acquisition.gov/dfars/252.204-7012-safeguarding-covered-defense-information-and-cyber-incident-reporting.>
+
+</div>
+
 <div id="ref-securitytoolkit" class="csl-entry">
 
 Dombrowski, Bruce. 2026a. *Security Verification Toolkit: Automated NIST
@@ -1619,6 +1633,14 @@ and Privacy Controls for Information Systems and Organizations</span>*.
 Special Publication 800-53 Rev. 5. National Institute of Standards;
 Technology.
 <https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final>.
+
+</div>
+
+<div id="ref-fedramp" class="csl-entry">
+
+General Services Administration. 2024. *<span class="nocase">FedRAMP:
+Federal Risk and Authorization Management Program</span>*. U.S.
+Government Program. <https://www.fedramp.gov/>.
 
 </div>
 
