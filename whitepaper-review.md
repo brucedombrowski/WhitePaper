@@ -1363,6 +1363,11 @@ Several directions merit further investigation:
     manual compliance documentation effort across multiple projects and
     team sizes.
 
+6.  **Cross-platform validation**: Replicating the methodology with
+    alternative agentic AI tools (Cursor, Aider, Windsurf) to validate
+    the platform-agnostic claims and identify which properties of the
+    approach are tool-dependent vs. methodology-dependent.
+
 # Conclusion
 
 This paper has demonstrated a five-phase methodology for combining git

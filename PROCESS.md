@@ -198,13 +198,30 @@ Continued with IEEE 1028 inspection and remaining fixes:
 
 Paper: 21 pages, 7 figures, 23 references, 409K.
 
+Continued with quantitative analysis, code churn figure, and solution-agnostic refactoring:
+
+- **Quantitative Output Analysis** (Table 5): 642 commits, 34K LOC, 136 tags, 14 NIST controls, 170+ issues — all from one engineer in 26 days. Key argument: compliance artifacts produced concurrently with implementation.
+- **Figure 8**: Code churn chart (daily additions vs deletions) embedded in quantitative section
+- **Solution-agnostic refactoring** (issue #33): Title changed from "Using Claude Code..." to "Git and AI Coding Agents for Government Compliance." Paper refactored to lead with git + AI agents generically; Claude Code named as implementation used. Abstract explicitly states methodology is agent-platform agnostic.
+- **Abstract strengthened** with quantitative claims
+- **Related work expanded**: Three-tier comparison of AI tools (inline → chat → agentic)
+- **Conclusion updated** with concrete metrics
+- **Future Work**: Added cross-platform validation item
+- **README.md updated** with new title, key argument, quantitative results
+
+Human direction during this session:
+- "2.7 major versions doesn't make sense" → fixed to "94 version tags"
+- Issue #33: "be solution agnostic... don't hide that you're using claude but speak in general/industry terms"
+
+Paper: 22 pages, 8 figures, 5 tables, 23 references, 429K.
+
 ## Current State
 
 | Metric | Value |
 |--------|-------|
-| Paper | 21 pages, two-column format |
-| Figures | 2 TikZ + 5 embedded charts (7 total in paper), 10 generated charts |
-| Tables | 4 (verification, CLI switches, agent config, QA standards) |
+| Paper | 22 pages, two-column format |
+| Figures | 2 TikZ + 6 embedded charts (8 total in paper), 10 generated charts |
+| Tables | 5 (verification, CLI switches, agent config, QA standards, output metrics) |
 | Case studies | 3 (SendCUIEmail, Decisions, Security Toolkit) |
 | References | 23 BibTeX entries |
 | Agents | 5 (agents.json) |

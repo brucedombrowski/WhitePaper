@@ -59,6 +59,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `@misc` bib entries: Claude Code (Anthropic), SendCUIEmail, Security Toolkit — 23 references total
 - HTML review output via pandoc (`whitepaper-review.html` with MathJax)
 - Formal `Listing~\ref{}` cross-references for Listings 3 and 4
+- Quantitative Output Analysis subsection with Table 5 (642 commits, 34K LOC, 136 tags in 26 days)
+- Figure 8: Code churn chart (daily additions vs deletions)
+- Solution-agnostic refactoring: title, abstract, keywords, throughout (#33)
+- Expanded related work: three-tier AI tool comparison (inline → chat → agentic)
+- Abstract includes quantitative claims and "agent-platform agnostic" statement
+- Future Work: cross-platform validation with alternative AI tools
+- README.md updated with new title, key argument, quantitative results
 
 ### Fixed
 - "The final phase" → "The verification phase" (stale from 4-phase era)

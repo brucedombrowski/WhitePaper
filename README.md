@@ -1,17 +1,25 @@
-# AI-Assisted Development for Government Compliance
+# Git and AI Coding Agents for Government Compliance
 
-Using Claude Code to meet federal information security requirements.
+A methodology for using git version control and AI coding agents to meet federal information security requirements.
 
 ## Paper
 
-**Title**: AI-Assisted Development for Government Compliance: Using Claude Code to Meet Federal Information Security Requirements
+**Title**: Git and AI Coding Agents for Government Compliance: A Methodology for Federal Information Security Requirements
 
-**Format**: 20-page academic paper, two-column, IEEE-style
+**Format**: 22-page academic paper, two-column, IEEE-style
+
+**Key argument**: Git provides the tamper-evident audit trail (NIST SP 800-53 CM-3); AI coding agents draft compliance artifacts under human review (AC-5). Together they shift the engineer's role from author to reviewer while maintaining human-in-the-loop oversight. The methodology is agent-platform agnostic.
 
 **Case Studies**:
 - **SendCUIEmail** — CUI email encryption tool (FIPS 197, NIST SP 800-132, 32 CFR Part 2002)
 - **Decision Documentation System** — Formal decision memoranda in LaTeX (SF901 CUI coversheets)
 - **Security Verification Toolkit** — Automated NIST SP 800-53 control verification (14 controls, 94 version tags)
+
+**Quantitative results** (single engineer, 26 calendar days):
+- 642 commits across 7 repositories
+- 34,000+ lines of code, 136 release tags
+- 14 NIST SP 800-53 controls automated
+- 7 decision memoranda, 29 traced requirements, 29 verification mappings
 
 ## Build
 
@@ -21,13 +29,13 @@ Requires `pdflatex`, `bibtex`, and optionally `pandoc`:
 ./build.sh
 ```
 
-Produces `whitepaper.pdf` and `whitepaper-review.md`.
+Produces `whitepaper.pdf`, `whitepaper-review.md`, and `whitepaper-review.html`.
 
 ## Repository Structure
 
 ```
 whitepaper.tex          Main paper (LaTeX)
-references.bib          BibTeX references (20 entries)
+references.bib          BibTeX references (23 entries)
 build.sh                Reproducible build script
 agents.json             Multi-agent configuration (5 agents)
 PROCESS.md              Session-by-session development log
