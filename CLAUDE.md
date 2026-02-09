@@ -54,6 +54,10 @@ These repos provide the real-world examples cited in the paper:
 claude --agents "$(cat agents.json)"
 ```
 
+> **Note**: `agents.json` in this repo is a snapshot of the canonical source at
+> [ai-agents/claude/agents.json](https://github.com/brucedombrowski/ai-agents).
+> When updating agent definitions, update the canonical source first, then sync here.
+
 ### Single-session development (default)
 
 ```bash
