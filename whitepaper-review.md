@@ -810,8 +810,8 @@ In this model, AI agents assume Scrum roles:
 
 - **Product Owner agent**: Maintains the product backlog (GitHub
   issues), prioritizes work items based on compliance risk and
-  stakeholder value, and defines acceptance criteria. Uses Opus for its
-  judgment over regulatory priorities.
+  stakeholder value, and defines acceptance criteria. Uses a
+  reasoning-optimized model for its judgment over regulatory priorities.
 
 - **Scrum Master agent**: Facilitates sprint execution, identifies
   impediments (blocked issues, failing scans, unresolved review
@@ -820,7 +820,7 @@ In this model, AI agents assume Scrum roles:
 
 - **Developer agents**: One or more implementation and documentation
   agents that pull work from the sprint backlog and produce
-  deliverables. Use Sonnet for throughput on structured tasks.
+  deliverables. Use a throughput-optimized model for structured tasks.
 
 This Scrum-based approach offers several advantages for compliance
 projects:
@@ -1319,20 +1319,20 @@ white paper repository maintains a two-tier documentation structure:
 development session, while GitHub issues serve as the authoritative,
 machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 31 GitHub issues spanning 10
+As of this writing, the repository contains 33 GitHub issues spanning 11
 development sessions, with each issue labeled according to the scheme
 described in
 Section <a href="#sec:methodology-git" data-reference-type="ref"
 data-reference="sec:methodology-git">3.5</a>. The git history contains
-28 semantically versioned commits across 6 release tags (v0.1.0 through
-v0.6.0), each corresponding to a distinct compliance-relevant action.
+39 semantically versioned commits across 7 release tags (v0.1.0 through
+v0.7.0), each corresponding to a distinct compliance-relevant action.
 The repository also contains a visualization toolkit that generates 10
 publication-quality charts from git data across the ecosystem, of which
-5 are included as figures in this paper
+6 are included as figures in this paper
 (Figures <a href="#fig:repo-comparison" data-reference-type="ref"
-data-reference="fig:repo-comparison">6</a>–<a href="#fig:commit-patterns" data-reference-type="ref"
-data-reference="fig:commit-patterns">8</a>). Together, these records
-provide sufficient information for an independent team to reproduce the
+data-reference="fig:repo-comparison">6</a>–<a href="#fig:code-churn" data-reference-type="ref"
+data-reference="fig:code-churn">4</a>). Together, these records provide
+sufficient information for an independent team to reproduce the
 development process or for an auditor to verify that every artifact has
 a documented provenance chain.
 

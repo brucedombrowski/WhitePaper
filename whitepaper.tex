@@ -618,9 +618,9 @@ The pipeline model described above---where agents execute sequentially through d
 In this model, AI agents assume Scrum roles:
 
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Product Owner agent}: Maintains the product backlog (GitHub issues), prioritizes work items based on compliance risk and stakeholder value, and defines acceptance criteria. Uses Opus for its judgment over regulatory priorities.
+    \item \textbf{Product Owner agent}: Maintains the product backlog (GitHub issues), prioritizes work items based on compliance risk and stakeholder value, and defines acceptance criteria. Uses a reasoning-optimized model for its judgment over regulatory priorities.
     \item \textbf{Scrum Master agent}: Facilitates sprint execution, identifies impediments (blocked issues, failing scans, unresolved review findings), and ensures the team adheres to process standards. Monitors GitHub issues for stalled work and escalates to the human.
-    \item \textbf{Developer agents}: One or more implementation and documentation agents that pull work from the sprint backlog and produce deliverables. Use Sonnet for throughput on structured tasks.
+    \item \textbf{Developer agents}: One or more implementation and documentation agents that pull work from the sprint backlog and produce deliverables. Use a throughput-optimized model for structured tasks.
 \end{itemize}
 
 This Scrum-based approach offers several advantages for compliance projects:
@@ -840,7 +840,7 @@ Several limitations should be noted:
 
 This paper itself was produced using the methodology it describes. The white paper repository maintains a two-tier documentation structure: \texttt{PROCESS.md} provides a human-readable executive summary of each development session, while GitHub issues serve as the authoritative, machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 31 GitHub issues spanning 10 development sessions, with each issue labeled according to the scheme described in Section~\ref{sec:methodology-git}. The git history contains 28 semantically versioned commits across 6 release tags (v0.1.0 through v0.6.0), each corresponding to a distinct compliance-relevant action. The repository also contains a visualization toolkit that generates 10 publication-quality charts from git data across the ecosystem, of which 5 are included as figures in this paper (Figures~\ref{fig:repo-comparison}--\ref{fig:commit-patterns}). Together, these records provide sufficient information for an independent team to reproduce the development process or for an auditor to verify that every artifact has a documented provenance chain.
+As of this writing, the repository contains 33 GitHub issues spanning 11 development sessions, with each issue labeled according to the scheme described in Section~\ref{sec:methodology-git}. The git history contains 39 semantically versioned commits across 7 release tags (v0.1.0 through v0.7.0), each corresponding to a distinct compliance-relevant action. The repository also contains a visualization toolkit that generates 10 publication-quality charts from git data across the ecosystem, of which 6 are included as figures in this paper (Figures~\ref{fig:repo-comparison}--\ref{fig:code-churn}). Together, these records provide sufficient information for an independent team to reproduce the development process or for an auditor to verify that every artifact has a documented provenance chain.
 
 This dual-track approach---git for configuration management, GitHub issues for interaction traceability---mirrors the separation between configuration management (NIST SP 800-53 CM-3) and audit logging (NIST SP 800-53 AU-3) that government frameworks prescribe. The combination ensures that the process is documented at both the artifact level (what changed) and the decision level (why it changed).
 
