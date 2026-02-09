@@ -1,0 +1,457 @@
+\documentclass[11pt, letterpaper, twocolumn]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+% Page numbers
+\pagestyle{plain}
+
+% Hyperref configuration
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=blue!70!black,
+    urlcolor=blue!70!black,
+}
+
+% Code listing style
+\lstdefinestyle{powershell}{
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{gray!40},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{blue!70!black}\bfseries,
+    commentstyle=\color{green!50!black}\itshape,
+    stringstyle=\color{red!70!black},
+    showstringspaces=false,
+    tabsize=4,
+    captionpos=b,
+}
+
+\lstdefinestyle{json}{
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{gray!40},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    showstringspaces=false,
+    tabsize=2,
+    captionpos=b,
+}
+
+\lstset{style=powershell}
+
+% Title
+\title{AI-Assisted Development for Government Compliance:\\Using Claude Code to Meet Federal Information Security Requirements}
+
+\author{
+    Bruce Dombrowski\\
+    \textit{Independent Researcher}\\
+    \small GitHub: brucedombrowski
+}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Government software development demands rigorous compliance with federal standards including NIST Special Publications, FIPS cryptographic requirements, and CUI handling regulations under 32~CFR~Part~2002. These requirements impose significant documentation overhead---formal requirements traceability, decision memoranda, verification matrices, and regulatory cross-references---that traditionally consumes substantial engineering effort. This paper examines the application of Claude Code, Anthropic's AI-powered command-line development tool, to government compliance software projects. Drawing on two real-world case studies---a CUI email encryption tool (SendCUIEmail) and a formal decision documentation system---we demonstrate how AI-assisted development can accelerate compliance artifact generation while maintaining the precision required by federal auditors. We present a methodology for structuring AI agent workflows around government documentation standards, evaluate the quality of AI-generated compliance artifacts against manual baselines, and discuss the implications for federal software development practices. Our findings suggest that AI-assisted tooling can reduce compliance documentation effort by shifting the engineer's role from author to reviewer, while the interactive agent model provides the human-in-the-loop oversight that government frameworks require.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} AI-assisted development, government compliance, NIST, FIPS, CUI, controlled unclassified information, Claude Code, large language models, software engineering, federal information security
+
+% ============================================================
+\section{Introduction}
+\label{sec:introduction}
+
+Federal information security requirements impose a dual burden on software developers: the software must correctly implement cryptographic and handling standards, and the \textit{process} of building that software must be formally documented. A tool that encrypts files per FIPS~197 \cite{fips197} is insufficient if the development team cannot produce a requirements traceability matrix linking each implementation decision to the governing standard. This documentation overhead---decision memoranda, verification documents, requirements specifications---is where many small teams and independent developers struggle to meet government expectations.
+
+The emergence of AI-powered development tools offers a potential path forward. Large language models (LLMs) trained on technical and regulatory corpora can draft compliance documents, suggest standard references, and generate structured artifacts. However, government work demands accuracy: an incorrect citation to a NIST Special Publication or a mischaracterized FIPS requirement could undermine an entire compliance package.
+
+Claude Code, Anthropic's command-line interface for the Claude family of models, provides an interactive development environment where the AI agent operates directly within the developer's file system and terminal. Unlike web-based chat interfaces, Claude Code can read source files, execute build commands, search codebases, and write artifacts---all under explicit developer approval. This architecture maps naturally to the human-in-the-loop oversight model that government compliance frameworks expect.
+
+This paper makes the following contributions:
+
+\begin{enumerate}[leftmargin=*]
+    \item A methodology for using AI agents in government compliance software development, structured around the documentation requirements of NIST and DoD frameworks.
+    \item Two case studies demonstrating AI-assisted development of compliance artifacts: SendCUIEmail (a CUI encryption tool) and a LaTeX-based decision memoranda system.
+    \item An evaluation of AI-generated compliance artifacts including requirements documents, decision memos, and verification matrices.
+    \item A discussion of the \texttt{--agents} mode workflow for multi-agent collaboration on compliance projects.
+\end{enumerate}
+
+% ============================================================
+\section{Background and Related Work}
+\label{sec:background}
+
+\subsection{Government Compliance Landscape}
+
+Federal information security is governed by a layered framework of executive orders, regulations, and technical standards. Executive Order~13556 established the Controlled Unclassified Information (CUI) program, implemented through 32~CFR~Part~2002 \cite{32cfr2002}. The National Institute of Standards and Technology (NIST) provides the technical backbone through publications including:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{NIST SP 800-171} \cite{nist800171}: Protecting CUI in Nonfederal Information Systems
+    \item \textbf{NIST SP 800-53} \cite{nist80053}: Security and Privacy Controls for Information Systems
+    \item \textbf{NIST SP 800-132} \cite{nist800132}: Recommendation for Password-Based Key Derivation
+    \item \textbf{FIPS 197} \cite{fips197}: Advanced Encryption Standard (AES)
+    \item \textbf{FIPS 140-2} \cite{fips1402}: Security Requirements for Cryptographic Modules
+\end{itemize}
+
+Compliance requires not only that software implementations adhere to these standards, but that organizations maintain documentation demonstrating adherence---what auditors term ``evidence of compliance.'' This evidence typically includes requirements specifications, design decisions, test plans, and verification matrices that trace each requirement to its implementation and test.
+
+\subsection{AI-Assisted Software Development}
+
+The application of large language models to software engineering has been studied extensively \cite{fan2023llmse}. Code generation tools such as GitHub Copilot, Amazon CodeWhisperer, and Anthropic's Claude have demonstrated capability in producing syntactically correct code across multiple languages. However, the application of LLMs to \textit{compliance-oriented} development---where correctness encompasses not just functional behavior but regulatory adherence---remains underexplored.
+
+Prior work on AI-assisted documentation generation has focused primarily on API documentation \cite{khan2022apidoc} and code comments. The generation of \textit{regulatory} documentation---where the AI must reason about the relationship between code implementations and published standards---presents distinct challenges including citation accuracy, regulatory interpretation, and the need for conservative (rather than creative) text generation.
+
+\subsection{Claude Code Architecture}
+
+Claude Code operates as a command-line agent with access to the developer's local environment. Key architectural properties relevant to compliance work include:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{File system access}: The agent reads and writes files directly, enabling it to analyze source code and produce artifacts in-place.
+    \item \textbf{Tool use with approval}: Each action (file read, edit, command execution) requires developer approval, providing the human oversight that compliance frameworks demand.
+    \item \textbf{Context persistence}: The agent maintains conversation context across a session, allowing iterative refinement of compliance artifacts.
+    \item \textbf{CLAUDE.md conventions}: Projects can include instruction files that persist agent context across sessions, encoding project-specific compliance requirements.
+    \item \textbf{Multi-agent mode}: The \texttt{--agents} flag enables orchestrated workflows where specialized agents handle distinct aspects of a project.
+\end{enumerate}
+
+% ============================================================
+\section{Methodology}
+\label{sec:methodology}
+
+We developed a methodology for AI-assisted government compliance development organized around four phases: \textit{requirements capture}, \textit{implementation}, \textit{decision documentation}, and \textit{verification}. Each phase leverages specific Claude Code capabilities while maintaining the human-in-the-loop oversight essential to compliance work.
+
+\subsection{Phase 1: Requirements Capture}
+
+Government projects begin with requirements derived from applicable standards. In our methodology, the developer identifies the governing standards (e.g., NIST SP 800-132 for key derivation) and instructs the Claude Code agent to generate a structured requirements document.
+
+The agent produces requirements in machine-readable JSON format, enabling downstream tooling to generate formatted documents and traceability matrices. Each requirement includes:
+
+\begin{itemize}[leftmargin=*]
+    \item A unique identifier (e.g., \texttt{REQ-1.1})
+    \item The governing standard and section reference
+    \item The requirement text
+    \item Classification as mandatory or recommended
+    \item Verification method (inspection, test, analysis)
+\end{itemize}
+
+Listing~\ref{lst:req-json} shows an excerpt from the SendCUIEmail requirements document, generated with Claude Code assistance and reviewed by the developer.
+
+\begin{lstlisting}[style=json, caption={Requirements specification excerpt (REQ-2026-001)}, label={lst:req-json}]
+{
+  "id": "REQ-1.1",
+  "standard": "FIPS 197",
+  "section": "Section 1",
+  "text": "The tool SHALL use the Advanced
+    Encryption Standard (AES) algorithm
+    for all file encryption operations.",
+  "priority": "mandatory",
+  "verification": "inspection"
+}
+\end{lstlisting}
+
+The developer's role shifts from \textit{authoring} requirements to \textit{reviewing} them---verifying that the AI's interpretation of the standard is correct and that no requirements are omitted. This review-centric workflow is faster than drafting from scratch while preserving the technical judgment that compliance demands.
+
+\subsection{Phase 2: Implementation with Compliance Awareness}
+
+During implementation, the Claude Code agent operates within the project's \texttt{CLAUDE.md} context, which encodes the compliance standards and architectural constraints. The \texttt{AGENTS.md} file (used in the SendCUIEmail project) provides persistent instructions that survive across sessions:
+
+\begin{lstlisting}[style=powershell, caption={AGENTS.md compliance context excerpt}, label={lst:agentsmd}]
+## Compliance Standards
+
+- **FIPS 140-2**: AES-256-CBC encryption
+- **NIST SP 800-132**: PBKDF2-HMAC-SHA256
+    key derivation (100,000 iterations)
+- **NIST SP 800-171**: CUI handling
+- **32 CFR Part 2002**: CUI marking
+\end{lstlisting}
+
+This ensures that every agent session begins with awareness of the applicable standards, reducing the risk of non-compliant suggestions.
+
+\subsection{Phase 3: Decision Documentation}
+
+Government compliance frequently requires documenting \textit{why} a particular approach was chosen, not merely \textit{what} was implemented. Decision memoranda serve this purpose. In our methodology, when the developer makes a design choice (e.g., selecting Cinzel over Trajan Bold for CUI headers, or choosing TikZ over PDF manipulation for form layout), they instruct the agent to generate a formal decision memo.
+
+The LaTeX/Decisions repository implements a template-wrapper pattern where each decision memo defines metadata variables and content, then includes a shared template:
+
+\begin{lstlisting}[style=powershell, caption={Decision memo template pattern}, label={lst:dm-pattern}]
+\newcommand{\UniqueID}{DM-2026-002}
+\newcommand{\DocumentDate}{January 19, 2026}
+\newcommand{\AuthorName}{PDF Tools Working Group}
+\newcommand{\SubjectField}{Font Selection for
+    CUI Header Text}
+\newcommand{\dmContent}{...}
+\input{_template.tex}
+\end{lstlisting}
+
+This pattern enables the AI agent to produce new decision memos by following the established template, ensuring consistency across the documentation package.
+
+\subsection{Phase 4: Verification}
+
+The final phase produces verification documents that map each requirement to its implementation evidence. The agent reads the source code, locates the relevant implementation for each requirement, and generates a verification matrix with file paths, line numbers, and explanatory text.
+
+Table~\ref{tab:verification-excerpt} shows an excerpt from the SendCUIEmail verification document.
+
+\begin{table}[htbp]
+\centering
+\caption{Verification matrix excerpt (VER-2026-001)}
+\label{tab:verification-excerpt}
+\begin{tabularx}{\columnwidth}{lXl}
+\toprule
+\textbf{Req.} & \textbf{Evidence} & \textbf{Method} \\
+\midrule
+REQ-1.1 & \texttt{Encrypt.ps1}: \texttt{[Aes]::Create()} call & Inspection \\
+REQ-1.2 & \texttt{\$KEY\_SIZE = 32} (256 bits) & Inspection \\
+REQ-2.3 & \texttt{\$ITERATIONS = 100000} & Inspection \\
+REQ-3.1 & \texttt{RandomNumberGenerator} usage & Inspection \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ============================================================
+\section{Case Study: SendCUIEmail}
+\label{sec:casestudy-sendcui}
+
+\subsection{Project Overview}
+
+SendCUIEmail is a PowerShell-based tool for encrypting files before email transmission, designed for environments where Public Key Infrastructure (PKI) or S/MIME certificate exchange is impractical. The tool addresses a common gap in federal and contractor environments: the need to transmit CUI securely when the only available channel is unencrypted email.
+
+The project's compliance scope spans six federal standards and publications:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{FIPS 197}: AES algorithm specification
+    \item \textbf{FIPS 140-2}: Cryptographic module validation
+    \item \textbf{NIST SP 800-132}: Password-based key derivation
+    \item \textbf{NIST SP 800-38A}: Block cipher modes of operation
+    \item \textbf{NIST SP 800-90A}: Random number generation
+    \item \textbf{32 CFR Part 2002}: CUI marking and handling
+\end{enumerate}
+
+\subsection{AI-Assisted Artifacts}
+
+Over the course of development, Claude Code assisted in producing the following compliance artifacts:
+
+\subsubsection{Requirements Document (REQ-2026-001)}
+
+A JSON-formatted requirements specification containing 28 requirements across six categories: encryption algorithm, key derivation, random number generation, password handling, file format, and platform requirements. The JSON source-of-truth enables automated generation of formatted PDF documents via a Python build script.
+
+\subsubsection{Decision Memoranda (DM-2026-001 through DM-2026-007)}
+
+Seven formal decision memos documenting design choices:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{DM-001}: Cross-platform support strategy
+    \item \textbf{DM-002}: File size limit rationale (10~MB)
+    \item \textbf{DM-003}: Password transmission method (out-of-band per NIST SP 800-63B)
+    \item \textbf{DM-004}: Verification document numbering scheme
+    \item \textbf{DM-005}: Multi-category CUI support per 32~CFR~2002.20(a)(3)
+    \item \textbf{DM-006}: Beta readiness assessment
+    \item \textbf{DM-007}: Recipient instruction format selection (HTML)
+\end{itemize}
+
+\subsubsection{Verification Document (VER-2026-001)}
+
+A line-by-line code verification mapping all 28 requirements to specific implementation evidence in the source code, including file paths, function names, and configuration values.
+
+\subsection{Cryptographic Implementation}
+
+The core encryption implementation demonstrates how AI-assisted development can produce compliant code. The encrypted file format is:
+
+\begin{equation}
+\text{Output} = \text{Salt}_{128} \| \text{IV}_{128} \| \text{AES-256-CBC}(K, \text{IV}, \text{Plaintext})
+\end{equation}
+
+where $K$ is derived via PBKDF2-HMAC-SHA256:
+
+\begin{equation}
+K = \text{PBKDF2}(\text{password}, \text{Salt}, 100000, 256)
+\end{equation}
+
+The implementation uses exclusively platform-provided cryptographic libraries (\texttt{System.Security.Cryptography}), avoiding third-party dependencies that would complicate FIPS validation. When Windows FIPS mode is enabled, the tool leverages CMVP Certificate \#4515 for validated cryptographic operations.
+
+\subsection{Recipient Experience Design}
+
+A significant AI-assisted design contribution was the recipient decryption workflow. The tool generates a self-contained HTML instruction document (\texttt{Decrypt\_Instructions.html}) with an embedded PowerShell one-liner:
+
+\begin{lstlisting}[style=powershell, caption={Decryption one-liner (simplified)}, label={lst:oneliner}]
+$f=Read-Host "File"
+$p=Read-Host "Password" -AsSecureString
+$d=[IO.File]::ReadAllBytes($f)
+$k=[Rfc2898DeriveBytes]::new(
+    $p,$d[0..15],100000,"SHA256")
+$a=[Aes]::Create()
+$a.Key=$k.GetBytes(32)
+$a.IV=$d[16..31]
+$c=$a.CreateDecryptor()
+    .TransformFinalBlock($d,32,$d.Length-32)
+[IO.File]::WriteAllBytes(
+    ($f-replace'\.Locked$',''),$c)
+\end{lstlisting}
+
+This design requires no software installation by recipients---only PowerShell, which is built into every modern Windows installation. The AI agent helped iterate on this one-liner to minimize its length while maintaining readability and compliance with the cryptographic parameter requirements.
+
+% ============================================================
+\section{Case Study: Decision Documentation System}
+\label{sec:casestudy-decisions}
+
+The LaTeX/Decisions repository demonstrates AI-assisted creation of a reusable documentation system for formal decision memoranda. Government programs frequently require Decision Memoranda (DMs) to document technical and policy choices with traceable rationale.
+
+\subsection{Template Architecture}
+
+The system uses a template-wrapper pattern where a shared base template (\texttt{\_template.tex}) defines the document layout---headers with organizational logo, footers with document ID and page numbering, and standardized section formatting---while individual decision documents supply metadata and content through LaTeX command definitions.
+
+This separation of concerns enables AI agents to produce new decision memos by populating the established template structure, ensuring visual and structural consistency without requiring the agent to understand the full LaTeX layout implementation.
+
+\subsection{SF901 CUI Coversheet Compliance}
+
+Three decision memos (DM-2026-001 through DM-2026-003) document the technical approach to generating Standard Form~901 CUI coversheets:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Implementation approach}: LaTeX template recreation rather than PDF manipulation, chosen for alignment with existing infrastructure and independence from external tools.
+    \item \textbf{Font selection}: Cinzel (open-source, SIL OFL) chosen over Trajan Bold (commercial) for the CUI header, balancing visual fidelity with licensing constraints.
+    \item \textbf{Layout strategy}: TikZ with absolute positioning for pixel-precise form reproduction, justified by the form's stability (unchanged since November 2018 per GSA records).
+\end{enumerate}
+
+Each decision memo follows the format required by many government programs: identification of options considered, evaluation criteria, selected approach, and rationale with regulatory references.
+
+% ============================================================
+\section{Multi-Agent Workflow}
+\label{sec:agents}
+
+Claude Code's \texttt{--agents} mode enables orchestrated workflows where multiple specialized agents collaborate on a project. For government compliance work, we propose a role-based agent architecture:
+
+\subsection{Agent Roles}
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Project Setup Agent}: Initializes repository structure, creates \texttt{CLAUDE.md} with compliance context, establishes documentation templates and directory layout.
+    \item \textbf{Requirements Agent}: Analyzes governing standards and generates structured requirements documents in JSON format.
+    \item \textbf{Implementation Agent}: Writes compliant code within the constraints defined by the requirements and \texttt{CLAUDE.md} context.
+    \item \textbf{Documentation Agent}: Produces decision memoranda, verification documents, and traceability matrices.
+    \item \textbf{Review Agent}: Audits artifacts for completeness, citation accuracy, and cross-reference integrity.
+\end{enumerate}
+
+\subsection{Agent Configuration}
+
+Agent definitions are stored in a JSON configuration file that specifies each agent's role, permissions, and persistent context. Listing~\ref{lst:agent-config} shows the project setup agent configuration used in this paper's development.
+
+\begin{lstlisting}[style=json, caption={Agent configuration excerpt (agents.json)}, label={lst:agent-config}]
+{
+  "name": "project-setup",
+  "description": "Initialize compliance project
+    structure and documentation templates",
+  "instructions": "You are a project setup agent
+    for government compliance projects...",
+  "tools": ["read", "write", "edit", "bash",
+    "glob", "grep"]
+}
+\end{lstlisting}
+
+\subsection{Workflow Orchestration}
+
+The multi-agent workflow proceeds linearly through the four phases described in Section~\ref{sec:methodology}, with each agent operating within its defined scope. The key advantage of this architecture is \textit{context isolation}: the requirements agent does not need the full implementation context, and the documentation agent can focus on artifact generation without the overhead of the full codebase in its context window.
+
+This isolation is particularly valuable for government projects where compliance documentation can be extensive---a full NIST SP 800-171 assessment may reference over 100 security requirements, and maintaining all of these in a single agent context is impractical.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Quality of AI-Generated Compliance Artifacts}
+
+Our experience indicates that Claude Code produces compliance artifacts that are \textit{structurally sound} but require careful human review for \textit{substantive accuracy}. The AI reliably generates:
+
+\begin{itemize}[leftmargin=*]
+    \item Correct document structure and formatting
+    \item Appropriate standard references (e.g., citing NIST SP 800-132 for PBKDF2)
+    \item Reasonable requirement decomposition
+    \item Accurate code-to-requirement tracing when given source access
+\end{itemize}
+
+Areas requiring human review include:
+
+\begin{itemize}[leftmargin=*]
+    \item \textit{Regulatory interpretation}: Whether a requirement is ``mandatory'' vs. ``recommended'' per the governing standard
+    \item \textit{Completeness}: Whether all applicable requirements from a standard have been captured
+    \item \textit{Citation precision}: Verifying specific section numbers within standards
+    \item \textit{Organizational context}: Tailoring requirements to the specific compliance posture of the organization
+\end{itemize}
+
+\subsection{The Review-Centric Workflow}
+
+The most significant shift introduced by AI-assisted compliance development is the transition from an \textit{authoring} model to a \textit{review} model. In traditional compliance work, an engineer reads the governing standard, interprets its requirements, drafts the compliance artifact, and submits it for review. With AI assistance, the engineer specifies the standard and reviews the AI-generated artifact for accuracy.
+
+This shift has two implications. First, it is faster: reviewing a draft is consistently less effort than producing one from scratch. Second, it changes the \textit{skill profile} required: the engineer must be a competent reviewer of compliance documents rather than a competent author. This is a meaningful distinction---many engineers who understand the technical standards struggle with the formal writing conventions of government documentation.
+
+\subsection{Human-in-the-Loop Compliance}
+
+Government frameworks increasingly require evidence of human oversight in automated processes. Claude Code's permission model---where each file write, command execution, and code edit requires explicit developer approval---provides natural evidence of human-in-the-loop oversight. Every action taken by the agent is logged and approved, creating an audit trail that maps to the ``authorized use'' requirements common in government security frameworks.
+
+The \texttt{CLAUDE.md} convention further supports compliance by encoding organizational and project-specific constraints that persist across sessions. An organization's compliance officer could define \texttt{CLAUDE.md} templates that encode mandatory requirements, ensuring that all AI-assisted development within the organization operates within approved boundaries.
+
+\subsection{Limitations}
+
+Several limitations should be noted:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Model knowledge currency}: LLM training data has a cutoff date, meaning recent revisions to standards (e.g., updates to NIST SP 800-171 Rev.~3) may not be reflected. Developers must verify that AI-cited standards are current.
+    \item \textbf{No formal verification}: AI-generated compliance claims are assertions, not proofs. They do not substitute for formal testing, independent audit, or certification processes such as CMVP validation.
+    \item \textbf{Organizational specificity}: Government compliance is highly context-dependent. The same standard may be interpreted differently across agencies, and AI agents lack organizational knowledge without explicit instruction.
+    \item \textbf{Classification boundaries}: AI tools operating in cloud-connected modes are unsuitable for classified work. The methodology presented here applies only to unclassified and CUI environments.
+\end{enumerate}
+
+\subsection{Reproducibility and Process Documentation}
+
+This paper itself was produced using the methodology it describes. The white paper repository includes a \texttt{PROCESS.md} file documenting the steps taken, the Claude Code interactions involved, and the artifacts produced. This meta-documentation serves both as a reproducibility aid and as a demonstration of the process documentation capabilities discussed in Section~\ref{sec:methodology}.
+
+% ============================================================
+\section{Future Work}
+\label{sec:future}
+
+Several directions merit further investigation:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Automated compliance testing}: Integrating AI agents with continuous integration pipelines to validate compliance assertions against code changes.
+    \item \textbf{Standard-specific agents}: Training or fine-tuning agents on specific government standards (e.g., a NIST SP 800-171 specialist agent) to improve requirement extraction accuracy.
+    \item \textbf{Cross-reference validation}: Building tools that automatically verify citations between compliance artifacts (requirements $\leftrightarrow$ verification $\leftrightarrow$ code).
+    \item \textbf{FedRAMP and CMMC application}: Extending the methodology to broader compliance frameworks such as FedRAMP authorization packages and CMMC assessments.
+    \item \textbf{Comparative studies}: Quantitative comparison of AI-assisted vs. manual compliance documentation effort across multiple projects and team sizes.
+\end{enumerate}
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper has demonstrated a methodology for applying AI-assisted development tools---specifically Claude Code---to the challenge of building software that meets government compliance requirements. Through two case studies, we showed that AI agents can produce structurally sound compliance artifacts including requirements specifications, decision memoranda, and verification documents, while the interactive approval model provides the human oversight that government frameworks require.
+
+The key insight is not that AI replaces compliance expertise, but that it \textit{restructures} the compliance workflow. The engineer's role shifts from author to reviewer, the documentation burden decreases without sacrificing rigor, and the multi-agent architecture enables scalable compliance workflows for projects of varying complexity.
+
+As government agencies and contractors face increasing pressure to demonstrate compliance across expanding regulatory frameworks, AI-assisted tooling offers a practical path to maintaining documentation quality without proportional increases in engineering effort. The methodology, agent configurations, and process documentation presented here provide a foundation for teams seeking to adopt this approach.
+
+% ============================================================
+\section*{Acknowledgments}
+
+This paper and its supporting artifacts were developed using Claude Code (Anthropic, model: Claude Opus). The development process itself serves as a case study for the methodology presented. All source materials, including the white paper LaTeX source, agent configurations, and process documentation, are available at \url{https://github.com/brucedombrowski/WhitePaper}.
+
+% ============================================================
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\end{document}
