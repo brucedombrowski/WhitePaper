@@ -1,0 +1,233 @@
+% This file was created with matplot2tikz v0.5.3.
+\begin{tikzpicture}
+
+\definecolor{crimson2143940}{RGB}{214,39,40}
+\definecolor{darkgray176}{RGB}{176,176,176}
+\definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{forestgreen4416044}{RGB}{44,160,44}
+\definecolor{mediumpurple148103189}{RGB}{148,103,189}
+\definecolor{orchid227119194}{RGB}{227,119,194}
+\definecolor{sienna1408675}{RGB}{140,86,75}
+\definecolor{steelblue31119180}{RGB}{31,119,180}
+
+\begin{groupplot}[group style={group size=3 by 1}]
+\nextgroupplot[
+tick pos=both,
+title={Total Commits},
+x grid style={darkgray176},
+xlabel={Commits},
+xmin=0, xmax=486.15,
+xtick style={color=black},
+xtick={0,100,200,300,400,500},
+xticklabels={
+  \(\displaystyle {0}\),
+  \(\displaystyle {100}\),
+  \(\displaystyle {200}\),
+  \(\displaystyle {300}\),
+  \(\displaystyle {400}\),
+  \(\displaystyle {500}\)
+},
+y grid style={darkgray176},
+ymin=-0.74, ymax=6.74,
+ytick style={color=black},
+ytick={0,1,2,3,4,5,6},
+yticklabels={
+  Scrum,
+  ai-agents,
+  systems-engineering,
+  WhitePaper,
+  SendCUIEmail,
+  Decisions,
+  Security Toolkit
+}
+]
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:0,-0.4) rectangle (axis cs:1,0.4);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,0.6) rectangle (axis cs:1,1.4);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:0,1.6) rectangle (axis cs:3,2.4);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:0,2.6) rectangle (axis cs:23,3.4);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:0,3.6) rectangle (axis cs:49,4.4);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:0,4.6) rectangle (axis cs:96,5.4);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:0,5.6) rectangle (axis cs:463,6.4);
+\draw (axis cs:2,0) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{1};
+\draw (axis cs:2,1) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{1};
+\draw (axis cs:4,2) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{3};
+\draw (axis cs:24,3) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{23};
+\draw (axis cs:50,4) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{49};
+\draw (axis cs:97,5) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{96};
+\draw (axis cs:464,6) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{463};
+
+\nextgroupplot[
+tick pos=both,
+title={Lines of Code},
+x grid style={darkgray176},
+xlabel={Lines of Code},
+xmin=0, xmax=27961.5,
+xtick style={color=black},
+xtick={0,5000,10000,15000,20000,25000,30000},
+xticklabels={
+  \(\displaystyle {0}\),
+  \(\displaystyle {5000}\),
+  \(\displaystyle {10000}\),
+  \(\displaystyle {15000}\),
+  \(\displaystyle {20000}\),
+  \(\displaystyle {25000}\),
+  \(\displaystyle {30000}\)
+},
+y grid style={darkgray176},
+ymin=-0.59, ymax=3.59,
+ytick style={color=black},
+ytick={0,1,2,3},
+yticklabels={WhitePaper,Decisions,SendCUIEmail,Security Toolkit}
+]
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:0,-0.4) rectangle (axis cs:661,0.4);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:0,0.6) rectangle (axis cs:1699,1.4);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:0,1.6) rectangle (axis cs:5026,2.4);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:0,2.6) rectangle (axis cs:26630,3.4);
+\draw (axis cs:761,0) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{661};
+\draw (axis cs:1799,1) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{1,699};
+\draw (axis cs:5126,2) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{5,026};
+\draw (axis cs:26730,3) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{26,630};
+
+\nextgroupplot[
+tick pos=both,
+title={Releases (Tags)},
+x grid style={darkgray176},
+xlabel={Version Tags},
+xmin=0, xmax=98.7,
+xtick style={color=black},
+xtick={0,20,40,60,80,100},
+xticklabels={
+  \(\displaystyle {0}\),
+  \(\displaystyle {20}\),
+  \(\displaystyle {40}\),
+  \(\displaystyle {60}\),
+  \(\displaystyle {80}\),
+  \(\displaystyle {100}\)
+},
+y grid style={darkgray176},
+ymin=-0.74, ymax=6.74,
+ytick style={color=black},
+ytick={0,1,2,3,4,5,6},
+yticklabels={
+  Scrum,
+  ai-agents,
+  systems-engineering,
+  WhitePaper,
+  Decisions,
+  SendCUIEmail,
+  Security Toolkit
+}
+]
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,-0.4) rectangle (axis cs:0,0.4);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,0.6) rectangle (axis cs:0,1.4);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,1.6) rectangle (axis cs:1,2.4);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,2.6) rectangle (axis cs:5,3.4);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,3.6) rectangle (axis cs:6,4.4);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,4.6) rectangle (axis cs:29,5.4);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:0,5.6) rectangle (axis cs:94,6.4);
+\draw (axis cs:0.5,0) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{0};
+\draw (axis cs:0.5,1) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{0};
+\draw (axis cs:1.5,2) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{1};
+\draw (axis cs:5.5,3) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{5};
+\draw (axis cs:6.5,4) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{6};
+\draw (axis cs:29.5,5) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{29};
+\draw (axis cs:94.5,6) node[
+  scale=0.4,
+  anchor=west,
+  text=black,
+  rotate=0.0
+]{94};
+\end{groupplot}
+
+\draw ({$(current bounding box.south west)!0.5!(current bounding box.south east)$}|-{$(current bounding box.south west)!0.98!(current bounding box.north west)$}) node[
+  scale=0.6,
+  anchor=north,
+  text=black,
+  rotate=0.0
+]{\bfseries Repository Ecosystem Overview};
+\end{tikzpicture}

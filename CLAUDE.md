@@ -24,7 +24,12 @@ WhitePaper/
 ├── scan.sh                 # Security scanning wrapper
 ├── .gitignore              # Git ignore rules
 ├── .allowlists/            # Security scan false-positive allowlists
-└── figures/                # Diagrams and figures (if needed)
+└── visualizations/         # Git data visualizations
+    ├── generate_charts.py  # Cross-repo chart generator (6 figures)
+    ├── generate_theseus.py # git-of-theseus analysis (4 figures)
+    ├── *.png, *.pdf, *.tex # Output charts (PNG, PDF, TikZ)
+    ├── ecosystem-gource.mp4 # Animated repo visualization
+    └── stats.json          # Machine-readable statistics
 ```
 
 ## Case Study Source Repositories
@@ -112,6 +117,55 @@ This project follows [Semantic Versioning](https://semver.org/) and [Keep a Chan
 - **PATCH**: Fixes (typos, citations, formatting)
 
 Update `CHANGELOG.md` with every commit. Tag releases: `git tag -a vX.Y.Z -m "description"`
+
+## Git Visualization Toolkit
+
+Publication-quality visualizations generated from git data across all ecosystem repos.
+
+### Installed Tools
+
+| Tool | Install | Purpose |
+|------|---------|---------|
+| `onefetch` | `brew install onefetch` | Repo summary cards (languages, LOC, commits, version) |
+| `gource` | `brew install gource` | Animated 3D tree visualization of repo history |
+| `git-quick-stats` | `brew install git-quick-stats` | Terminal-based commit statistics |
+| `matplotlib` | `pip3 install matplotlib` | Publication-quality chart generation |
+| `pandas` | `pip3 install pandas` | Data analysis and aggregation |
+| `git-of-theseus` | `pip3 install git-of-theseus` | Code survival analysis (Kaplan-Meier curves, cohort stack plots) |
+| `SciencePlots` | `pip3 install SciencePlots` | IEEE/Nature/Science journal-ready matplotlib styles |
+| `matplot2tikz` | `pip3 install matplot2tikz` | Export matplotlib figures to PGFPlots/TikZ for LaTeX |
+
+### Generated Outputs (`visualizations/`)
+
+| File | Description |
+|------|-------------|
+| `cumulative_commits.png/pdf/tex` | Cumulative commit growth per repo over time |
+| `daily_activity.png/pdf/tex` | Stacked bar chart of daily commits by repo |
+| `code_churn.png/pdf/tex` | Lines added vs deleted per day |
+| `repo_comparison.png/pdf/tex` | Triptych: commits, LOC, and version tags per repo |
+| `commit_patterns.png/pdf/tex` | Hour-of-day and day-of-week commit distributions |
+| `ecosystem_timeline.png/pdf/tex` | Gantt-style active development windows per repo |
+| `theseus_cohorts.png/pdf/tex` | Code age cohort stack plot (Security Toolkit) |
+| `theseus_extensions.png/pdf/tex` | Code by file extension over time (Security Toolkit) |
+| `theseus_directories.png/pdf/tex` | Code by directory over time (Security Toolkit) |
+| `ecosystem-gource.mp4` | 40s animated tree visualization of all repos |
+| `gource-snapshot.png` | Still frame from gource video (peak activity) |
+| `stats.json` | Machine-readable summary statistics |
+
+### Regenerating Charts
+
+```bash
+python3 visualizations/generate_charts.py      # Cross-repo charts (6 figures)
+python3 visualizations/generate_theseus.py      # git-of-theseus analysis (4 figures)
+```
+
+### Pipeline
+
+```
+git log --pretty=format (CSV) → pandas → matplotlib + SciencePlots → matplot2tikz → PGFPlots/LaTeX
+```
+
+Each chart is exported as PNG (300 DPI), PDF (vector), and TikZ (.tex) for direct `\input{}` into the paper.
 
 ## Writing Conventions
 

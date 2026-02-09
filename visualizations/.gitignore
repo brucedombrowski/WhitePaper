@@ -1,0 +1,6 @@
+# Large generated files (regenerate with scripts)
+*.mp4
+*.gource.log
+
+# Intermediate data (regenerate with git-of-theseus)
+theseus/*.json

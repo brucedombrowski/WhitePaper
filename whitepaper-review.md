@@ -935,6 +935,104 @@ emerged organically from the white paper development process—an example
 of the methodology producing reusable infrastructure as a byproduct of
 compliance work.
 
+## Stakeholder Accessibility: Bridging the CLI-Browser Gap
+
+The methodology described in this paper is CLI-first: the engineer works
+in Claude Code, git, and shell scripts. This creates an adoption barrier
+when the goal is team-wide participation by non-technical
+stakeholders—program managers, team leads, auditors—who will not install
+command-line tools.
+
+The key insight is that while the *engineering* happens in the CLI, the
+*outputs* are entirely browser-accessible. GitHub and GitLab web
+interfaces render commit history, file diffs (green lines for additions,
+red for deletions), issue threads, and merge request discussions without
+requiring any software installation. The stakeholder’s workflow reduces
+to: open a URL, review the diff, leave a comment, click approve. This is
+a one-page desk instruction, not a training program.
+
+This pattern was validated in practice: a team lead adopted GitLab for
+versioning periodic database exports to CSV, adding configuration
+management (NIST SP 800-53 CM-3) to previously untracked operational
+data. The team lead did not learn git—they learned to click “History”
+and read a diff. The CSV format is critical: unlike binary formats
+(Excel `.xlsx`, PDF), CSV files produce human-readable line-by-line
+diffs in the browser. For teams working with Excel files, a pre-commit
+hook that auto-converts `.xlsx` to `.csv` provides the same visibility
+without changing the user’s workflow.
+
+When whole-team review is required, the branch-and-merge-request
+workflow provides structured approval entirely within the browser.
+Branch protection rules enforce that (1) all changes to the main branch
+must go through a merge request, (2) required reviewers must approve
+before merge, and (3) the author cannot approve their own changes. These
+guardrails map directly to NIST SP 800-53 CM-3 (change control), AC-5
+(separation of duties), and AU-3 (audit trail). Once configured, they
+are enforced automatically—the merge button is physically disabled until
+all conditions are met.
+
+The generated visualizations
+(Section <a href="#sec:visualization" data-reference-type="ref"
+data-reference="sec:visualization">8.5</a>) serve a similar
+accessibility function. A chart showing 636 commits across 7
+repositories in 3 weeks communicates project scope more effectively to a
+non-technical audience than any paragraph. The animated tree
+visualization (gource) showing file creation and modification over time
+has proven particularly effective for conveying the scale and structure
+of development activity to stakeholders unfamiliar with version control
+concepts.
+
+## Git Data Visualization
+
+To support both the research objectives of this paper and the practical
+need to communicate project status to non-technical stakeholders, we
+developed a visualization pipeline that extracts data from git
+repositories and produces publication-quality charts.
+
+The pipeline follows the sequence: `git log` (structured data
+extraction) $`\rightarrow`$ pandas (aggregation and analysis)
+$`\rightarrow`$ matplotlib with SciencePlots styling (IEEE-formatted
+charts) $`\rightarrow`$ matplot2tikz (PGFPlots export for native LaTeX
+inclusion). Each chart is generated in three formats: PNG (300 DPI, for
+presentations), PDF (vector, for print), and TikZ (`.tex`, for direct
+`\input{}` into LaTeX documents).
+
+The toolkit comprises both custom analysis scripts and established
+open-source tools:
+
+- **onefetch**: Repository summary cards showing languages, lines of
+  code, commits, and version tags per repo.
+
+- **git-of-theseus**: Code survival analysis using Kaplan-Meier
+  methods—cohort stack plots showing how code ages over time, and
+  extension/directory breakdowns showing how the codebase structure
+  evolves.
+
+- **gource**: Animated tree visualization rendering repository history
+  as a growing organism, with files as nodes and contributors as actors.
+
+- **Custom cross-repo analysis**: Cumulative commit timelines, daily
+  activity by repository, code churn (additions vs. deletions), commit
+  pattern analysis (hour of day, day of week), and ecosystem timeline
+  (Gantt-style active development windows).
+
+Applied to the six repositories in this ecosystem (totaling 636 commits
+and 34,000+ lines of code over three weeks), the visualizations revealed
+several patterns: the Security Verification Toolkit dominates the
+ecosystem with 463 commits and 94 version tags; `scripts/` and `tests/`
+directories grew in lockstep (indicating disciplined test coverage); and
+development activity concentrated on weekdays with near-zero weekend
+commits. The code cohort analysis confirmed that all code in the
+ecosystem is 2026-vintage—consistent with a rapidly growing project
+where code survival analysis is not yet meaningful but growth
+trajectories are clearly visible.
+
+These visualizations serve dual purpose: they are research artifacts
+that quantify the development activity described in this paper, and they
+are communication tools that make the same data accessible to
+non-technical reviewers through browser-viewable charts and an animated
+video.
+
 ## Human-in-the-Loop Compliance
 
 Government frameworks increasingly require evidence of human oversight

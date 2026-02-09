@@ -1,0 +1,61 @@
+{
+  "generated": "2026-02-09T18:35:14.850936+00:00",
+  "total_repos": 7,
+  "total_commits": 636,
+  "total_loc": 34016,
+  "date_range": {
+    "first": "2026-01-14 01:53:51+00:00",
+    "last": "2026-02-09 18:19:21+00:00"
+  },
+  "per_repo": {
+    "WhitePaper": {
+      "commits": 23,
+      "loc": 661,
+      "tags": 5,
+      "first_commit": "2026-02-09 15:24:54+00:00",
+      "last_commit": "2026-02-09 18:11:34+00:00"
+    },
+    "SendCUIEmail": {
+      "commits": 49,
+      "loc": 5026,
+      "tags": 29,
+      "first_commit": "2026-01-22 02:03:40+00:00",
+      "last_commit": "2026-01-22 20:16:32+00:00"
+    },
+    "Decisions": {
+      "commits": 96,
+      "loc": 1699,
+      "tags": 6,
+      "first_commit": "2026-01-14 01:53:51+00:00",
+      "last_commit": "2026-01-21 23:28:28+00:00"
+    },
+    "Security Toolkit": {
+      "commits": 463,
+      "loc": 26630,
+      "tags": 94,
+      "first_commit": "2026-01-14 21:58:51+00:00",
+      "last_commit": "2026-02-06 17:27:50+00:00"
+    },
+    "Scrum": {
+      "commits": 1,
+      "loc": 0,
+      "tags": 0,
+      "first_commit": "2026-02-09 17:46:17+00:00",
+      "last_commit": "2026-02-09 17:46:17+00:00"
+    },
+    "ai-agents": {
+      "commits": 1,
+      "loc": 0,
+      "tags": 0,
+      "first_commit": "2026-02-09 17:30:43+00:00",
+      "last_commit": "2026-02-09 17:30:43+00:00"
+    },
+    "systems-engineering": {
+      "commits": 3,
+      "loc": 0,
+      "tags": 1,
+      "first_commit": "2026-02-09 17:47:26+00:00",
+      "last_commit": "2026-02-09 18:19:21+00:00"
+    }
+  }
+}
