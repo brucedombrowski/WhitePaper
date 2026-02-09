@@ -868,6 +868,53 @@ Areas requiring human review include:
 - *Organizational context*: Tailoring requirements to the specific
   compliance posture of the organization
 
+## Quantitative Output Analysis
+
+Table <a href="#tab:output-metrics" data-reference-type="ref"
+data-reference="tab:output-metrics">3</a> summarizes the measurable
+output of the AI-assisted methodology across the three case studies and
+supporting infrastructure, produced by a single engineer over
+26 calendar days.
+
+<div id="tab:output-metrics">
+
+| **Metric**                  | **Value** |
+|:----------------------------|----------:|
+| Git repositories            |         7 |
+| Total commits               |       642 |
+| Lines of code               |    34,016 |
+| Release tags                |       136 |
+| Decision memoranda          |         7 |
+| Requirements (JSON)         |        29 |
+| Verification mappings       |        29 |
+| Security scan scripts       |        14 |
+| Test scripts                |        14 |
+| NIST controls automated     |        14 |
+| GitHub issues (audit trail) |      170+ |
+
+Aggregate output metrics (26-day period, single engineer)
+
+</div>
+
+The daily commit rate averaged 24.7 commits/day, with the Security
+Verification Toolkit alone accounting for 463 commits, 94 version tags,
+and 26,630 lines of code. These figures are not presented as
+benchmarks—the commit rate reflects a development style characterized by
+frequent, atomic commits rather than large batch changes—but they
+indicate the throughput achievable when AI agents handle drafting and
+the engineer focuses on review and direction.
+
+More significant than the raw volume is the *ratio of compliance
+artifacts to implementation code*. Traditional compliance workflows
+produce documentation as a separate, sequential activity after
+implementation. In the AI-assisted workflow, compliance artifacts
+(requirements, verification matrices, decision memos, traceability
+mappings, attestation PDFs) are generated *concurrently* with
+implementation as a natural byproduct of the agent interaction. The
+7 decision memoranda, 29 requirements, and 29 verification mappings in
+SendCUIEmail were produced in the same sessions that generated the
+implementation code, not in a separate documentation sprint.
+
 ## The Review-Centric Workflow
 
 The most significant shift introduced by AI-assisted compliance
@@ -1022,7 +1069,7 @@ all conditions are met.
 
 The generated visualizations
 (Section <a href="#sec:visualization" data-reference-type="ref"
-data-reference="sec:visualization">8.5</a>) serve a similar
+data-reference="sec:visualization">8.6</a>) serve a similar
 accessibility function. A chart showing 642 commits across 7
 repositories in under four weeks communicates project scope more
 effectively to a non-technical audience than any paragraph. The animated

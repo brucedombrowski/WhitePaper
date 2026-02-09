@@ -666,6 +666,37 @@ Areas requiring human review include:
     \item \textit{Organizational context}: Tailoring requirements to the specific compliance posture of the organization
 \end{itemize}
 
+\subsection{Quantitative Output Analysis}
+
+Table~\ref{tab:output-metrics} summarizes the measurable output of the AI-assisted methodology across the three case studies and supporting infrastructure, produced by a single engineer over 26~calendar days.
+
+\begin{table}[htbp]
+\centering
+\caption{Aggregate output metrics (26-day period, single engineer)}
+\label{tab:output-metrics}
+\begin{tabularx}{\columnwidth}{Xr}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Git repositories & 7 \\
+Total commits & 642 \\
+Lines of code & 34,016 \\
+Release tags & 136 \\
+Decision memoranda & 7 \\
+Requirements (JSON) & 29 \\
+Verification mappings & 29 \\
+Security scan scripts & 14 \\
+Test scripts & 14 \\
+NIST controls automated & 14 \\
+GitHub issues (audit trail) & 170+ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The daily commit rate averaged 24.7~commits/day, with the Security Verification Toolkit alone accounting for 463~commits, 94~version tags, and 26,630~lines of code. These figures are not presented as benchmarks---the commit rate reflects a development style characterized by frequent, atomic commits rather than large batch changes---but they indicate the throughput achievable when AI agents handle drafting and the engineer focuses on review and direction.
+
+More significant than the raw volume is the \textit{ratio of compliance artifacts to implementation code}. Traditional compliance workflows produce documentation as a separate, sequential activity after implementation. In the AI-assisted workflow, compliance artifacts (requirements, verification matrices, decision memos, traceability mappings, attestation PDFs) are generated \textit{concurrently} with implementation as a natural byproduct of the agent interaction. The 7~decision memoranda, 29~requirements, and 29~verification mappings in SendCUIEmail were produced in the same sessions that generated the implementation code, not in a separate documentation sprint.
+
 \subsection{The Review-Centric Workflow}
 
 The most significant shift introduced by AI-assisted compliance development is the transition from an \textit{authoring} model to a \textit{review} model. In traditional compliance work, an engineer reads the governing standard, interprets its requirements, drafts the compliance artifact, and submits it for review. With AI assistance, the engineer specifies the standard and reviews the AI-generated artifact for accuracy.

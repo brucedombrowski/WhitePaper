@@ -1111,6 +1111,87 @@ within standards</p></li>
 <li><p><em>Organizational context</em>: Tailoring requirements to the
 specific compliance posture of the organization</p></li>
 </ul>
+<h2 id="quantitative-output-analysis">Quantitative Output Analysis</h2>
+<p>Table <a href="#tab:output-metrics" data-reference-type="ref"
+data-reference="tab:output-metrics">3</a> summarizes the measurable
+output of the AI-assisted methodology across the three case studies and
+supporting infrastructure, produced by a single engineer over
+26 calendar days.</p>
+<div id="tab:output-metrics">
+<table>
+<caption>Aggregate output metrics (26-day period, single
+engineer)</caption>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Metric</strong></th>
+<th style="text-align: right;"><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Git repositories</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Total commits</td>
+<td style="text-align: right;">642</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lines of code</td>
+<td style="text-align: right;">34,016</td>
+</tr>
+<tr>
+<td style="text-align: left;">Release tags</td>
+<td style="text-align: right;">136</td>
+</tr>
+<tr>
+<td style="text-align: left;">Decision memoranda</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Requirements (JSON)</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr>
+<td style="text-align: left;">Verification mappings</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr>
+<td style="text-align: left;">Security scan scripts</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td style="text-align: left;">Test scripts</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td style="text-align: left;">NIST controls automated</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td style="text-align: left;">GitHub issues (audit trail)</td>
+<td style="text-align: right;">170+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The daily commit rate averaged 24.7 commits/day, with the Security
+Verification Toolkit alone accounting for 463 commits, 94 version tags,
+and 26,630 lines of code. These figures are not presented as
+benchmarks—the commit rate reflects a development style characterized by
+frequent, atomic commits rather than large batch changes—but they
+indicate the throughput achievable when AI agents handle drafting and
+the engineer focuses on review and direction.</p>
+<p>More significant than the raw volume is the <em>ratio of compliance
+artifacts to implementation code</em>. Traditional compliance workflows
+produce documentation as a separate, sequential activity after
+implementation. In the AI-assisted workflow, compliance artifacts
+(requirements, verification matrices, decision memos, traceability
+mappings, attestation PDFs) are generated <em>concurrently</em> with
+implementation as a natural byproduct of the agent interaction. The
+7 decision memoranda, 29 requirements, and 29 verification mappings in
+SendCUIEmail were produced in the same sessions that generated the
+implementation code, not in a separate documentation sprint.</p>
 <h2 id="the-review-centric-workflow">The Review-Centric Workflow</h2>
 <p>The most significant shift introduced by AI-assisted compliance
 development is the transition from an <em>authoring</em> model to a
@@ -1257,7 +1338,7 @@ guardrails map directly to NIST SP 800-53 CM-3 (change control), AC-5
 are enforced automatically—the merge button is physically disabled until
 all conditions are met.</p>
 <p>The generated visualizations (Section <a href="#sec:visualization"
-data-reference-type="ref" data-reference="sec:visualization">8.5</a>)
+data-reference-type="ref" data-reference="sec:visualization">8.6</a>)
 serve a similar accessibility function. A chart showing 642 commits
 across 7 repositories in under four weeks communicates project scope
 more effectively to a non-technical audience than any paragraph. The
