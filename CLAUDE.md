@@ -4,7 +4,7 @@ Instructions for AI agents working with this repository.
 
 ## Project Overview
 
-This repository contains an academic white paper examining the use of Claude Code (Anthropic's AI-powered CLI tool) to meet government compliance requirements. The paper draws on real-world case studies from the author's projects.
+This repository contains an academic white paper presenting a methodology for using git version control and AI coding agents to meet government compliance requirements. The paper is solution-agnostic — it describes the methodology in general terms while using Claude Code (Anthropic) as the implementation in the case studies. The paper draws on real-world case studies from the author's projects.
 
 ## Author
 
@@ -171,6 +171,8 @@ Each chart is exported as PNG (300 DPI), PDF (vector), and TikZ (.tex) for direc
 
 - Academic tone throughout
 - IEEE conference paper style
+- **Solution-agnostic language**: Use "AI coding agent" for methodology-level discussion; name "Claude Code" only when describing the specific implementation used. Do not write product-review language.
+- Model references: Use "reasoning-optimized" and "throughput-optimized" rather than vendor-specific model names (Opus, Sonnet) except in implementation-specific context
 - All claims backed by citations or direct code references
 - Government standards cited by full designation (e.g., "NIST SP 800-132")
 - Code examples drawn directly from the case study repositories

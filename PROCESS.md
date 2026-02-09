@@ -219,15 +219,15 @@ Paper: 22 pages, 8 figures, 5 tables, 23 references, 429K.
 
 | Metric | Value |
 |--------|-------|
-| Paper | 22 pages, two-column format |
+| Paper | 23 pages, two-column format |
 | Figures | 2 TikZ + 6 embedded charts (8 total in paper), 10 generated charts |
-| Tables | 5 (verification, CLI switches, agent config, QA standards, output metrics) |
+| Tables | 5 (verification, CLI concepts, agent config, QA standards, output metrics) |
 | Case studies | 3 (SendCUIEmail, Decisions, Security Toolkit) |
 | References | 23 BibTeX entries |
 | Agents | 5 (agents.json) |
-| GitHub issues | 32 (27 closed, 5 open) |
-| Commits | 31 on main |
-| Version | v0.6.0 |
+| GitHub issues | 33 (28 closed, 5 open) |
+| Commits | 38 on main |
+| Version | v0.7.0 |
 | Security scans | 4 (2 pass, 1 review, 1 fail) |
 | Ecosystem repos | 7 (WhitePaper, ai-agents, systems-engineering, Scrum, SendCUIEmail, Security, Decisions) |
 | Visualizations | 10 charts (PNG/PDF/TikZ) + 40s gource video |
