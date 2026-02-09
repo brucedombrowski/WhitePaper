@@ -71,6 +71,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Inter-Organizational Data Sharing: FedRAMP environments for government-contractor git workflows (#39)
 - `@misc` bib entries: DFARS 252.204-7012, FedRAMP — 25 references total
 - Introduction contributions list expanded from 5 to 6 items (added adoption pathway)
+- 4 academic citations: Ng et al. 2024 (public sector AI), Huang et al. 2025 (developer oversight), Marino et al. 2025 (compliance benchmarking), Radosky & Polasek 2026 (documentation survey) — 29 references total
+- Related work expanded: positions paper within current AI agent research, cites public sector AI study and compliance benchmarking
+- README.md updated to 25 pages, 25 references
 
 ### Fixed
 - "The final phase" → "The verification phase" (stale from 4-phase era)
