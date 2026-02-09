@@ -626,9 +626,10 @@ addressed include:
 The toolkit maintains a complete traceability chain in JSON format:
 
 ``` math
-\begin{equation*}
-\text{Requirement} \rightarrow \text{NIST Control} \rightarrow \text{Script} \rightarrow \text{Test} \rightarrow \text{Evidence}
-\end{equation*}
+\begin{multline*}
+\text{Requirement} \rightarrow \text{NIST Control} \rightarrow {} \\
+\text{Script} \rightarrow \text{Test} \rightarrow \text{Evidence}
+\end{multline*}
 ```
 
 A `mapping.json` file links 14 functional requirements (FR-001 through

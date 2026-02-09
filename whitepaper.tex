@@ -168,6 +168,7 @@ We developed a methodology for AI-assisted government compliance development org
 
 \begin{figure}[htbp]
 \centering
+\resizebox{\columnwidth}{!}{%
 \begin{tikzpicture}[
     phase/.style={
         rectangle, rounded corners=3pt, draw=blue!70!black,
@@ -208,7 +209,8 @@ We developed a methodology for AI-assisted government compliance development org
       minimum height=0.45cm, below=1.0cm of $(p4)!0.5!(p5)$]
       (review) {Human Review at Every Phase};
 
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{Five-phase methodology for AI-assisted compliance development. Human review occurs at every phase transition.}
 \label{fig:methodology}
 \end{figure}
@@ -295,7 +297,7 @@ Table~\ref{tab:verification-excerpt} shows an excerpt from the SendCUIEmail veri
 REQ-1.1 & \texttt{Encrypt.ps1}: \texttt{[Aes]::Create()} call & Inspection \\
 REQ-1.2 & \texttt{\$KEY\_SIZE = 32} (256 bits) & Inspection \\
 REQ-2.3 & \texttt{\$ITERATIONS = 100000} & Inspection \\
-REQ-3.1 & {\small\texttt{RandomNumberGenerator}} usage & Inspection \\
+REQ-3.1 & {\footnotesize\texttt{RandomNumberGenerator}} usage & Inspection \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -458,9 +460,10 @@ The toolkit implements 14 NIST SP 800-53 controls and 11 NIST SP 800-171 control
 
 The toolkit maintains a complete traceability chain in JSON format:
 
-\begin{equation*}
-\text{Requirement} \rightarrow \text{NIST Control} \rightarrow \text{Script} \rightarrow \text{Test} \rightarrow \text{Evidence}
-\end{equation*}
+\begin{multline*}
+\text{Requirement} \rightarrow \text{NIST Control} \rightarrow {} \\
+\text{Script} \rightarrow \text{Test} \rightarrow \text{Evidence}
+\end{multline*}
 
 A \texttt{mapping.json} file links 14 functional requirements (FR-001 through FR-014) to NIST controls, implementation scripts, and test cases, navigable in three directions: by script, by NIST 800-53 control, and by NIST 800-171 control. This bidirectional traceability enables auditors to verify compliance from any starting point---a requirement that many government programs mandate but few tools automate.
 
@@ -503,6 +506,7 @@ Multi-agent orchestration enables workflows where multiple specialized AI agents
 
 \begin{figure}[htbp]
 \centering
+\resizebox{\columnwidth}{!}{%
 \begin{tikzpicture}[
     agent/.style={
         rectangle, rounded corners=3pt, draw=#1!70!black,
@@ -564,7 +568,8 @@ Multi-agent orchestration enables workflows where multiple specialized AI agents
 \draw[dashed, gray!50] (setup.south) -- ++(0,-0.62) -| (gh.north west);
 \draw[dashed, gray!50] (rev.south) -- ++(0,-0.17) -| (gh.north east);
 
-\end{tikzpicture}
+\end{tikzpicture}%
+}
 \caption{Multi-agent architecture for compliance projects. Teal agents use throughput-optimized models; blue/orange agents use reasoning-optimized models. The review agent has read-only access (NIST SP 800-53 AC-5). All agents log interactions to GitHub issues.}
 \label{fig:agents}
 \end{figure}
