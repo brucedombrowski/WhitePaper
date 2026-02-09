@@ -592,6 +592,30 @@ The multi-agent workflow proceeds through the five phases described in Section~\
 
 This isolation is particularly valuable for government projects where compliance documentation can be extensive---a full NIST SP 800-171 assessment may reference over 100 security requirements, and maintaining all of these in a single agent context is impractical. The separation-of-duties between the \texttt{documentation} and \texttt{review} agents also mirrors the organizational controls common in government programs, where the author of a compliance artifact should not be the sole reviewer.
 
+\subsection{Scrum-Based Agent Orchestration}
+\label{sec:scrum}
+
+The pipeline model described above---where agents execute sequentially through defined phases---is effective for linear compliance workflows but does not accommodate the iterative, feedback-driven nature of real-world software development. An alternative orchestration model maps AI agents to a Scrum team structure, drawing on the Scrum Guide \cite{scrumguide} framework that is widely adopted in both commercial and government software programs.
+
+In this model, Claude agents assume Scrum roles:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Product Owner agent}: Maintains the product backlog (GitHub issues), prioritizes work items based on compliance risk and stakeholder value, and defines acceptance criteria. Uses Opus for its judgment over regulatory priorities.
+    \item \textbf{Scrum Master agent}: Facilitates sprint execution, identifies impediments (blocked issues, failing scans, unresolved review findings), and ensures the team adheres to process standards. Monitors GitHub issues for stalled work and escalates to the human.
+    \item \textbf{Developer agents}: One or more implementation and documentation agents that pull work from the sprint backlog and produce deliverables. Use Sonnet for throughput on structured tasks.
+\end{itemize}
+
+This Scrum-based approach offers several advantages for compliance projects:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Iterative refinement}: Rather than producing all requirements before any implementation begins, the team works in sprints where each iteration can incorporate feedback from the previous sprint's review---mirroring the review-centric workflow discussed in Section~\ref{sec:discussion}.
+    \item \textbf{Backlog as audit trail}: The GitHub issue backlog serves dual purpose: it is both the Scrum product backlog and the compliance audit trail (Section~\ref{sec:methodology-git}). Each sprint produces a traceable increment of compliance artifacts.
+    \item \textbf{Human as stakeholder}: The human engineer acts as the primary stakeholder (and may also serve as the Product Owner), providing direction at sprint boundaries rather than approving every individual action. This scales the human-in-the-loop model to larger projects.
+    \item \textbf{Government familiarity}: Scrum and Agile methodologies are already adopted across federal agencies under guidance such as the GSA 18F Agile Practices Guide and the DoD Agile Software Acquisition Guidebook, reducing the organizational friction of adopting AI-assisted workflows.
+\end{enumerate}
+
+A reference implementation of this Scrum-based agent architecture is under development at \url{https://github.com/brucedombrowski/Scrum}, applying the Scrum Guide's ceremonies and artifacts to Claude Code's multi-agent mode. This represents a natural evolution from the sequential pipeline model to a more flexible, sprint-based orchestration that better accommodates the iterative nature of compliance development.
+
 % ============================================================
 \section{Discussion}
 \label{sec:discussion}
