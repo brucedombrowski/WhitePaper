@@ -37,6 +37,11 @@ These repos provide the real-world examples cited in the paper:
    - Addresses: SF901 CUI coversheet compliance
    - Demonstrates: document generation, template patterns
 
+3. **Security Verification Toolkit** - https://github.com/brucedombrowski/security-toolkit
+   - Automated security scanning and compliance documentation (Bash)
+   - Addresses: NIST SP 800-53 (14 controls), NIST SP 800-171 (11 controls), NIST SP 800-88, BOD 22-01, FIPS 199
+   - Demonstrates: automated control verification, requirements traceability, PDF attestation generation, multi-agent development
+
 ## Build Instructions
 
 ### Compile the white paper

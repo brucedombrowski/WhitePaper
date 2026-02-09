@@ -72,7 +72,7 @@
 
 % ============================================================
 \begin{abstract}
-Government software development demands rigorous compliance with federal standards including NIST Special Publications, FIPS cryptographic requirements, and CUI handling regulations under 32~CFR~Part~2002. These requirements impose significant documentation overhead---formal requirements traceability, decision memoranda, verification matrices, and regulatory cross-references---that traditionally consumes substantial engineering effort. This paper examines the application of Claude Code, Anthropic's AI-powered command-line development tool, to government compliance software projects. Drawing on two real-world case studies---a CUI email encryption tool (SendCUIEmail) and a formal decision documentation system---we demonstrate how AI-assisted development can accelerate compliance artifact generation while maintaining the precision required by federal auditors. We present a methodology for structuring AI agent workflows around government documentation standards, evaluate the quality of AI-generated compliance artifacts against manual baselines, and discuss the implications for federal software development practices. Our findings suggest that AI-assisted tooling can reduce compliance documentation effort by shifting the engineer's role from author to reviewer, while the interactive agent model provides the human-in-the-loop oversight that government frameworks require.
+Government software development demands rigorous compliance with federal standards including NIST Special Publications, FIPS cryptographic requirements, and CUI handling regulations under 32~CFR~Part~2002. These requirements impose significant documentation overhead---formal requirements traceability, decision memoranda, verification matrices, and regulatory cross-references---that traditionally consumes substantial engineering effort. This paper examines the application of Claude Code, Anthropic's AI-powered command-line development tool, to government compliance software projects. Drawing on three real-world case studies---a CUI email encryption tool (SendCUIEmail), a formal decision documentation system, and a Security Verification Toolkit implementing automated NIST SP 800-53 control verification---we demonstrate how AI-assisted development can accelerate compliance artifact generation while maintaining the precision required by federal auditors. We present a methodology for structuring AI agent workflows around government documentation standards, evaluate the quality of AI-generated compliance artifacts against manual baselines, and discuss the implications for federal software development practices. Our findings suggest that AI-assisted tooling can reduce compliance documentation effort by shifting the engineer's role from author to reviewer, while the interactive agent model provides the human-in-the-loop oversight that government frameworks require.
 \end{abstract}
 
 \medskip
@@ -92,7 +92,7 @@ This paper makes the following contributions:
 
 \begin{enumerate}[leftmargin=*]
     \item A methodology for using AI agents in government compliance software development, structured around the documentation requirements of NIST and DoD frameworks.
-    \item Two case studies demonstrating AI-assisted development of compliance artifacts: SendCUIEmail (a CUI encryption tool) and a LaTeX-based decision memoranda system.
+    \item Three case studies demonstrating AI-assisted development of compliance artifacts: SendCUIEmail (a CUI encryption tool), a LaTeX-based decision memoranda system, and a Security Verification Toolkit implementing automated NIST control verification.
     \item An evaluation of AI-generated compliance artifacts including requirements documents, decision memos, and verification matrices.
     \item A discussion of the \texttt{--agents} mode workflow for multi-agent collaboration on compliance projects.
 \end{enumerate}
@@ -334,6 +334,54 @@ Three decision memos (DM-2026-001 through DM-2026-003) document the technical ap
 Each decision memo follows the format required by many government programs: identification of options considered, evaluation criteria, selected approach, and rationale with regulatory references.
 
 % ============================================================
+\section{Case Study: Security Verification Toolkit}
+\label{sec:casestudy-toolkit}
+
+The third case study examines the Security Verification Toolkit \cite{nist80053}, a pure-Bash security scanning and compliance documentation system that automates the verification of federal security controls. Unlike SendCUIEmail (which implements a single compliance function) or the Decision Documentation System (which manages process artifacts), the toolkit addresses the \textit{continuous compliance verification} challenge: demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171 controls through automated scanning and attestation generation.
+
+\subsection{Scope and Standards}
+
+The toolkit implements 14 NIST SP 800-53 controls and 11 NIST SP 800-171 controls across eight security control families, with each scan mapped to its governing control in machine-readable JSON. The standards addressed include:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{NIST SP 800-53} \cite{nist80053}: RA-5 (Vulnerability Scanning), CM-6 (Configuration Settings), CM-8 (Component Inventory), SA-11 (Developer Testing), SI-2/3/4/5/12 (Information Integrity), SC-8 (Transmission Protection), MP-6 (Media Sanitization), CA-2 (Assessment)
+    \item \textbf{NIST SP 800-171} \cite{nist800171}: 11 corresponding CUI protection requirements
+    \item \textbf{NIST SP 800-88} \cite{nist80088}: Media sanitization (secure deletion)
+    \item \textbf{BOD 22-01} \cite{bod2201}: CISA Known Exploited Vulnerabilities cross-referencing
+    \item \textbf{FIPS 199} \cite{fips199}: Security categorization of federal information
+\end{itemize}
+
+\subsection{Requirements Traceability}
+
+The toolkit maintains a complete traceability chain in JSON format:
+
+\begin{equation*}
+\text{Requirement} \rightarrow \text{NIST Control} \rightarrow \text{Script} \rightarrow \text{Test} \rightarrow \text{Evidence}
+\end{equation*}
+
+A \texttt{mapping.json} file links 14 functional requirements (FR-001 through FR-014) to NIST controls, implementation scripts, and test cases, navigable in three directions: by script, by NIST 800-53 control, and by NIST 800-171 control. This bidirectional traceability enables auditors to verify compliance from any starting point---a requirement that many government programs mandate but few tools automate.
+
+The AI agent assisted in generating this traceability framework, producing the initial JSON mappings from the NIST control catalog and iterating with the developer to ensure completeness. The machine-readable format enables downstream automation: generating formatted traceability reports, validating that no requirements are orphaned, and detecting when code changes break previously-verified controls.
+
+\subsection{Automated Attestation Generation}
+
+A distinguishing feature of the toolkit is its automated generation of formal compliance attestations as PDFs via LaTeX templates. After each scan run, the system produces timestamped, checksummed attestation documents suitable for inclusion in government compliance packages. Each attestation includes:
+
+\begin{itemize}[leftmargin=*]
+    \item Toolkit version and git commit hash (configuration management)
+    \item Scan timestamp in ISO 8601 UTC
+    \item SHA-256 checksums of all scan outputs
+    \item NIST control mappings for each finding
+    \item CUI markings where applicable
+\end{itemize}
+
+The toolkit's design philosophy---\textit{``You are only as good as your last scan''}---enforces that every scan run overwrites previous results, preventing stale attestations from being presented as current evidence. This maps directly to the continuous monitoring requirements of NIST CA-7.
+
+\subsection{Multi-Agent Development}
+
+The toolkit itself was developed using a multi-agent architecture with defined roles: Lead Systems Engineer, QA Engineer, Windows Developer, Documentation Engineer, and Lead Software Developer. Agent coordination uses GitHub issues as the communication channel---the same interaction logging pattern adopted in this paper's methodology. This represents a mature implementation of the multi-agent compliance workflow described in Section~\ref{sec:agents}, validated across 2.7 major versions and over 140 GitHub issues.
+
+% ============================================================
 \section{Multi-Agent Workflow}
 \label{sec:agents}
 
@@ -471,7 +519,7 @@ Several directions merit further investigation:
 \section{Conclusion}
 \label{sec:conclusion}
 
-This paper has demonstrated a methodology for applying AI-assisted development tools---specifically Claude Code---to the challenge of building software that meets government compliance requirements. Through two case studies, we showed that AI agents can produce structurally sound compliance artifacts including requirements specifications, decision memoranda, and verification documents, while the interactive approval model provides the human oversight that government frameworks require.
+This paper has demonstrated a methodology for applying AI-assisted development tools---specifically Claude Code---to the challenge of building software that meets government compliance requirements. Through three case studies, we showed that AI agents can produce structurally sound compliance artifacts including requirements specifications, decision memoranda, verification documents, and automated compliance attestations, while the interactive approval model provides the human oversight that government frameworks require.
 
 The key insight is not that AI replaces compliance expertise, but that it \textit{restructures} the compliance workflow. The engineer's role shifts from author to reviewer, the documentation burden decreases without sacrificing rigor, and the multi-agent architecture enables scalable compliance workflows for projects of varying complexity.
 
