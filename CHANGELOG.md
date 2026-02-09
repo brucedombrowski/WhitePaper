@@ -16,6 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Session continuity (`--resume`, `--continue`) in Claude Code Architecture
 - Retroactive git tags v0.1.0 through v0.5.0
 - All human feedback logged as GitHub issues (#13)
+- Figure 1: Five-phase methodology workflow diagram (TikZ) (#14)
+- Figure 2: Multi-agent architecture diagram (TikZ) (#14)
+- Abstract updated to mention five-phase methodology and version control
+
+### Fixed
+- "Four phases" → "five phases" in two locations (Phase 5 intro, Workflow Orchestration)
+- Missing listing reference for `lst:agentsmd` in Phase 2 text
 
 ## [0.5.0] - 2026-02-09
 

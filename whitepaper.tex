@@ -14,6 +14,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, calc}
 % Page numbers
 \pagestyle{plain}
 
@@ -72,7 +74,7 @@
 
 % ============================================================
 \begin{abstract}
-Government software development demands rigorous compliance with federal standards including NIST Special Publications, FIPS cryptographic requirements, and CUI handling regulations under 32~CFR~Part~2002. These requirements impose significant documentation overhead---formal requirements traceability, decision memoranda, verification matrices, and regulatory cross-references---that traditionally consumes substantial engineering effort. This paper examines the application of Claude Code, Anthropic's AI-powered command-line development tool, to government compliance software projects. Drawing on three real-world case studies---a CUI email encryption tool (SendCUIEmail), a formal decision documentation system, and a Security Verification Toolkit implementing automated NIST SP 800-53 control verification---we demonstrate how AI-assisted development can accelerate compliance artifact generation while maintaining the precision required by federal auditors. We present a methodology for structuring AI agent workflows around government documentation standards, evaluate the quality of AI-generated compliance artifacts against manual baselines, and discuss the implications for federal software development practices. Our findings suggest that AI-assisted tooling can reduce compliance documentation effort by shifting the engineer's role from author to reviewer, while the interactive agent model provides the human-in-the-loop oversight that government frameworks require.
+Government software development demands rigorous compliance with federal standards including NIST Special Publications, FIPS cryptographic requirements, and CUI handling regulations under 32~CFR~Part~2002. These requirements impose significant documentation overhead---formal requirements traceability, decision memoranda, verification matrices, and regulatory cross-references---that traditionally consumes substantial engineering effort. This paper examines the application of Claude Code, Anthropic's AI-powered command-line development tool, to government compliance software projects. Drawing on three real-world case studies---a CUI email encryption tool (SendCUIEmail), a formal decision documentation system, and a Security Verification Toolkit implementing automated NIST SP 800-53 control verification---we demonstrate how AI-assisted development can accelerate compliance artifact generation while maintaining the precision required by federal auditors. We present a five-phase methodology for structuring AI agent workflows around government documentation standards---from requirements capture through version-controlled interaction traceability using git and GitHub issues---evaluate the quality of AI-generated compliance artifacts against manual baselines, and discuss the implications for federal software development practices. Our findings suggest that AI-assisted tooling can reduce compliance documentation effort by shifting the engineer's role from author to reviewer, while the interactive agent model provides the human-in-the-loop oversight that government frameworks require.
 \end{abstract}
 
 \medskip
@@ -157,7 +159,53 @@ Table~\ref{tab:cli-switches} documents the CLI switches most relevant to complia
 \section{Methodology}
 \label{sec:methodology}
 
-We developed a methodology for AI-assisted government compliance development organized around four phases: \textit{requirements capture}, \textit{implementation}, \textit{decision documentation}, and \textit{verification}. Each phase leverages specific Claude Code capabilities while maintaining the human-in-the-loop oversight essential to compliance work.
+We developed a methodology for AI-assisted government compliance development organized around five phases, illustrated in Figure~\ref{fig:methodology}. Each phase leverages specific Claude Code capabilities while maintaining the human-in-the-loop oversight essential to compliance work.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    phase/.style={
+        rectangle, rounded corners=3pt, draw=blue!70!black,
+        fill=blue!8, text width=1.9cm, minimum height=0.9cm,
+        align=center, font=\footnotesize\bfseries
+    },
+    artifact/.style={
+        rectangle, draw=gray!60, fill=gray!8,
+        text width=1.7cm, align=center,
+        font=\scriptsize, minimum height=0.6cm
+    },
+    arr/.style={-{Stealth[length=2mm]}, thick, blue!70!black},
+    labelstyle/.style={font=\scriptsize\itshape, text=gray!70!black}
+]
+% Phases in a flow
+\node[phase] (p1) {1. Requirements\\Capture};
+\node[phase, right=0.35cm of p1] (p2) {2. Implemen-\\tation};
+\node[phase, right=0.35cm of p2] (p3) {3. Decision\\Docs};
+\node[phase, below=1.0cm of p1] (p4) {4. Verifi-\\cation};
+\node[phase, right=0.35cm of p4] (p5) {5. Version\\Control};
+
+% Arrows between phases
+\draw[arr] (p1) -- (p2);
+\draw[arr] (p2) -- (p3);
+\draw[arr] (p3) -- (p4);
+\draw[arr] (p4) -- (p5);
+
+% Artifacts
+\node[artifact, below=0.3cm of p1] (a1) {REQ JSON};
+\node[artifact, below=0.3cm of p2] (a2) {Source code};
+\node[artifact, below=0.3cm of p3] (a3) {DM LaTeX};
+\node[artifact, right=0.35cm of p5] (a5) {git + issues};
+
+% Human review bar
+\node[rectangle, draw=red!60!black, fill=red!5,
+      text width=6.8cm, align=center, font=\scriptsize\bfseries,
+      minimum height=0.45cm, below=0.35cm of $(p4)!0.5!(p5)$]
+      (review) {Human Review at Every Phase};
+
+\end{tikzpicture}
+\caption{Five-phase methodology for AI-assisted compliance development. Human review occurs at every phase transition.}
+\label{fig:methodology}
+\end{figure}
 
 \subsection{Phase 1: Requirements Capture}
 
@@ -192,7 +240,7 @@ Requirement text uses RFC~2119 \cite{rfc2119} keywords (SHALL, SHOULD, MAY) to d
 
 \subsection{Phase 2: Implementation with Compliance Awareness}
 
-During implementation, the Claude Code agent operates within the project's \texttt{CLAUDE.md} context, which encodes the compliance standards and architectural constraints. The \texttt{AGENTS.md} file (used in the SendCUIEmail project) provides persistent instructions that survive across sessions:
+During implementation, the Claude Code agent operates within the project's \texttt{CLAUDE.md} context, which encodes the compliance standards and architectural constraints. The \texttt{AGENTS.md} file (used in the SendCUIEmail project) provides persistent instructions that survive across sessions, as shown in Listing~\ref{lst:agentsmd}:
 
 \begin{lstlisting}[style=powershell, caption={AGENTS.md compliance context excerpt}, label={lst:agentsmd}]
 ## Compliance Standards
@@ -249,7 +297,7 @@ REQ-3.1 & {\small\texttt{RandomNumberGenerator}} usage & Inspection \\
 \subsection{Phase 5: Version Control and Interaction Traceability}
 \label{sec:methodology-git}
 
-The four development phases above produce artifacts, but compliance also demands \textit{evidence of process}---a verifiable record of who made which decisions, when changes were introduced, and how human-agent interactions shaped the final deliverables. We use git version control and GitHub issues as complementary traceability mechanisms.
+The preceding development phases produce artifacts, but compliance also demands \textit{evidence of process}---a verifiable record of who made which decisions, when changes were introduced, and how human-agent interactions shaped the final deliverables. We use git version control and GitHub issues as complementary traceability mechanisms.
 
 \subsubsection{Git as Audit Trail}
 
@@ -434,7 +482,75 @@ The toolkit itself was developed using a multi-agent architecture with defined r
 \section{Multi-Agent Workflow}
 \label{sec:agents}
 
-Claude Code's \texttt{--agents} mode enables orchestrated workflows where multiple specialized agents collaborate on a project. For government compliance work, we propose a role-based agent architecture:
+Claude Code's \texttt{--agents} mode enables orchestrated workflows where multiple specialized agents collaborate on a project. For government compliance work, we propose the role-based agent architecture shown in Figure~\ref{fig:agents}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    agent/.style={
+        rectangle, rounded corners=3pt, draw=#1!70!black,
+        fill=#1!10, text width=2.0cm, minimum height=0.8cm,
+        align=center, font=\footnotesize\bfseries
+    },
+    model/.style={
+        font=\scriptsize, text=#1!70!black
+    },
+    tools/.style={
+        rectangle, draw=gray!50, fill=gray!5,
+        font=\scriptsize, align=center, minimum height=0.4cm
+    },
+    arr/.style={-{Stealth[length=2mm]}, thick, gray!60},
+    human/.style={
+        ellipse, draw=red!60!black, fill=red!5,
+        font=\footnotesize\bfseries, align=center,
+        minimum width=2.0cm, minimum height=0.7cm
+    }
+]
+
+% Human at top
+\node[human] (human) {Human\\Engineer};
+
+% Agents row 1
+\node[agent=teal, below left=1.0cm and 1.2cm of human] (setup) {Project\\Setup};
+\node[agent=blue, below=1.0cm of human] (req) {Require-\\ments};
+\node[agent=teal, below right=1.0cm and 1.2cm of human] (impl) {Implemen-\\tation};
+
+% Agents row 2
+\node[agent=teal, below=2.4cm of human, xshift=-1.3cm] (doc) {Documen-\\tation};
+\node[agent=orange, below=2.4cm of human, xshift=1.3cm] (rev) {Review};
+
+% Model labels
+\node[model=teal, below=0pt of setup] {\textit{Sonnet}};
+\node[model=blue, below=0pt of req] {\textit{Opus}};
+\node[model=teal, below=0pt of impl] {\textit{Sonnet}};
+\node[model=teal, below=0pt of doc] {\textit{Sonnet}};
+\node[model=orange, below=0pt of rev] {\textit{Opus}};
+
+% No-write indicator
+\node[font=\scriptsize\color{red!70!black}, below=9pt of rev] {read-only};
+
+% Arrows from human
+\draw[arr] (human) -- (setup);
+\draw[arr] (human) -- (req);
+\draw[arr] (human) -- (impl);
+\draw[arr] (human) -- (doc);
+\draw[arr] (human) -- (rev);
+
+% GitHub issues bar
+\node[rectangle, draw=black!60, fill=yellow!10,
+      text width=5.0cm, align=center,
+      font=\scriptsize\bfseries, minimum height=0.4cm,
+      below=2.0cm of $(doc)!0.5!(rev)$]
+      (gh) {GitHub Issues (audit trail)};
+
+% Dashed lines to GitHub
+\draw[dashed, gray!50] (setup.south) -- ++(0,-0.62) -| (gh.north west);
+\draw[dashed, gray!50] (rev.south) -- ++(0,-0.17) -| (gh.north east);
+
+\end{tikzpicture}
+\caption{Multi-agent architecture for compliance projects. Teal agents use Sonnet; blue/orange agents use Opus. The review agent has read-only access (NIST SP 800-53 AC-5). All agents log interactions to GitHub issues.}
+\label{fig:agents}
+\end{figure}
 
 \subsection{Agent Roles}
 
@@ -471,7 +587,7 @@ Model selection reflects the cognitive demands of each role: the \texttt{require
 
 \subsection{Workflow Orchestration}
 
-The multi-agent workflow proceeds through the four phases described in Section~\ref{sec:methodology}, with each agent operating within its defined scope. The key advantage of this architecture is \textit{context isolation}: the requirements agent does not need the full implementation context, and the documentation agent can focus on artifact generation without the overhead of the full codebase in its context window.
+The multi-agent workflow proceeds through the five phases described in Section~\ref{sec:methodology}, with each agent operating within its defined scope. The key advantage of this architecture is \textit{context isolation}: the requirements agent does not need the full implementation context, and the documentation agent can focus on artifact generation without the overhead of the full codebase in its context window.
 
 This isolation is particularly valuable for government projects where compliance documentation can be extensive---a full NIST SP 800-171 assessment may reference over 100 security requirements, and maintaining all of these in a single agent context is impractical. The separation-of-duties between the \texttt{documentation} and \texttt{review} agents also mirrors the organizational controls common in government programs, where the author of a compliance artifact should not be the sole reviewer.
 
