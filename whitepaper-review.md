@@ -371,13 +371,13 @@ comprehensive regardless of which agent is active.
 
 ## Project Overview
 
-SendCUIEmail is a PowerShell-based tool for encrypting files before
-email transmission, under active development (currently v0.17.3,
-pre-release). It is designed for environments where Public Key
-Infrastructure (PKI) or S/MIME certificate exchange is impractical. The
-tool addresses a common gap in federal and contractor environments: the
-need to transmit CUI securely when the only available channel is
-unencrypted email.
+SendCUIEmail (Dombrowski 2026b) is a PowerShell-based tool for
+encrypting files before email transmission, under active development
+(currently v0.17.3, pre-release). It is designed for environments where
+Public Key Infrastructure (PKI) or S/MIME certificate exchange is
+impractical. The tool addresses a common gap in federal and contractor
+environments: the need to transmit CUI securely when the only available
+channel is unencrypted email.
 
 The project’s compliance scope spans six federal standards and
 regulations:
@@ -539,17 +539,18 @@ selected approach, and rationale with regulatory references.
 
 # Case Study: Security Verification Toolkit
 
-The third case study examines the Security Verification Toolkit, a
-pure-Bash security scanning and compliance documentation system under
-active development (currently v2.7.3) that automates the verification of
-federal security controls. Like all three case studies in this paper,
-the toolkit is under active development and is presented as a case study
-in AI-assisted compliance tooling, not as a finished product. Unlike
-SendCUIEmail (which implements a single compliance function) or the
-Decision Documentation System (which manages process artifacts), the
-toolkit addresses the *continuous compliance verification* challenge:
-demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171
-controls through automated scanning and attestation generation.
+The third case study examines the Security Verification Toolkit
+(Dombrowski 2026a), a pure-Bash security scanning and compliance
+documentation system under active development (currently v2.7.3) that
+automates the verification of federal security controls. Like all three
+case studies in this paper, the toolkit is under active development and
+is presented as a case study in AI-assisted compliance tooling, not as a
+finished product. Unlike SendCUIEmail (which implements a single
+compliance function) or the Decision Documentation System (which manages
+process artifacts), the toolkit addresses the *continuous compliance
+verification* challenge: demonstrating ongoing adherence to NIST SP
+800-53 and NIST SP 800-171 controls through automated scanning and
+attestation generation.
 
 ## Scope and Standards
 
@@ -1013,7 +1014,7 @@ all conditions are met.
 The generated visualizations
 (Section <a href="#sec:visualization" data-reference-type="ref"
 data-reference="sec:visualization">8.5</a>) serve a similar
-accessibility function. A chart showing 636 commits across 7
+accessibility function. A chart showing 642 commits across 7
 repositories in under four weeks communicates project scope more
 effectively to a non-technical audience than any paragraph. The animated
 tree visualization (gource) showing file creation and modification over
@@ -1055,7 +1056,7 @@ open-source tools:
   pattern analysis (hour of day, day of week), and ecosystem timeline
   (Gantt-style active development windows).
 
-Applied to the seven repositories in this ecosystem (totaling 636
+Applied to the seven repositories in this ecosystem (totaling 642
 commits and 34,000+ lines of code over four weeks), the visualizations
 revealed several patterns.
 Figure <a href="#fig:repo-comparison" data-reference-type="ref"
@@ -1336,6 +1337,21 @@ Exploited Vulnerabilities</span>*. Binding Operational Directive.
 Department of Defense. 1994. *<span class="nocase">MIL-STD-498: Software
 Development and Documentation</span>*. Military Standard MIL-STD-498.
 U.S. Department of Defense.
+
+</div>
+
+<div id="ref-securitytoolkit" class="csl-entry">
+
+Dombrowski, Bruce. 2026a. *Security Verification Toolkit: Automated NIST
+SP 800-53 Control Verification*. GitHub repository.
+<https://github.com/brucedombrowski/security-toolkit>.
+
+</div>
+
+<div id="ref-sendcuiemail" class="csl-entry">
+
+Dombrowski, Bruce. 2026b. *SendCUIEmail: CUI Email Encryption Tool*.
+GitHub repository. <https://github.com/brucedombrowski/SendCUIEmail>.
 
 </div>
 

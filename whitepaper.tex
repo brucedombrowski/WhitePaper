@@ -195,12 +195,13 @@ We developed a methodology for AI-assisted government compliance development org
 \node[artifact, below=0.3cm of p1] (a1) {REQ JSON};
 \node[artifact, below=0.3cm of p2] (a2) {Source code};
 \node[artifact, below=0.3cm of p3] (a3) {DM LaTeX};
+\node[artifact, below=0.3cm of p4] (a4) {VER matrix};
 \node[artifact, right=0.35cm of p5] (a5) {git + issues};
 
 % Human review bar
 \node[rectangle, draw=red!60!black, fill=red!5,
       text width=6.8cm, align=center, font=\scriptsize\bfseries,
-      minimum height=0.45cm, below=0.35cm of $(p4)!0.5!(p5)$]
+      minimum height=0.45cm, below=1.0cm of $(p4)!0.5!(p5)$]
       (review) {Human Review at Every Phase};
 
 \end{tikzpicture}
@@ -330,7 +331,7 @@ All five agents in the multi-agent configuration (Section~\ref{sec:agents}) incl
 
 \subsection{Project Overview}
 
-SendCUIEmail is a PowerShell-based tool for encrypting files before email transmission, under active development (currently v0.17.3, pre-release). It is designed for environments where Public Key Infrastructure (PKI) or S/MIME certificate exchange is impractical. The tool addresses a common gap in federal and contractor environments: the need to transmit CUI securely when the only available channel is unencrypted email.
+SendCUIEmail \cite{sendcuiemail} is a PowerShell-based tool for encrypting files before email transmission, under active development (currently v0.17.3, pre-release). It is designed for environments where Public Key Infrastructure (PKI) or S/MIME certificate exchange is impractical. The tool addresses a common gap in federal and contractor environments: the need to transmit CUI securely when the only available channel is unencrypted email.
 
 The project's compliance scope spans six federal standards and regulations:
 
@@ -435,7 +436,7 @@ Each decision memo follows the format required by many government programs: iden
 \section{Case Study: Security Verification Toolkit}
 \label{sec:casestudy-toolkit}
 
-The third case study examines the Security Verification Toolkit, a pure-Bash security scanning and compliance documentation system under active development (currently v2.7.3) that automates the verification of federal security controls. Like all three case studies in this paper, the toolkit is under active development and is presented as a case study in AI-assisted compliance tooling, not as a finished product. Unlike SendCUIEmail (which implements a single compliance function) or the Decision Documentation System (which manages process artifacts), the toolkit addresses the \textit{continuous compliance verification} challenge: demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171 controls through automated scanning and attestation generation.
+The third case study examines the Security Verification Toolkit \cite{securitytoolkit}, a pure-Bash security scanning and compliance documentation system under active development (currently v2.7.3) that automates the verification of federal security controls. Like all three case studies in this paper, the toolkit is under active development and is presented as a case study in AI-assisted compliance tooling, not as a finished product. Unlike SendCUIEmail (which implements a single compliance function) or the Decision Documentation System (which manages process artifacts), the toolkit addresses the \textit{continuous compliance verification} challenge: demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171 controls through automated scanning and attestation generation.
 
 \subsection{Scope and Standards}
 
@@ -702,7 +703,7 @@ This pattern was validated in practice: a team lead adopted GitLab for versionin
 
 When whole-team review is required, the branch-and-merge-request workflow provides structured approval entirely within the browser. Branch protection rules enforce that (1) all changes to the main branch must go through a merge request, (2) required reviewers must approve before merge, and (3) the author cannot approve their own changes. These guardrails map directly to NIST SP 800-53 CM-3 (change control), AC-5 (separation of duties), and AU-3 (audit trail). Once configured, they are enforced automatically---the merge button is physically disabled until all conditions are met.
 
-The generated visualizations (Section~\ref{sec:visualization}) serve a similar accessibility function. A chart showing 636 commits across 7 repositories in under four weeks communicates project scope more effectively to a non-technical audience than any paragraph. The animated tree visualization (gource) showing file creation and modification over time has proven particularly effective for conveying the scale and structure of development activity to stakeholders unfamiliar with version control concepts.
+The generated visualizations (Section~\ref{sec:visualization}) serve a similar accessibility function. A chart showing 642 commits across 7 repositories in under four weeks communicates project scope more effectively to a non-technical audience than any paragraph. The animated tree visualization (gource) showing file creation and modification over time has proven particularly effective for conveying the scale and structure of development activity to stakeholders unfamiliar with version control concepts.
 
 \subsection{Git Data Visualization}
 \label{sec:visualization}
@@ -720,7 +721,7 @@ The toolkit comprises both custom analysis scripts and established open-source t
     \item \textbf{Custom cross-repo analysis}: Cumulative commit timelines, daily activity by repository, code churn (additions vs. deletions), commit pattern analysis (hour of day, day of week), and ecosystem timeline (Gantt-style active development windows).
 \end{itemize}
 
-Applied to the seven repositories in this ecosystem (totaling 636 commits and 34,000+ lines of code over four weeks), the visualizations revealed several patterns. Figure~\ref{fig:repo-comparison} shows the ecosystem overview: the Security Verification Toolkit dominates with 463 commits, 26,630 lines of code, and 94 version tags. Figure~\ref{fig:ecosystem-timeline} shows the active development windows---multiple repositories developed concurrently by a single engineer with AI agent support. Additional findings include: \texttt{scripts/} and \texttt{tests/} directories grew in lockstep (indicating disciplined test coverage); development activity concentrated on weekdays with near-zero weekend commits; and the code cohort analysis confirmed that all code is 2026-vintage---consistent with a rapidly growing project where code survival analysis is not yet meaningful but growth trajectories are clearly visible.
+Applied to the seven repositories in this ecosystem (totaling 642 commits and 34,000+ lines of code over four weeks), the visualizations revealed several patterns. Figure~\ref{fig:repo-comparison} shows the ecosystem overview: the Security Verification Toolkit dominates with 463 commits, 26,630 lines of code, and 94 version tags. Figure~\ref{fig:ecosystem-timeline} shows the active development windows---multiple repositories developed concurrently by a single engineer with AI agent support. Additional findings include: \texttt{scripts/} and \texttt{tests/} directories grew in lockstep (indicating disciplined test coverage); development activity concentrated on weekdays with near-zero weekend commits; and the code cohort analysis confirmed that all code is 2026-vintage---consistent with a rapidly growing project where code survival analysis is not yet meaningful but growth trajectories are clearly visible.
 
 \begin{figure*}[htbp]
 \centering

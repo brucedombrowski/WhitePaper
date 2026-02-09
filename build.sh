@@ -40,14 +40,22 @@ pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > 
 echo "  [4/4] pdflatex (cross-references)"
 pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > /dev/null 2>&1
 
-# Generate reviewable Markdown (GitHub-flavored, selectable text)
+# Generate reviewable outputs (Markdown + HTML)
 if command -v pandoc &> /dev/null; then
-    echo "  [5/5] pandoc (markdown for review)"
+    echo "  [5/6] pandoc (markdown for review)"
     pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto \
         --citeproc --bibliography="$SCRIPT_DIR/references.bib" \
         -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null || \
     pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto \
         -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null
+
+    echo "  [6/6] pandoc (HTML for browser review)"
+    pandoc "$TEX_FILE" -f latex -t html5 --standalone --mathjax \
+        --metadata title="AI-Assisted Development for Government Compliance" \
+        --citeproc --bibliography="$SCRIPT_DIR/references.bib" \
+        -o "$SCRIPT_DIR/${BASE_NAME}-review.html" 2>/dev/null || \
+    pandoc "$TEX_FILE" -f latex -t html5 --standalone --mathjax \
+        -o "$SCRIPT_DIR/${BASE_NAME}-review.html" 2>/dev/null
 fi
 
 # Verify output
