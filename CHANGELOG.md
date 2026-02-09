@@ -1,0 +1,89 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- `CHANGELOG.md` following Keep a Changelog format (#10)
+- `build.sh` for reproducible LaTeX-to-PDF compilation (#12)
+- Semantic versioning requirements in project-setup agent prompt (#10)
+- Recommended CLI switches table in paper and CLAUDE.md (#11)
+- SemVer paragraph in Phase 5 methodology section
+- Session continuity (`--resume`, `--continue`) in Claude Code Architecture
+- Retroactive git tags v0.1.0 through v0.5.0
+- All human feedback logged as GitHub issues (#13)
+
+## [0.5.0] - 2026-02-09
+
+### Added
+- Phase 5 (Version Control and Interaction Traceability) in Methodology section
+- Git as audit trail discussion (NIST SP 800-53 CM-3)
+- GitHub issues as structured interaction log (`human-prompt`, `agent-output`, `decision`)
+- Expanded Reproducibility discussion mapping to CM-3 and AU-3
+
+### Changed
+- Paper grew from 12 to 13 pages
+
+## [0.4.0] - 2026-02-09
+
+### Added
+- Security Verification Toolkit as third case study (Section 6)
+- `scan.sh` wrapper script for automated security scanning
+- `.allowlists/pii-allowlist` for documented false positives
+- Security scan results: PII, secrets, MAC address, host security
+- GitHub issues #6, #7, #8 documenting toolkit integration
+
+### Changed
+- Paper grew from 11 to 12 pages
+- References grew from 16 to 19 (added NIST SP 800-88, BOD 22-01, FIPS 199)
+
+## [0.3.0] - 2026-02-09
+
+### Added
+- QA standards framework (IEEE 1028, IEEE 29148, NIST 800-53 AC-5/SA-11, ISO/IEC 25010, MIL-STD-498)
+- QA standards table in Discussion section
+- Interaction logging requirements for all 5 agents
+- GitHub labels: `human-prompt`, `agent-output`, `decision`, `critical`, `minor`
+- References for 4 QA standards + RFC 2119
+
+### Fixed
+- All 13 review findings from issue #1 (5 critical, 8 minor)
+- Requirement count 28 to 29 in two locations
+- Decryption one-liner runtime error (SecureString vs plaintext)
+- Overfull hbox in equation (split to multline)
+- Table overflow in two-column layout (table to table*)
+
+### Changed
+- Paper grew from 9 to 11 pages
+- References grew from 8 to 16
+
+## [0.2.0] - 2026-02-09
+
+### Added
+- GitHub repository: https://github.com/brucedombrowski/WhitePaper
+- 4 additional agents in agents.json (requirements, implementation, documentation, review)
+- Review agent enforces separation of duties (no Write/Edit tools, NIST SP 800-53 AC-5)
+
+### Changed
+- agents.json expanded from 1 to 5 agents matching Section 6 of paper
+
+## [0.1.0] - 2026-02-09
+
+### Added
+- `whitepaper.tex` — 9-page academic paper (two-column, article class)
+- `references.bib` — 8 citations (6 government standards, 2 academic)
+- `agents.json` — 1 agent (project-setup)
+- `CLAUDE.md` — agent instructions with project context
+- `PROCESS.md` — process documentation
+- `.gitignore` — LaTeX artifacts, OS files, editor files
+
+[Unreleased]: https://github.com/brucedombrowski/WhitePaper/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/brucedombrowski/WhitePaper/releases/tag/v0.1.0

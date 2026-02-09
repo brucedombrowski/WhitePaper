@@ -131,7 +131,27 @@ Claude Code operates as a command-line agent with access to the developer's loca
     \item \textbf{Context persistence}: The agent maintains conversation context across a session, allowing iterative refinement of compliance artifacts.
     \item \textbf{CLAUDE.md conventions}: Projects can include instruction files that persist agent context across sessions, encoding project-specific compliance requirements.
     \item \textbf{Multi-agent mode}: The \texttt{--agents} flag enables orchestrated workflows where specialized agents handle distinct aspects of a project.
+    \item \textbf{Session continuity}: The \texttt{--resume} and \texttt{--continue} flags allow sessions to persist across interruptions, preserving the accumulated compliance context that would otherwise need to be reconstructed.
 \end{enumerate}
+
+Table~\ref{tab:cli-switches} documents the CLI switches most relevant to compliance workflows. These are recorded in the project's \texttt{CLAUDE.md} to ensure reproducible invocation across sessions and team members.
+
+\begin{table}[htbp]
+\centering
+\caption{Recommended Claude Code CLI switches for compliance projects}
+\label{tab:cli-switches}
+\begin{tabularx}{\columnwidth}{lX}
+\toprule
+\textbf{Switch} & \textbf{Purpose} \\
+\midrule
+\texttt{--agents} & Load multi-agent config (JSON) \\
+\texttt{--model} & Select model (opus for review, sonnet for implementation) \\
+\texttt{--allowedTools} & Restrict tools per agent role \\
+\texttt{--continue} & Resume most recent session \\
+\texttt{--verbose} & Log tool calls for audit trail \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 % ============================================================
 \section{Methodology}
@@ -236,6 +256,8 @@ The four development phases above produce artifacts, but compliance also demands
 Every meaningful action---creating a requirements document, fixing a review finding, adding a compliance scan---is captured as an atomic git commit on the project's main branch. Each commit message describes the compliance-relevant change (e.g., ``Fix all 13 review findings from issue~\#1; add QA standards framework''). This produces a linear, tamper-evident history that auditors can inspect with standard tooling (\texttt{git log}, \texttt{git diff}).
 
 Git's properties align directly with government configuration management requirements. NIST SP 800-53 CM-3 (Configuration Change Control) requires organizations to ``document, approve, and track changes to the system'' \cite{nist80053}. The git commit log serves as this change record: each commit is cryptographically hashed, timestamped, attributed to an author, and linked to its parent commits. Unlike informal change logs, git history cannot be silently altered without breaking the hash chain.
+
+The project uses Semantic Versioning (SemVer) with a \texttt{CHANGELOG.md} following the Keep a Changelog convention. Version numbers encode the significance of changes: major versions for structural reorganization, minor versions for new content, and patch versions for corrections. Each release is tagged (\texttt{git tag~-a~vX.Y.Z}) and the changelog entries reference the GitHub issues that motivated each change. This provides a human-readable change history that complements the machine-level detail in the git log.
 
 The Security Verification Toolkit case study (Section~\ref{sec:casestudy-toolkit}) embeds the git commit hash directly into its compliance attestation PDFs, binding each attestation to a specific, reproducible configuration state.
 

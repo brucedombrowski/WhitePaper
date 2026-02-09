@@ -75,16 +75,32 @@ Added dedicated treatment of git and GitHub issues as integral parts of the comp
 
 Paper grew to 13 pages.
 
+## Session 6: Semantic Versioning, Build Script & CLI Docs (2026-02-09)
+
+**Issues**: [#10](https://github.com/brucedombrowski/WhitePaper/issues/10), [#11](https://github.com/brucedombrowski/WhitePaper/issues/11), [#12](https://github.com/brucedombrowski/WhitePaper/issues/12), [#13](https://github.com/brucedombrowski/WhitePaper/issues/13)
+
+Added project infrastructure and documentation:
+
+- `CHANGELOG.md` — Keep a Changelog format with retroactive entries for v0.1.0–v0.5.0
+- `build.sh` — Reproducible LaTeX-to-PDF build script (pdflatex → bibtex → pdflatex × 2)
+- Retroactive git tags: v0.1.0 through v0.5.0
+- Semantic versioning rules added to project-setup agent prompt
+- Recommended CLI switches documented in CLAUDE.md and as a table in the paper
+- Human reinforced: all feedback must be logged as GitHub issues (#13)
+
+Paper grew to 14 pages.
+
 ## Current State
 
 | Metric | Value |
 |--------|-------|
-| Paper | 13 pages, two-column format |
+| Paper | 14 pages, two-column format |
 | Case studies | 3 (SendCUIEmail, Decisions, Security Toolkit) |
 | References | 19 BibTeX entries |
 | Agents | 5 (agents.json) |
-| GitHub issues | 9 (1 closed, 8 open) |
-| Commits | 7 on main |
+| GitHub issues | 13 (1 closed, 12 open) |
+| Commits | 8 on main |
+| Version | v0.6.0 (unreleased) |
 | Security scans | 4 (2 pass, 1 review, 1 fail) |
 
 ## Future Work

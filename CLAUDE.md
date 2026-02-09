@@ -17,9 +17,13 @@ WhitePaper/
 ├── whitepaper.tex          # Main LaTeX document
 ├── references.bib          # BibTeX references
 ├── CLAUDE.md               # This file
-├── PROCESS.md              # Process documentation (meta-narrative)
+├── PROCESS.md              # Executive summary of process
+├── CHANGELOG.md            # Semantic versioning changelog
 ├── agents.json             # Claude Code --agents mode configuration
+├── build.sh                # LaTeX-to-PDF build script
+├── scan.sh                 # Security scanning wrapper
 ├── .gitignore              # Git ignore rules
+├── .allowlists/            # Security scan false-positive allowlists
 └── figures/                # Diagrams and figures (if needed)
 ```
 
@@ -42,22 +46,68 @@ These repos provide the real-world examples cited in the paper:
    - Addresses: NIST SP 800-53 (14 controls), NIST SP 800-171 (11 controls), NIST SP 800-88, BOD 22-01, FIPS 199
    - Demonstrates: automated control verification, requirements traceability, PDF attestation generation, multi-agent development
 
+## Recommended Claude Code Invocation
+
+### Multi-agent mode (full workflow)
+
+```bash
+claude --agents "$(cat agents.json)"
+```
+
+### Single-session development (default)
+
+```bash
+claude --model opus
+```
+
+### Key CLI switches
+
+| Switch | Purpose | When to use |
+|--------|---------|-------------|
+| `--agents FILE` | Load multi-agent configuration | Full workflow with role separation |
+| `--model opus` | Use Opus model | Regulatory interpretation, review, complex reasoning |
+| `--model sonnet` | Use Sonnet model | Implementation, documentation, structured tasks |
+| `--allowedTools` | Restrict available tools | Enforce separation of duties (e.g., review agent) |
+| `--resume` | Resume previous session | Continue work across sessions |
+| `--continue` | Continue most recent session | Pick up where you left off |
+| `--verbose` | Show tool calls and reasoning | Debugging agent behavior |
+
+### Recommended session workflow
+
+```bash
+# Start a new development session
+claude --model opus
+
+# Resume an interrupted session
+claude --continue
+
+# Run the full multi-agent pipeline
+claude --agents "$(cat agents.json)"
+```
+
 ## Build Instructions
 
 ### Compile the white paper
 
 ```bash
-pdflatex whitepaper.tex
-bibtex whitepaper
-pdflatex whitepaper.tex
-pdflatex whitepaper.tex
+./build.sh
 ```
 
-Or with latexmk:
+Or manually:
 
 ```bash
-latexmk -pdf whitepaper.tex
+pdflatex whitepaper.tex && bibtex whitepaper && pdflatex whitepaper.tex && pdflatex whitepaper.tex
 ```
+
+## Semantic Versioning
+
+This project follows [Semantic Versioning](https://semver.org/) and [Keep a Changelog](https://keepachangelog.com/).
+
+- **MAJOR**: Structural paper changes (new/removed sections)
+- **MINOR**: New content (case studies, methodology additions)
+- **PATCH**: Fixes (typos, citations, formatting)
+
+Update `CHANGELOG.md` with every commit. Tag releases: `git tag -a vX.Y.Z -m "description"`
 
 ## Writing Conventions
 
