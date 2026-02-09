@@ -55,9 +55,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reproducibility section updated with current metrics (14 issues, 9 commits, v0.5.0)
 - Conclusion expanded with version control/audit trail discussion and meta-methodology paragraph
 
+- `README.md` for the WhitePaper repository
+- `@misc` bib entries: Claude Code (Anthropic), SendCUIEmail, Security Toolkit — 23 references total
+- HTML review output via pandoc (`whitepaper-review.html` with MathJax)
+- Formal `Listing~\ref{}` cross-references for Listings 3 and 4
+
 ### Fixed
+- "The final phase" → "The verification phase" (stale from 4-phase era)
 - "2.7 major versions" → "94 version tags" in Security Toolkit Multi-Agent Development subsection
-- Commit count 24 → 26 in reproducibility metrics
+- Misleading `\cite{nist80053}` on Security Toolkit — replaced with proper `\cite{securitytoolkit}`
+- Missing AU-2/AU-3 in NIST control enumeration (14 controls, 8 families confirmed)
+- Figure 1: added Phase 4 artifact node (VER matrix) — was only phase missing its artifact
+- Table 3: documentation agent spans Phases 3–4, review agent is cross-cutting, footnote added
+- Commit count 24 → 28+, session count 9 → 10, issue count 30 → 31+
+- Ecosystem stats: 636 → 642 commits, "three weeks" → "four weeks" (26 days actual)
 - "Four phases" → "five phases" in two locations (Phase 5 intro, Workflow Orchestration)
 - Missing listing reference for `lst:agentsmd` in Phase 2 text
 

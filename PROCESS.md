@@ -185,19 +185,32 @@ Human corrections:
 
 Paper: 20 pages, 7 figures, 400K.
 
+Continued with IEEE 1028 inspection and remaining fixes:
+
+- **IEEE 1028 inspection**: 4 critical, 10 minor findings. All 4 critical and 8 of 10 minor fixed.
+- **HTML review output**: `build.sh` now generates `whitepaper-review.html` via pandoc with MathJax for browser-based review (issue #20)
+- **New references**: Claude Code (Anthropic), SendCUIEmail repo, Security Toolkit repo — 23 total
+- **Figure 1 fixed**: Added Phase 4 (VER matrix) artifact node — was the only phase missing its artifact
+- **Table 3 corrected**: Documentation agent spans Phases 3–4; review agent is cross-cutting; footnote explains Phase 5 performed by all agents
+- **Listings 3–4**: Added formal `Listing~\ref{}` cross-references
+- **Ecosystem stats**: 636 → 642 commits
+- **README.md**: Added to repository
+
+Paper: 21 pages, 7 figures, 23 references, 409K.
+
 ## Current State
 
 | Metric | Value |
 |--------|-------|
-| Paper | 20 pages, two-column format |
+| Paper | 21 pages, two-column format |
 | Figures | 2 TikZ + 5 embedded charts (7 total in paper), 10 generated charts |
 | Tables | 4 (verification, CLI switches, agent config, QA standards) |
 | Case studies | 3 (SendCUIEmail, Decisions, Security Toolkit) |
-| References | 20 BibTeX entries |
+| References | 23 BibTeX entries |
 | Agents | 5 (agents.json) |
-| GitHub issues | 30 (25 closed, 5 open) |
-| Commits | 26 on main |
-| Version | v0.6.0 (tagging) |
+| GitHub issues | 32 (27 closed, 5 open) |
+| Commits | 31 on main |
+| Version | v0.6.0 |
 | Security scans | 4 (2 pass, 1 review, 1 fail) |
 | Ecosystem repos | 7 (WhitePaper, ai-agents, systems-engineering, Scrum, SendCUIEmail, Security, Decisions) |
 | Visualizations | 10 charts (PNG/PDF/TikZ) + 40s gource video |
