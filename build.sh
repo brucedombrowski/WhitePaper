@@ -43,7 +43,11 @@ pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > 
 # Generate reviewable Markdown (GitHub-flavored, selectable text)
 if command -v pandoc &> /dev/null; then
     echo "  [5/5] pandoc (markdown for review)"
-    pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null
+    pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto \
+        --citeproc --bibliography="$SCRIPT_DIR/references.bib" \
+        -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null || \
+    pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto \
+        -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null
 fi
 
 # Verify output

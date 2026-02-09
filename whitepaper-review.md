@@ -10,13 +10,13 @@ software must correctly implement domain-specific standards, and the
 burden is not unique to any single domain—it applies equally to
 safety-critical systems (DO-178C, IEC 61508), information-critical
 systems (HIPAA, SOX), and the federal information security context
-examined in this paper. A tool that encrypts files per FIPS 197 is
-insufficient if the development team cannot produce a requirements
-traceability matrix linking each implementation decision to the
-governing standard. This documentation overhead—decision memoranda,
-verification documents, requirements specifications—is where many small
-teams and independent developers struggle to meet government
-expectations.
+examined in this paper. A tool that encrypts files per FIPS 197
+(National Institute of Standards and Technology 2001b) is insufficient
+if the development team cannot produce a requirements traceability
+matrix linking each implementation decision to the governing standard.
+This documentation overhead—decision memoranda, verification documents,
+requirements specifications—is where many small teams and independent
+developers struggle to meet government expectations.
 
 The emergence of AI-powered development tools offers a potential path
 forward. Large language models (LLMs) trained on technical and
@@ -64,20 +64,25 @@ This paper makes the following contributions:
 Federal information security is governed by a layered framework of
 executive orders, regulations, and technical standards. Executive
 Order 13556 established the Controlled Unclassified Information (CUI)
-program, implemented through 32 CFR Part 2002 . The National Institute
-of Standards and Technology (NIST) provides the technical backbone
-through publications including:
+program, implemented through 32 CFR Part 2002 (Information Security
+Oversight Office 2016). The National Institute of Standards and
+Technology (NIST) provides the technical backbone through publications
+including:
 
-- **NIST SP 800-171** : Protecting CUI in Nonfederal Information Systems
+- **NIST SP 800-171** (Ross et al. 2020): Protecting CUI in Nonfederal
+  Information Systems
 
-- **NIST SP 800-53** : Security and Privacy Controls for Information
-  Systems
+- **NIST SP 800-53** (Force 2020): Security and Privacy Controls for
+  Information Systems
 
-- **NIST SP 800-132** : Recommendation for Password-Based Key Derivation
+- **NIST SP 800-132** (Turan et al. 2010): Recommendation for
+  Password-Based Key Derivation
 
-- **FIPS 197** : Advanced Encryption Standard (AES)
+- **FIPS 197** (National Institute of Standards and Technology 2001b):
+  Advanced Encryption Standard (AES)
 
-- **FIPS 140-2** : Security Requirements for Cryptographic Modules
+- **FIPS 140-2** (National Institute of Standards and Technology 2001a):
+  Security Requirements for Cryptographic Modules
 
 Compliance requires not only that software implementations adhere to
 these standards, but that organizations maintain documentation
@@ -89,19 +94,20 @@ requirement to its implementation and test.
 ## AI-Assisted Software Development
 
 The application of large language models to software engineering has
-been studied extensively . Code generation tools such as GitHub Copilot,
-Amazon CodeWhisperer, and Anthropic’s Claude have demonstrated
-capability in producing syntactically correct code across multiple
-languages. However, the application of LLMs to *compliance-oriented*
-development—where correctness encompasses not just functional behavior
-but regulatory adherence—remains underexplored.
+been studied extensively (Fan et al. 2023). Code generation tools such
+as GitHub Copilot, Amazon CodeWhisperer, and Anthropic’s Claude have
+demonstrated capability in producing syntactically correct code across
+multiple languages. However, the application of LLMs to
+*compliance-oriented* development—where correctness encompasses not just
+functional behavior but regulatory adherence—remains underexplored.
 
 Prior work on AI-assisted documentation generation has focused primarily
-on API documentation and code comments. The generation of *regulatory*
-documentation—where the AI must reason about the relationship between
-code implementations and published standards—presents distinct
-challenges including citation accuracy, regulatory interpretation, and
-the need for conservative (rather than creative) text generation.
+on API documentation (Khan and Uddin 2022) and code comments. The
+generation of *regulatory* documentation—where the AI must reason about
+the relationship between code implementations and published
+standards—presents distinct challenges including citation accuracy,
+regulatory interpretation, and the need for conservative (rather than
+creative) text generation.
 
 ## Claude Code Architecture
 
@@ -206,14 +212,14 @@ assistance and reviewed by the developer.
 }
 ```
 
-Requirement text uses RFC 2119 keywords (SHALL, SHOULD, MAY) to
-distinguish mandatory from recommended requirements, following the
-convention established in IETF and NIST publications. The developer’s
-role shifts from *authoring* requirements to *reviewing* them—verifying
-that the AI’s interpretation of the standard is correct and that no
-requirements are omitted. This review-centric workflow is faster than
-drafting from scratch while preserving the technical judgment that
-compliance demands.
+Requirement text uses RFC 2119 (Bradner 1997) keywords (SHALL, SHOULD,
+MAY) to distinguish mandatory from recommended requirements, following
+the convention established in IETF and NIST publications. The
+developer’s role shifts from *authoring* requirements to *reviewing*
+them—verifying that the AI’s interpretation of the standard is correct
+and that no requirements are omitted. This review-centric workflow is
+faster than drafting from scratch while preserving the technical
+judgment that compliance demands.
 
 ## Phase 2: Implementation with Compliance Awareness
 
@@ -311,10 +317,10 @@ tamper-evident history that auditors can inspect with standard tooling
 Git’s properties align directly with government configuration management
 requirements. NIST SP 800-53 CM-3 (Configuration Change Control)
 requires organizations to “document, approve, and track changes to the
-system” . The git commit log serves as this change record: each commit
-is cryptographically hashed, timestamped, attributed to an author, and
-linked to its parent commits. Unlike informal change logs, git history
-cannot be silently altered without breaking the hash chain.
+system” (Force 2020). The git commit log serves as this change record:
+each commit is cryptographically hashed, timestamped, attributed to an
+author, and linked to its parent commits. Unlike informal change logs,
+git history cannot be silently altered without breaking the hash chain.
 
 The project uses Semantic Versioning (SemVer) with a `CHANGELOG.md`
 following the Keep a Changelog convention. Version numbers encode the
@@ -377,17 +383,22 @@ unencrypted email.
 The project’s compliance scope spans six federal standards and
 regulations:
 
-1.  **FIPS 197** : AES algorithm specification
+1.  **FIPS 197** (National Institute of Standards and Technology 2001b):
+    AES algorithm specification
 
-2.  **FIPS 140-2** : Cryptographic module validation
+2.  **FIPS 140-2** (National Institute of Standards and Technology
+    2001a): Cryptographic module validation
 
-3.  **NIST SP 800-132** : Password-based key derivation
+3.  **NIST SP 800-132** (Turan et al. 2010): Password-based key
+    derivation
 
-4.  **NIST SP 800-38A** : Block cipher modes of operation
+4.  **NIST SP 800-38A** (Dworkin 2001): Block cipher modes of operation
 
-5.  **NIST SP 800-90A** : Random number generation
+5.  **NIST SP 800-90A** (Barker and Kelsey 2015): Random number
+    generation
 
-6.  **32 CFR Part 2002** : CUI marking and handling
+6.  **32 CFR Part 2002** (Information Security Oversight Office 2016):
+    CUI marking and handling
 
 ## AI-Assisted Artifacts
 
@@ -411,7 +422,7 @@ Seven formal decision memos documenting design choices:
 - **DM-002**: File size limit rationale (10 MB)
 
 - **DM-003**: Password transmission method (out-of-band per NIST SP
-  800-63B )
+  800-63B (Grassi et al. 2017))
 
 - **DM-004**: Verification document numbering scheme
 
@@ -529,17 +540,18 @@ selected approach, and rationale with regulatory references.
 
 # Case Study: Security Verification Toolkit
 
-The third case study examines the Security Verification Toolkit , a
-pure-Bash security scanning and compliance documentation system under
-active development (currently v2.7.3) that automates the verification of
-federal security controls. Like all three case studies in this paper,
-the toolkit is under active development and is presented as a case study
-in AI-assisted compliance tooling, not as a finished product. Unlike
-SendCUIEmail (which implements a single compliance function) or the
-Decision Documentation System (which manages process artifacts), the
-toolkit addresses the *continuous compliance verification* challenge:
-demonstrating ongoing adherence to NIST SP 800-53 and NIST SP 800-171
-controls through automated scanning and attestation generation.
+The third case study examines the Security Verification Toolkit (Force
+2020), a pure-Bash security scanning and compliance documentation system
+under active development (currently v2.7.3) that automates the
+verification of federal security controls. Like all three case studies
+in this paper, the toolkit is under active development and is presented
+as a case study in AI-assisted compliance tooling, not as a finished
+product. Unlike SendCUIEmail (which implements a single compliance
+function) or the Decision Documentation System (which manages process
+artifacts), the toolkit addresses the *continuous compliance
+verification* challenge: demonstrating ongoing adherence to NIST SP
+800-53 and NIST SP 800-171 controls through automated scanning and
+attestation generation.
 
 ## Scope and Standards
 
@@ -548,18 +560,22 @@ controls across eight security control families, with each scan mapped
 to its governing control in machine-readable JSON. The standards
 addressed include:
 
-- **NIST SP 800-53** : RA-5 (Vulnerability Scanning), CM-6
+- **NIST SP 800-53** (Force 2020): RA-5 (Vulnerability Scanning), CM-6
   (Configuration Settings), CM-8 (Component Inventory), SA-11 (Developer
   Testing), SI-2/3/4/5/12 (Information Integrity), SC-8 (Transmission
   Protection), MP-6 (Media Sanitization), CA-2 (Assessment)
 
-- **NIST SP 800-171** : 11 corresponding CUI protection requirements
+- **NIST SP 800-171** (Ross et al. 2020): 11 corresponding CUI
+  protection requirements
 
-- **NIST SP 800-88** : Media sanitization (secure deletion)
+- **NIST SP 800-88** (Kissel et al. 2014): Media sanitization (secure
+  deletion)
 
-- **BOD 22-01** : CISA Known Exploited Vulnerabilities cross-referencing
+- **BOD 22-01** (Cybersecurity and Infrastructure Security Agency 2021):
+  CISA Known Exploited Vulnerabilities cross-referencing
 
-- **FIPS 199** : Security categorization of federal information
+- **FIPS 199** (National Institute of Standards and Technology 2004):
+  Security categorization of federal information
 
 ## Requirements Traceability
 
@@ -711,8 +727,9 @@ The pipeline model described above—where agents execute sequentially
 through defined phases—is effective for linear compliance workflows but
 does not accommodate the iterative, feedback-driven nature of real-world
 software development. An alternative orchestration model maps AI agents
-to a Scrum team structure, drawing on the Scrum Guide framework that is
-widely adopted in both commercial and government software programs.
+to a Scrum team structure, drawing on the Scrum Guide (Schwaber and
+Sutherland 2020) framework that is widely adopted in both commercial and
+government software programs.
 
 In this model, Claude agents assume Scrum roles:
 
@@ -947,12 +964,12 @@ aspect of the review process to its governing standard.
 
 | **Standard** | **Control** | **Application** |
 |:---|:---|:---|
-| IEEE 1028 | Software Reviews | Review structure: severity classification (CRITICAL/MINOR), findings format, disposition |
-| IEEE 29148 | Requirements Engineering | Traceability verification: standard $`\rightarrow`$ requirement $`\rightarrow`$ implementation $`\rightarrow`$ test |
-| NIST SP 800-53 | AC-5: Separation of Duties | Review agent denied write/edit tools; auditors cannot modify what they audit |
-| NIST SP 800-53 | SA-11: Developer Testing | Claims verified against source files; assertions checked against implementation |
-| ISO/IEC 25010 | Software Quality | Documentation quality: completeness, accuracy, consistency checks |
-| MIL-STD-498 | A.5.19: Traceability | Cross-reference integrity between REQ, VER, DM, and source code |
+| IEEE 1028 (IEEE Computer Society 2008) | Software Reviews | Review structure: severity classification (CRITICAL/MINOR), findings format, disposition |
+| IEEE 29148 (ISO/IEC/IEEE 2018) | Requirements Engineering | Traceability verification: standard $`\rightarrow`$ requirement $`\rightarrow`$ implementation $`\rightarrow`$ test |
+| NIST SP 800-53 (Force 2020) | AC-5: Separation of Duties | Review agent denied write/edit tools; auditors cannot modify what they audit |
+| NIST SP 800-53 (Force 2020) | SA-11: Developer Testing | Claims verified against source files; assertions checked against implementation |
+| ISO/IEC 25010 (ISO/IEC 2011) | Software Quality | Documentation quality: completeness, accuracy, consistency checks |
+| MIL-STD-498 (Department of Defense 1994) | A.5.19: Traceability | Cross-reference integrity between REQ, VER, DM, and source code |
 
 </div>
 
@@ -1099,3 +1116,183 @@ as a case study for the methodology presented. All source materials,
 including the white paper LaTeX source, agent configurations, and
 process documentation, are available at
 <https://github.com/brucedombrowski/WhitePaper>.
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-nist80090a" class="csl-entry">
+
+Barker, Elaine, and John Kelsey. 2015. *<span class="nocase">NIST SP
+800-90A: Recommendation for Random Number Generation Using Deterministic
+Random Bit Generators</span>*. Special Publication 800-90A Rev. 1.
+National Institute of Standards; Technology.
+<https://csrc.nist.gov/publications/detail/sp/800-90a/rev-1/final>.
+
+</div>
+
+<div id="ref-rfc2119" class="csl-entry">
+
+Bradner, Scott. 1997. *<span class="nocase">RFC 2119: Key Words for Use
+in RFCs to Indicate Requirement Levels</span>*. Internet Engineering
+Task Force. <https://www.rfc-editor.org/rfc/rfc2119>.
+
+</div>
+
+<div id="ref-bod2201" class="csl-entry">
+
+Cybersecurity and Infrastructure Security Agency. 2021.
+*<span class="nocase">BOD 22-01: Reducing the Significant Risk of Known
+Exploited Vulnerabilities</span>*. Binding Operational Directive.
+<https://www.cisa.gov/known-exploited-vulnerabilities-catalog>.
+
+</div>
+
+<div id="ref-milstd498" class="csl-entry">
+
+Department of Defense. 1994. *<span class="nocase">MIL-STD-498: Software
+Development and Documentation</span>*. Military Standard MIL-STD-498.
+U.S. Department of Defense.
+
+</div>
+
+<div id="ref-nist80038a" class="csl-entry">
+
+Dworkin, Morris. 2001. *<span class="nocase">NIST SP 800-38A:
+Recommendation for Block Cipher Modes of Operation</span>*. Special
+Publication Nos. 800-38A. National Institute of Standards; Technology.
+<https://csrc.nist.gov/publications/detail/sp/800-38a/final>.
+
+</div>
+
+<div id="ref-fan2023llmse" class="csl-entry">
+
+Fan, Angela, Beliz Gokkaya, Mark Harman, et al. 2023. “Large Language
+Models for Software Engineering: Survey and Open Problems.” *arXiv
+Preprint arXiv:2310.03533*.
+
+</div>
+
+<div id="ref-nist80053" class="csl-entry">
+
+Force, Joint Task. 2020. *<span class="nocase">NIST SP 800-53: Security
+and Privacy Controls for Information Systems and Organizations</span>*.
+Special Publication 800-53 Rev. 5. National Institute of Standards;
+Technology.
+<https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final>.
+
+</div>
+
+<div id="ref-nist80063b" class="csl-entry">
+
+Grassi, Paul A., James L. Fenton, Elaine M. Newton, et al. 2017.
+*<span class="nocase">NIST SP 800-63B: Digital Identity Guidelines —
+Authentication and Lifecycle Management</span>*. Special Publication
+Nos. 800-63B. National Institute of Standards; Technology.
+<https://csrc.nist.gov/publications/detail/sp/800-63b/final>.
+
+</div>
+
+<div id="ref-ieee1028" class="csl-entry">
+
+IEEE Computer Society. 2008. *<span class="nocase">IEEE 1028: Standard
+for Software Reviews and Audits</span>*. IEEE Standard Nos. 1028-2008.
+Institute of Electrical; Electronics Engineers.
+
+</div>
+
+<div id="ref-32cfr2002" class="csl-entry">
+
+Information Security Oversight Office. 2016. *32 CFR Part 2002:
+Controlled Unclassified Information*.
+<https://www.ecfr.gov/current/title-32/subtitle-B/chapter-XX/part-2002>.
+
+</div>
+
+<div id="ref-iso25010" class="csl-entry">
+
+ISO/IEC. 2011. *<span class="nocase">ISO/IEC 25010: Systems and Software
+Quality Requirements and Evaluation (SQuaRE)</span>*. International
+Standard 25010:2011. International Organization for Standardization.
+
+</div>
+
+<div id="ref-ieee29148" class="csl-entry">
+
+ISO/IEC/IEEE. 2018. *<span class="nocase">ISO/IEC/IEEE 29148: Systems
+and Software Engineering — Life Cycle Processes — Requirements
+Engineering</span>*. International Standard 29148:2018. IEEE.
+
+</div>
+
+<div id="ref-khan2022apidoc" class="csl-entry">
+
+Khan, Junaed Younus, and Gias Uddin. 2022. “Automatic Generation of API
+Documentation.” *Proceedings of the 30th IEEE/ACM International
+Conference on Program Comprehension*, 497–501.
+
+</div>
+
+<div id="ref-nist80088" class="csl-entry">
+
+Kissel, Richard, Andrew Regenscheid, Matthew Scholl, and Kevin Stine.
+2014. *<span class="nocase">NIST SP 800-88: Guidelines for Media
+Sanitization</span>*. Special Publication 800-88 Rev. 1. National
+Institute of Standards; Technology.
+<https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final>.
+
+</div>
+
+<div id="ref-fips1402" class="csl-entry">
+
+National Institute of Standards and Technology. 2001a.
+*<span class="nocase">FIPS 140-2: Security Requirements for
+Cryptographic Modules</span>*. NIST.
+<https://csrc.nist.gov/publications/detail/fips/140/2/final>.
+
+</div>
+
+<div id="ref-fips197" class="csl-entry">
+
+National Institute of Standards and Technology. 2001b. *FIPS 197:
+Advanced Encryption Standard (AES)*. NIST.
+<https://csrc.nist.gov/publications/detail/fips/197/final>.
+
+</div>
+
+<div id="ref-fips199" class="csl-entry">
+
+National Institute of Standards and Technology. 2004.
+*<span class="nocase">FIPS 199: Standards for Security Categorization of
+Federal Information and Information Systems</span>*. NIST.
+<https://csrc.nist.gov/publications/detail/fips/199/final>.
+
+</div>
+
+<div id="ref-nist800171" class="csl-entry">
+
+Ross, Ron, Victoria Pillitteri, Kelley Dempsey, Mark Riddle, and Gary
+Guissanie. 2020. *<span class="nocase">NIST SP 800-171: Protecting
+Controlled Unclassified Information in Nonfederal Systems and
+Organizations</span>*. Special Publication 800-171 Rev. 2. National
+Institute of Standards; Technology.
+<https://csrc.nist.gov/publications/detail/sp/800-171/rev-2/final>.
+
+</div>
+
+<div id="ref-scrumguide" class="csl-entry">
+
+Schwaber, Ken, and Jeff Sutherland. 2020. *The Scrum Guide*. Scrum.org.
+<https://scrumguides.org/scrum-guide.html>.
+
+</div>
+
+<div id="ref-nist800132" class="csl-entry">
+
+Turan, Meltem Sönmez, Elaine Barker, William Burr, and Lily Chen. 2010.
+*<span class="nocase">NIST SP 800-132: Recommendation for Password-Based
+Key Derivation</span>*. Special Publication Nos. 800-132. National
+Institute of Standards; Technology.
+<https://csrc.nist.gov/publications/detail/sp/800-132/final>.
+
+</div>
+
+</div>
