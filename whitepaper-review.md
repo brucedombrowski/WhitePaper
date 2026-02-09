@@ -1325,6 +1325,59 @@ open-source validation stage of this pipeline—a body of evidence an
 engineer can present to organizational leadership before requesting
 formal adoption.
 
+### Enterprise Deployment Options
+
+The transition from Stage 1 (commercial tools, personal initiative) to
+Stage 3 (in-house adoption) is enabled by enterprise deployment options
+that major AI providers now offer. These options address the security
+and privacy requirements that prevent organizations from sending
+sensitive data to public cloud endpoints:
+
+- **Government cloud regions**: AI models deployed within FedRAMP High
+  and DoD IL4/5 authorized environments (e.g., Claude in AWS GovCloud
+  via Amazon Bedrock, Claude on Google Cloud Vertex AI). These
+  deployments inherit the cloud provider’s existing government
+  authorization boundary.
+
+- **Zero data retention (ZDR)**: Endpoints where no prompts, outputs, or
+  metadata are persisted beyond real-time processing. Customer data is
+  never used for model training.
+
+- **Private networking**: Virtual Private Cloud (VPC) isolation and
+  Private Service Connect routing ensure that AI API traffic never
+  traverses the public internet.
+
+- **Compliance certifications**: SOC 2 Type II audits, FedRAMP
+  authorization, and DFARS 252.204-7012 compliance for contractors
+  handling CUI.
+
+For a government contractor, the deployment path is concrete: the
+organization procures AI model access through an existing
+FedRAMP-authorized cloud provider (AWS GovCloud, Google Cloud), deploys
+within its authorized boundary, and applies the same methodology and
+templates developed during the open-source stage. The methodology is
+unchanged; only the data and the deployment environment change.
+
+### Inter-Organizational Data Sharing
+
+The same FedRAMP-authorized environments that enable secure AI
+deployment also enable compliant data sharing between government
+agencies and their contractors. A defense contractor collaborating with
+a government program office can operate shared git repositories within a
+FedRAMP High environment, with both parties subject to the same security
+controls. DFARS 252.204-7012 requires contractors to implement NIST SP
+800-171 controls when handling CUI; FedRAMP-authorized platforms provide
+the infrastructure to meet these requirements. The git-based methodology
+described in this paper—where every change is attributed, timestamped,
+and cryptographically hashed—maps directly to the configuration
+management (CM-3) and audit logging (AU-3) controls that both parties
+must demonstrate. Shared repositories with branch protection rules
+(Section <a href="#sec:discussion" data-reference-type="ref"
+data-reference="sec:discussion">8</a>) enforce separation of duties
+across organizational boundaries, providing the same AC-5 compliance for
+inter-organizational workflows that the multi-agent architecture
+provides within a single project.
+
 ## Limitations
 
 Several limitations should be noted:
@@ -1345,9 +1398,14 @@ Several limitations should be noted:
     across agencies, and AI agents lack organizational knowledge without
     explicit instruction.
 
-4.  **Classification boundaries**: AI tools operating in cloud-connected
-    modes are unsuitable for classified work. The methodology presented
-    here applies only to unclassified and CUI environments.
+4.  **Classification boundaries**: AI tools operating in public cloud
+    endpoints are unsuitable for classified work. FedRAMP High and DoD
+    IL4/5 authorized deployments (e.g., AWS GovCloud, Google Cloud with
+    Private Service Connect) extend the methodology to CUI and
+    controlled environments, but truly classified (Secret/Top Secret)
+    work remains outside scope. The open-source development approach
+    described above mitigates this by developing methodology outside the
+    classification boundary.
 
 5.  **Case study maturity**: All three case study projects are under
     active development and have not reached production release status
