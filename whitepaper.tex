@@ -350,25 +350,32 @@ Claude Code's \texttt{--agents} mode enables orchestrated workflows where multip
 
 \subsection{Agent Configuration}
 
-Agent definitions are stored in a JSON configuration file that specifies each agent's role, permissions, and persistent context. Listing~\ref{lst:agent-config} shows the project setup agent configuration used in this paper's development.
+Agent definitions are stored in a JSON configuration file that specifies each agent's role, model selection, permitted tools, and a detailed system prompt encoding compliance context. Table~\ref{tab:agent-config} summarizes the five-agent configuration developed for this paper.
 
-\begin{lstlisting}[style=json, caption={Agent configuration excerpt (agents.json)}, label={lst:agent-config}]
-{
-  "name": "project-setup",
-  "description": "Initialize compliance project
-    structure and documentation templates",
-  "instructions": "You are a project setup agent
-    for government compliance projects...",
-  "tools": ["read", "write", "edit", "bash",
-    "glob", "grep"]
-}
-\end{lstlisting}
+\begin{table}[htbp]
+\centering
+\caption{Agent configuration summary (agents.json)}
+\label{tab:agent-config}
+\begin{tabularx}{\columnwidth}{lllX}
+\toprule
+\textbf{Agent} & \textbf{Model} & \textbf{Phase} & \textbf{Key Capability} \\
+\midrule
+project-setup & Sonnet & Setup & Repo structure, build config, templates \\
+requirements & Opus & Phase 1 & Standard interpretation, JSON requirements \\
+implementation & Sonnet & Phase 2 & Compliant code within REQ constraints \\
+documentation & Sonnet & Phase 3 & DMs, VERs, LaTeX artifacts \\
+review & Opus & Phase 4 & Audit with no write access (read-only) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Model selection reflects the cognitive demands of each role: the \texttt{requirements} and \texttt{review} agents use Opus for its stronger reasoning over regulatory interpretation and cross-reference validation, while \texttt{implementation} and \texttt{documentation} use Sonnet for its favorable speed-to-quality ratio on structured, template-following tasks. Notably, the \texttt{review} agent is denied write and edit tools, enforcing a separation-of-duties principle where auditors identify problems but do not fix them.
 
 \subsection{Workflow Orchestration}
 
-The multi-agent workflow proceeds linearly through the four phases described in Section~\ref{sec:methodology}, with each agent operating within its defined scope. The key advantage of this architecture is \textit{context isolation}: the requirements agent does not need the full implementation context, and the documentation agent can focus on artifact generation without the overhead of the full codebase in its context window.
+The multi-agent workflow proceeds through the four phases described in Section~\ref{sec:methodology}, with each agent operating within its defined scope. The key advantage of this architecture is \textit{context isolation}: the requirements agent does not need the full implementation context, and the documentation agent can focus on artifact generation without the overhead of the full codebase in its context window.
 
-This isolation is particularly valuable for government projects where compliance documentation can be extensive---a full NIST SP 800-171 assessment may reference over 100 security requirements, and maintaining all of these in a single agent context is impractical.
+This isolation is particularly valuable for government projects where compliance documentation can be extensive---a full NIST SP 800-171 assessment may reference over 100 security requirements, and maintaining all of these in a single agent context is impractical. The separation-of-duties between the \texttt{documentation} and \texttt{review} agents also mirrors the organizational controls common in government programs, where the author of a compliance artifact should not be the sole reviewer.
 
 % ============================================================
 \section{Discussion}

@@ -86,12 +86,48 @@ claude --agents "$(cat agents.json)"
 - `CLAUDE.md` — Ready for future Claude Code sessions
 - `PROCESS.md` — This document
 
+## Session 2: GitHub Repo Creation (2026-02-09)
+
+### Steps Taken
+
+1. Staged all 7 project files and created initial commit
+2. Created public GitHub repository via `gh repo create`
+3. Pushed to `origin/main`
+
+### Result
+
+- **Repository**: https://github.com/brucedombrowski/WhitePaper
+- **Visibility**: Public
+- **Commit**: `3974d80` — "Initial commit: academic white paper on Claude Code for government compliance"
+
+## Session 3: Agent Roles Expansion (2026-02-09)
+
+### Steps Taken
+
+Expanded `agents.json` from 1 agent to 5 agents, matching the roles described in Section 6 (Multi-Agent Workflow) of the white paper:
+
+| Agent | Model | Purpose | Tools |
+|-------|-------|---------|-------|
+| `project-setup` | sonnet | Repository structure, build config, templates | Read, Write, Edit, Bash, Glob, Grep |
+| `requirements` | opus | Extract/validate requirements from federal standards | Read, Write, Edit, Glob, Grep, WebFetch, WebSearch |
+| `implementation` | sonnet | Write compliant code per REQ documents | Read, Write, Edit, Bash, Glob, Grep |
+| `documentation` | opus | Decision memos, verification docs, LaTeX artifacts | Read, Write, Edit, Bash, Glob, Grep |
+| `review` | opus | Audit artifacts for completeness and accuracy | Read, Glob, Grep, Bash |
+
+### Design Decisions
+
+- **`requirements` uses opus**: Regulatory interpretation demands the highest reasoning capability; incorrect requirement extraction cascades downstream.
+- **`review` uses opus**: Auditing requires careful cross-referencing and conservative judgment; false negatives (missed issues) are worse than false positives.
+- **`review` has no Write/Edit tools**: Reviewers identify problems but do not fix them, enforcing separation of duties.
+- **`requirements` has WebFetch/WebSearch**: May need to look up current standard text or verify publication dates.
+- **`implementation` uses sonnet**: Code generation is well-served by sonnet's speed/quality balance; compliance constraints are encoded in the prompt.
+- **`documentation` uses sonnet**: Template-following document generation is highly structured; the prompt encodes all formatting conventions.
+
 ## Future Sessions
 
 Planned work for subsequent sessions:
 
-- [ ] Compile whitepaper.tex to PDF and resolve any LaTeX errors
 - [ ] Add figures (workflow diagrams, architecture diagrams)
-- [ ] Create GitHub repository and push initial commit
-- [ ] Expand agents.json with additional agent roles (requirements, documentation, review)
 - [ ] Iterate on paper content based on review feedback
+- [ ] Run the review agent against the white paper as a demonstration
+- [ ] Add Makefile for one-command PDF builds
