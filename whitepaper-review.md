@@ -1,6 +1,7 @@
-**Keywords:** AI-assisted development, government compliance, NIST,
-FIPS, CUI, controlled unclassified information, Claude Code, large
-language models, software engineering, federal information security
+**Keywords:** AI coding agents, git, version control, government
+compliance, NIST, FIPS, CUI, controlled unclassified information, large
+language models, software engineering, federal information security,
+configuration management
 
 # Introduction
 
@@ -18,22 +19,27 @@ This documentation overhead—decision memoranda, verification documents,
 requirements specifications—is where many small teams and independent
 developers struggle to meet government expectations.
 
-The emergence of AI-powered development tools offers a potential path
-forward. Large language models (LLMs) trained on technical and
-regulatory corpora can draft compliance documents, suggest standard
-references, and generate structured artifacts. However, government work
-demands accuracy: an incorrect citation to a NIST Special Publication or
-a mischaracterized FIPS requirement could undermine an entire compliance
+Two technologies converge to address this gap. First, *git version
+control* provides the tamper-evident, cryptographically hashed change
+history that government configuration management standards (NIST SP
+800-53 CM-3) require. Every change is attributed, timestamped, and
+linked to its parent state; the commit log serves as a permanent audit
+record that cannot be silently altered. Second, *AI coding agents*—large
+language models that operate directly within the developer’s file system
+and terminal, reading source files, generating artifacts, and executing
+commands under human approval—can draft compliance documents, suggest
+standard references, and produce structured artifacts at a pace that
+manual authoring cannot match. However, government work demands
+accuracy: an incorrect citation to a NIST Special Publication or a
+mischaracterized FIPS requirement could undermine an entire compliance
 package.
 
-Claude Code, Anthropic’s command-line interface for the Claude family of
-models, provides an interactive development environment where the AI
-agent operates directly within the developer’s file system and terminal.
-Unlike web-based chat interfaces, Claude Code can read source files,
-execute build commands, search codebases, and write artifacts—all under
-explicit developer approval. This architecture maps naturally to the
-human-in-the-loop oversight model that government compliance frameworks
-expect.
+The combination of git and AI coding agents creates a workflow where the
+AI drafts and the human reviews, with every interaction captured in a
+version-controlled, auditable record. This paper demonstrates this
+approach using Claude Code (Anthropic) as the AI agent implementation,
+though the methodology applies to any agentic AI tool with file system
+access and a human-in-the-loop approval model.
 
 This paper makes the following contributions:
 
@@ -54,8 +60,8 @@ This paper makes the following contributions:
     800-53, and ISO/IEC 25010, with enforced separation of duties
     between authoring and auditing agents.
 
-5.  A discussion of the `--agents` mode workflow for multi-agent
-    collaboration on compliance projects.
+5.  A multi-agent architecture for compliance projects, with role-based
+    separation of duties and quantitative output analysis.
 
 # Background and Related Work
 
@@ -125,23 +131,25 @@ architecture is essential for compliance work, where the AI must
 simultaneously reason about source code, published standards, and the
 traceability relationships between them.
 
-The distinguishing property of Claude Code for compliance applications
-is its *explicit approval model*: every file write, command execution,
-and code edit requires human confirmation. While this introduces
-friction compared to fully autonomous agents, it produces a natural
-audit trail of human-approved actions—precisely the evidence of human
-oversight that government compliance frameworks (NIST SP 800-53 AC-5,
-SA-11) require. The tool permission system also enables the
-separation-of-duties pattern described in
-Section <a href="#sec:agents" data-reference-type="ref"
+The critical property for compliance applications is an *explicit
+approval model*: every file write, command execution, and code edit
+requires human confirmation. While this introduces friction compared to
+fully autonomous agents, it produces a natural audit trail of
+human-approved actions—precisely the evidence of human oversight that
+government compliance frameworks (NIST SP 800-53 AC-5, SA-11) require.
+Tool permission systems also enable the separation-of-duties pattern
+described in Section <a href="#sec:agents" data-reference-type="ref"
 data-reference="sec:agents">7</a>, where review agents are denied write
-access at the tool level rather than by convention.
+access at the tool level rather than by convention. Claude Code
+implements this model; other agentic tools vary in the granularity of
+their approval workflows.
 
-## Claude Code Architecture
+## Agentic AI Tool Architecture
 
-Claude Code (Anthropic 2025) operates as a command-line agent with
-access to the developer’s local environment. Key architectural
-properties relevant to compliance work include:
+AI coding agents—exemplified in this paper by Claude Code (Anthropic
+2025)—operate as command-line agents with access to the developer’s
+local environment. The architectural properties essential for compliance
+work include:
 
 1.  **File system access**: The agent reads and writes files directly,
     enabling it to analyze source code and produce artifacts in-place.
@@ -182,7 +190,8 @@ members.
 | `--continue` | Resume most recent session |
 | `--verbose` | Log tool calls for audit trail |
 
-Recommended Claude Code CLI switches for compliance projects
+Recommended CLI switches for compliance projects (Claude Code
+implementation)
 
 </div>
 
@@ -191,9 +200,9 @@ Recommended Claude Code CLI switches for compliance projects
 We developed a methodology for AI-assisted government compliance
 development organized around five phases, illustrated in
 Figure <a href="#fig:methodology" data-reference-type="ref"
-data-reference="fig:methodology">1</a>. Each phase leverages specific
-Claude Code capabilities while maintaining the human-in-the-loop
-oversight essential to compliance work.
+data-reference="fig:methodology">1</a>. Each phase leverages AI coding
+agent capabilities while maintaining the human-in-the-loop oversight
+essential to compliance work.
 
 <figure id="fig:methodology" data-latex-placement="htbp">
 
@@ -206,7 +215,7 @@ development. Human review occurs at every phase transition.</figcaption>
 Government projects begin with requirements derived from applicable
 standards. In our methodology, the developer identifies the governing
 standards (e.g., NIST SP 800-132 for key derivation) and instructs the
-Claude Code agent to generate a structured requirements document.
+AI agent to generate a structured requirements document.
 
 The agent produces requirements in machine-readable JSON format,
 enabling downstream tooling to generate formatted documents and
@@ -224,7 +233,7 @@ traceability matrices. Each requirement includes:
 
 Listing <a href="#lst:req-json" data-reference-type="ref"
 data-reference="lst:req-json">[lst:req-json]</a> shows an excerpt from
-the SendCUIEmail requirements document, generated with Claude Code
+the SendCUIEmail requirements document, generated with AI agent
 assistance and reviewed by the developer.
 
 ```
@@ -251,15 +260,14 @@ judgment that compliance demands.
 
 ## Phase 2: Implementation with Compliance Awareness
 
-During implementation, the Claude Code agent operates within the
-project’s instruction files, which encode compliance standards and
-architectural constraints. `CLAUDE.md` provides project-wide
-instructions (build commands, repository scope, conventions), while
-`AGENTS.md` defines role-specific compliance context (applicable
-standards, verification methods, regulatory constraints). Both files
-persist across sessions, ensuring that every agent invocation begins
-with the correct compliance posture.
-Listing <a href="#lst:agentsmd" data-reference-type="ref"
+During implementation, the AI agent operates within the project’s
+instruction files, which encode compliance standards and architectural
+constraints. `CLAUDE.md` provides project-wide instructions (build
+commands, repository scope, conventions), while `AGENTS.md` defines
+role-specific compliance context (applicable standards, verification
+methods, regulatory constraints). Both files persist across sessions,
+ensuring that every agent invocation begins with the correct compliance
+posture. Listing <a href="#lst:agentsmd" data-reference-type="ref"
 data-reference="lst:agentsmd">[lst:agentsmd]</a> shows the compliance
 context from the SendCUIEmail project:
 
@@ -436,7 +444,7 @@ regulations:
 
 ## AI-Assisted Artifacts
 
-Over the course of development, Claude Code assisted in producing the
+Over the course of development, the AI agent assisted in producing the
 following compliance artifacts:
 
 ### Requirements Document (REQ-2026-001)
@@ -698,9 +706,10 @@ over 140 GitHub issues.
 
 # Multi-Agent Workflow
 
-Claude Code’s `--agents` mode enables orchestrated workflows where
-multiple specialized agents collaborate on a project. For government
-compliance work, we propose the role-based agent architecture shown in
+Multi-agent orchestration enables workflows where multiple specialized
+AI agents collaborate on a project, each with defined roles, permitted
+tools, and compliance context. For government compliance work, we
+propose the role-based agent architecture shown in
 Figure <a href="#fig:agents" data-reference-type="ref"
 data-reference="fig:agents">3</a>.
 
@@ -793,7 +802,7 @@ to a Scrum team structure, drawing on the Scrum Guide (Schwaber and
 Sutherland 2020) framework that is widely adopted in both commercial and
 government software programs.
 
-In this model, Claude agents assume Scrum roles:
+In this model, AI agents assume Scrum roles:
 
 - **Product Owner agent**: Maintains the product backlog (GitHub
   issues), prioritizes work items based on compliance risk and
@@ -840,8 +849,8 @@ projects:
 
 A reference implementation of this Scrum-based agent architecture is
 under development at <https://github.com/brucedombrowski/Scrum>,
-applying the Scrum Guide’s ceremonies and artifacts to Claude Code’s
-multi-agent mode. This represents a natural evolution from the
+applying the Scrum Guide’s ceremonies and artifacts to AI agent
+multi-agent orchestration. This represents a natural evolution from the
 sequential pipeline model to a more flexible, sprint-based orchestration
 that better accommodates the iterative nature of compliance development.
 
@@ -873,9 +882,9 @@ adopted incrementally by new projects.
 
 ## Quality of AI-Generated Compliance Artifacts
 
-Our experience indicates that Claude Code produces compliance artifacts
-that are *structurally sound* but require careful human review for
-*substantive accuracy*. The AI reliably generates:
+Our experience indicates that AI coding agents produce compliance
+artifacts that are *structurally sound* but require careful human review
+for *substantive accuracy*. The AI reliably generates:
 
 - Correct document structure and formatting
 
@@ -990,11 +999,11 @@ oversee multiple AI-assisted projects concurrently. During the
 development of this paper, the author maintained five active projects
 simultaneously—SendCUIEmail (CUI encryption), a decision documentation
 system, a Security Verification Toolkit, this white paper, and a
-Scrum-based agent orchestration system—each with its own Claude Code
-sessions, agents, and compliance artifacts. These five projects span
-seven git repositories tracked in this paper’s visualization data, with
-additional supporting repositories (agent templates, process framework)
-bringing the total to 16.
+Scrum-based agent orchestration system—each with its own AI agent
+sessions and compliance artifacts. These five projects span seven git
+repositories tracked in this paper’s visualization data, with additional
+supporting repositories (agent templates, process framework) bringing
+the total to 16.
 
 Critically, these projects are not merely concurrent; they
 *cross-pollinate*. Patterns discovered in one project feed into others:
@@ -1084,8 +1093,8 @@ compliance work.
 ## Stakeholder Accessibility: Bridging the CLI-Browser Gap
 
 The methodology described in this paper is CLI-first: the engineer works
-in Claude Code, git, and shell scripts. This creates an adoption barrier
-when the goal is team-wide participation by non-technical
+in AI coding agents, git, and shell scripts. This creates an adoption
+barrier when the goal is team-wide participation by non-technical
 stakeholders—program managers, team leads, auditors—who will not install
 command-line tools.
 
@@ -1224,12 +1233,12 @@ support organizational adoption.
 ## Human-in-the-Loop Compliance
 
 Government frameworks increasingly require evidence of human oversight
-in automated processes. Claude Code’s permission model—where each file
-write, command execution, and code edit requires explicit developer
-approval—provides natural evidence of human-in-the-loop oversight. Every
-action taken by the agent is logged and approved, creating an audit
-trail that maps to the “authorized use” requirements common in
-government security frameworks.
+in automated processes. Agentic AI tools with explicit permission
+models—where each file write, command execution, and code edit requires
+developer approval—provide natural evidence of human-in-the-loop
+oversight. Every action taken by the agent is logged and approved,
+creating an audit trail that maps to the “authorized use” requirements
+common in government security frameworks.
 
 The `CLAUDE.md` convention further supports compliance by encoding
 organizational and project-specific constraints that persist across
@@ -1356,14 +1365,14 @@ Several directions merit further investigation:
 
 # Conclusion
 
-This paper has demonstrated a five-phase methodology for applying
-AI-assisted development tools—specifically Claude Code—to the challenge
-of building software that meets government compliance requirements.
-Through three case studies, we showed that AI agents can produce
-structurally sound compliance artifacts including requirements
-specifications, decision memoranda, verification documents, and
-automated compliance attestations, while the interactive approval model
-provides the human oversight that government frameworks require.
+This paper has demonstrated a five-phase methodology for combining git
+version control and AI coding agents to address the challenge of
+building software that meets government compliance requirements. Through
+three case studies, we showed that AI agents can produce structurally
+sound compliance artifacts including requirements specifications,
+decision memoranda, verification documents, and automated compliance
+attestations, while the interactive approval model provides the human
+oversight that government frameworks require.
 
 The key insight is not that AI replaces compliance expertise, but that
 it *restructures* the compliance workflow. The engineer’s role shifts
@@ -1376,13 +1385,13 @@ the audit evidence that government frameworks demand, mapping directly
 to NIST SP 800-53 controls CM-3 and AU-3.
 
 This paper itself demonstrates the methodology: it was produced across
-multiple Claude Code sessions, with every human directive and agent
-action logged as GitHub issues, every change captured in semantically
-versioned git commits, and the entire process reproducible from the
-public repository. The fact that an AI agent can assist in producing
-both the compliance artifacts *and* the auditable process documentation
-for those artifacts suggests a path toward significantly reducing the
-overhead of government compliance work.
+multiple AI agent sessions, with every human directive and agent action
+logged as GitHub issues, every change captured in semantically versioned
+git commits, and the entire process reproducible from the public
+repository. The fact that an AI agent can assist in producing both the
+compliance artifacts *and* the auditable process documentation for those
+artifacts suggests a path toward significantly reducing the overhead of
+government compliance work.
 
 This work is not a proof of concept. The methodology, agent
 configurations, and process artifacts presented here are in active use
@@ -1405,11 +1414,11 @@ practical, field-tested foundation for getting real work done.
 
 # Acknowledgments
 
-This paper and its supporting artifacts were developed using Claude Code
-(Anthropic, model: Claude Opus). The development process itself serves
-as a case study for the methodology presented. All source materials,
-including the white paper LaTeX source, agent configurations, and
-process documentation, are available at
+This paper and its supporting artifacts were developed using the
+methodology it describes, with Claude Code (Anthropic, model: Claude
+Opus) as the AI agent implementation. All source materials, including
+the LaTeX source, agent configurations, git history, and process
+documentation, are available at
 <https://github.com/brucedombrowski/WhitePaper>.
 
 <div id="refs" class="references csl-bib-body hanging-indent">

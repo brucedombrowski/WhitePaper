@@ -51,7 +51,7 @@ if command -v pandoc &> /dev/null; then
 
     echo "  [6/6] pandoc (HTML for browser review)"
     pandoc "$TEX_FILE" -f latex -t html5 --standalone --mathjax \
-        --metadata title="AI-Assisted Development for Government Compliance" \
+        --metadata title="Git and AI Coding Agents for Government Compliance" \
         --citeproc --bibliography="$SCRIPT_DIR/references.bib" \
         -o "$SCRIPT_DIR/${BASE_NAME}-review.html" 2>/dev/null || \
     pandoc "$TEX_FILE" -f latex -t html5 --standalone --mathjax \
