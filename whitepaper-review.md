@@ -1280,6 +1280,51 @@ it evaluates. All review findings are documented as GitHub issues with
 structured severity, recommendation, and standard-violated fields,
 providing a traceable audit record per IEEE 1028.
 
+## Adoption Pathway: Open Source as Proving Ground
+
+A practical barrier to adopting AI-assisted compliance workflows within
+government organizations is the combination of procurement delays, risk
+aversion to unproven tools, and classification constraints. The
+methodology presented in this paper was developed to address these
+barriers through a three-stage adoption pathway:
+
+1.  **Commercial tools, personal initiative**: An individual engineer
+    uses commercially available AI coding agents—which require no
+    procurement action—to develop methodology and tooling on personal
+    time.
+
+2.  **Open-source development**: The engineer publishes the methodology,
+    templates, and tooling as open-source software, validating the
+    approach across multiple projects and producing a public track
+    record of results.
+
+3.  **In-house adoption**: The proven methodology and artifacts are
+    brought into the organization, where they can be applied to real
+    projects with organizational data and classification constraints.
+
+Critically, the open-source development stage forces the engineer to
+solve problems *generically*. Because the repositories are public, no
+CUI, PII, or proprietary information can appear in the code, templates,
+or documentation. This constraint—which might seem limiting—is in fact
+an advantage: the resulting artifacts are inherently safe to share,
+demonstrate, and review without security concerns. The open-source work
+serves as a “clean room” implementation that the organization’s in-house
+work can inherit. The same templates that encrypt hypothetical files in
+SendCUIEmail can encrypt real CUI in production; the same scanning
+scripts that verify compliance on synthetic test data can verify it on
+organizational systems.
+
+This pathway directly addresses the classification boundary limitation
+(Limitation 4 below): rather than requiring AI tools to operate within
+the classification boundary, the methodology is developed *outside* the
+boundary with synthetic data, then applied inside it with organizational
+tooling and data. The AI agent assists in creating the framework; the
+human applies it to the classified context. The 16 repositories,
+642 commits, and 136 release tags described in this paper represent the
+open-source validation stage of this pipeline—a body of evidence an
+engineer can present to organizational leadership before requesting
+formal adoption.
+
 ## Limitations
 
 Several limitations should be noted:
