@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New limitation: "Case study maturity" noting all projects are pre-production (#15)
 - New subsection: Scrum-Based Agent Orchestration (Section 7.4) with Scrum team roles, advantages for compliance, and reference to brucedombrowski/Scrum (#16)
 - Scrum Guide (Schwaber & Sutherland, 2020) added to references.bib (#16)
+- New subsection: Concurrent Multi-Project Scalability in Discussion — cross-pollination across 5 projects, iterative process refinement (#17)
 - Introduction contributions list expanded from 4 to 5 items (added traceability framework and standards-based review)
 - Abstract now mentions five-phase methodology and version control
 - Reproducibility section updated with current metrics (14 issues, 9 commits, v0.5.0)
