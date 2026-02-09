@@ -1050,11 +1050,30 @@ commit counts. Multiple repositories were developed concurrently by a
 single engineer using AI agent assistance.</figcaption>
 </figure>
 
+Figure <a href="#fig:commit-patterns" data-reference-type="ref"
+data-reference="fig:commit-patterns">5</a> shows the temporal
+distribution of commits: peak activity occurs at 17:00 UTC (noon
+Eastern) and 03:00–04:00 UTC (late night), with near-zero weekend
+commits. This pattern—high weekday intensity with no weekend work—is
+characteristic of a sustainable AI-assisted development cadence where
+the engineer directs intensive sessions during focused work hours rather
+than spreading effort thinly across calendar time.
+
+<figure id="fig:commit-patterns" data-latex-placement="htbp">
+<embed src="visualizations/commit_patterns.pdf" />
+<figcaption>Development patterns across the ecosystem. Left: commits by
+hour of day (UTC). Right: commits by day of week (blue = weekday, orange
+= weekend). Peak activity at 17:00 UTC and 03:00–04:00 UTC; near-zero
+weekend commits.</figcaption>
+</figure>
+
 These visualizations serve dual purpose: they are research artifacts
 that quantify the development activity described in this paper, and they
 are communication tools that make the same data accessible to
 non-technical reviewers through browser-viewable charts and an animated
-video.
+video. A training slide deck (`git-workflow-training.pptx`) and a desk
+instruction (`DI-GIT-001`) were produced as companion artifacts to
+support organizational adoption.
 
 ## Human-in-the-Loop Compliance
 
