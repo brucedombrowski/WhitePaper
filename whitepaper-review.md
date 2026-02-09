@@ -766,6 +766,30 @@ multi-agent mode. This represents a natural evolution from the
 sequential pipeline model to a more flexible, sprint-based orchestration
 that better accommodates the iterative nature of compliance development.
 
+## Ecosystem Architecture
+
+The multi-agent workflow, Scrum orchestration, and underlying process
+framework are maintained as a set of interrelated repositories with
+clean separation of concerns:
+
+- **systems-engineering**
+  (<https://github.com/brucedombrowski/systems-engineering>): Defines
+  *how* work is done—the five-phase process, standards framework,
+  traceability model, and artifact conventions.
+
+- **ai-agents** (<https://github.com/brucedombrowski/ai-agents>):
+  Defines *who* does the work—model-agnostic agent role templates with
+  vendor-specific implementations.
+
+- **Scrum** (<https://github.com/brucedombrowski/Scrum>): Defines *when*
+  work happens—sprint cadence, backlog management, and Scrum ceremonies.
+
+Individual project repositories (SendCUIEmail, security-toolkit, this
+white paper) consume these shared definitions while maintaining
+project-specific instructions. This architecture allows the process,
+agent templates, and orchestration model to evolve independently and be
+adopted incrementally by new projects.
+
 # Discussion
 
 ## Quality of AI-Generated Compliance Artifacts
