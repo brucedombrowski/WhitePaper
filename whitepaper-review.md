@@ -936,6 +936,24 @@ frequent, atomic commits rather than large batch changes—but they
 indicate the throughput achievable when AI agents handle drafting and
 the engineer focuses on review and direction.
 
+Figure <a href="#fig:code-churn" data-reference-type="ref"
+data-reference="fig:code-churn">4</a> shows the daily code churn across
+all repositories. Every period shows net-positive creation (green
+additions exceeding red deletions), with a sustained deletion rate
+indicating active refactoring rather than write-once code. The
+48,000-line addition spike (late January) corresponds to the Security
+Verification Toolkit’s test suite expansion—a compliance-critical
+investment that the AI agent produced concurrently with the scanning
+scripts.
+
+<figure id="fig:code-churn" data-latex-placement="htbp">
+<embed src="visualizations/code_churn.pdf" />
+<figcaption>Code churn across all repositories. Green bars show lines
+added; red bars show lines deleted. Net-positive creation in every
+period, with sustained deletion indicating active
+refactoring.</figcaption>
+</figure>
+
 More significant than the raw volume is the *ratio of compliance
 artifacts to implementation code*. Traditional compliance workflows
 produce documentation as a separate, sequential activity after
@@ -994,7 +1012,7 @@ methodology used across all projects, creating a feedback loop that
 improves each project’s compliance posture.
 
 Figure <a href="#fig:cumulative-commits" data-reference-type="ref"
-data-reference="fig:cumulative-commits">4</a> illustrates this
+data-reference="fig:cumulative-commits">5</a> illustrates this
 concurrent development pattern: the cumulative commit timeline shows
 multiple repositories advancing simultaneously, with the Security
 Verification Toolkit exhibiting the steepest growth curve while other
@@ -1148,11 +1166,11 @@ Applied to the seven repositories in this ecosystem (totaling 642
 commits and 34,000+ lines of code over four weeks), the visualizations
 revealed several patterns.
 Figure <a href="#fig:repo-comparison" data-reference-type="ref"
-data-reference="fig:repo-comparison">5</a> shows the ecosystem overview:
+data-reference="fig:repo-comparison">6</a> shows the ecosystem overview:
 the Security Verification Toolkit dominates with 463 commits, 26,630
 lines of code, and 94 version tags.
 Figure <a href="#fig:ecosystem-timeline" data-reference-type="ref"
-data-reference="fig:ecosystem-timeline">6</a> shows the active
+data-reference="fig:ecosystem-timeline">7</a> shows the active
 development windows—multiple repositories developed concurrently by a
 single engineer with AI agent support. Additional findings include:
 `scripts/` and `tests/` directories grew in lockstep (indicating
@@ -1179,7 +1197,7 @@ single engineer using AI agent assistance.</figcaption>
 </figure>
 
 Figure <a href="#fig:commit-patterns" data-reference-type="ref"
-data-reference="fig:commit-patterns">7</a> shows the temporal
+data-reference="fig:commit-patterns">8</a> shows the temporal
 distribution of commits: peak activity occurs at 17:00 UTC (noon
 Eastern) and 03:00–04:00 UTC (late night), with near-zero weekend
 commits. This pattern—high weekday intensity with no weekend work—is
@@ -1299,8 +1317,8 @@ The repository also contains a visualization toolkit that generates 10
 publication-quality charts from git data across the ecosystem, of which
 5 are included as figures in this paper
 (Figures <a href="#fig:repo-comparison" data-reference-type="ref"
-data-reference="fig:repo-comparison">5</a>–<a href="#fig:commit-patterns" data-reference-type="ref"
-data-reference="fig:commit-patterns">7</a>). Together, these records
+data-reference="fig:repo-comparison">6</a>–<a href="#fig:commit-patterns" data-reference-type="ref"
+data-reference="fig:commit-patterns">8</a>). Together, these records
 provide sufficient information for an independent team to reproduce the
 development process or for an auditor to verify that every artifact has
 a documented provenance chain.
@@ -1370,7 +1388,10 @@ This work is not a proof of concept. The methodology, agent
 configurations, and process artifacts presented here are in active use
 across 16 repositories spanning government compliance, systems
 engineering, security tooling, and CAD—real projects with real
-deliverables. The approach produces measurable outcomes: more consistent
+deliverables. The approach produces measurable outcomes: 642 commits,
+34,000+ lines of code, 136 release tags, and over 130 compliance
+artifacts across seven repositories in 26 calendar days—produced by a
+single engineer with AI agent support. This demonstrates more consistent
 documentation (fewer gaps, stronger traceability), faster delivery (the
 review-centric workflow eliminates the authoring bottleneck), and
 reduced personnel requirements (one engineer with AI agents sustains the
