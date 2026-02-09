@@ -111,9 +111,9 @@ creative) text generation.
 
 ## Claude Code Architecture
 
-Claude Code operates as a command-line agent with access to the
-developer’s local environment. Key architectural properties relevant to
-compliance work include:
+Claude Code (Anthropic 2025) operates as a command-line agent with
+access to the developer’s local environment. Key architectural
+properties relevant to compliance work include:
 
 1.  **File system access**: The agent reads and writes files directly,
     enabling it to analyze source code and produce artifacts in-place.
@@ -255,7 +255,10 @@ instruct the agent to generate a formal decision memo.
 
 The LaTeX/Decisions repository implements a template-wrapper pattern
 where each decision memo defines metadata variables and content, then
-includes a shared template:
+includes a shared template.
+Listing <a href="#lst:dm-pattern" data-reference-type="ref"
+data-reference="lst:dm-pattern">[lst:dm-pattern]</a> illustrates this
+separation:
 
 ```
 \newcommand{\UniqueID}{DM-2026-002}
@@ -470,7 +473,9 @@ vary by Windows version).
 A significant AI-assisted design contribution was the recipient
 decryption workflow. The tool generates a self-contained HTML
 instruction document (`Decrypt_Instructions.html`) with an embedded
-PowerShell one-liner:
+PowerShell one-liner, shown in simplified form in
+Listing <a href="#lst:oneliner" data-reference-type="ref"
+data-reference="lst:oneliner">[lst:oneliner]</a>:
 
 ```
 $f=Read-Host "File"
@@ -709,8 +714,12 @@ five-agent configuration developed for this paper.
 | project-setup | Sonnet | Setup | — | Repo structure, build config, templates |
 | requirements | Opus | Phase 1 | IEEE 29148 | Standard interpretation, JSON requirements |
 | implementation | Sonnet | Phase 2 | — | Compliant code within REQ constraints |
-| documentation | Sonnet | Phase 3 | MIL-STD-498 | Decision memos, verification docs, LaTeX |
-| review | Opus | Phase 4 | IEEE 1028, NIST 800-53 AC-5 | Audit with no write access (read-only) |
+| documentation | Sonnet | Phases 3–4 | MIL-STD-498 | Decision memos, verification docs, LaTeX |
+| review | Opus | Cross-cutting | IEEE 1028, NIST 800-53 AC-5 | Audit with no write access (read-only) |
+
+*Note:* Phase 5 (Version Control) is performed by all agents via GitHub
+issue logging. The review agent operates across phases rather than
+within a single phase.
 
 </div>
 
@@ -1304,6 +1313,14 @@ process documentation, are available at
 <https://github.com/brucedombrowski/WhitePaper>.
 
 <div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-claudecode" class="csl-entry">
+
+Anthropic. 2025. *<span class="nocase">Claude Code: Anthropic’s
+AI-Powered Command-Line Development Tool</span>*. Software.
+<https://docs.anthropic.com/en/docs/claude-code>.
+
+</div>
 
 <div id="ref-nist80090a" class="csl-entry">
 

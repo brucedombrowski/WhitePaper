@@ -126,7 +126,7 @@ Prior work on AI-assisted documentation generation has focused primarily on API 
 
 \subsection{Claude Code Architecture}
 
-Claude Code operates as a command-line agent with access to the developer's local environment. Key architectural properties relevant to compliance work include:
+Claude Code \cite{claudecode} operates as a command-line agent with access to the developer's local environment. Key architectural properties relevant to compliance work include:
 
 \begin{enumerate}[leftmargin=*]
     \item \textbf{File system access}: The agent reads and writes files directly, enabling it to analyze source code and produce artifacts in-place.
@@ -260,7 +260,7 @@ This ensures that every agent session begins with awareness of the applicable st
 
 Government compliance frequently requires documenting \textit{why} a particular approach was chosen, not merely \textit{what} was implemented. Decision memoranda serve this purpose. In our methodology, when the developer makes a design choice (e.g., selecting Cinzel over Trajan Bold for CUI headers, or choosing TikZ over PDF manipulation for form layout), they instruct the agent to generate a formal decision memo.
 
-The LaTeX/Decisions repository implements a template-wrapper pattern where each decision memo defines metadata variables and content, then includes a shared template:
+The LaTeX/Decisions repository implements a template-wrapper pattern where each decision memo defines metadata variables and content, then includes a shared template. Listing~\ref{lst:dm-pattern} illustrates this separation:
 
 \begin{lstlisting}[style=powershell, caption={Decision memo template pattern}, label={lst:dm-pattern}]
 \newcommand{\UniqueID}{DM-2026-002}
@@ -389,7 +389,7 @@ The implementation uses exclusively platform-provided cryptographic libraries (\
 
 \subsection{Recipient Experience Design}
 
-A significant AI-assisted design contribution was the recipient decryption workflow. The tool generates a self-contained HTML instruction document (\texttt{Decrypt\_Instructions.html}) with an embedded PowerShell one-liner:
+A significant AI-assisted design contribution was the recipient decryption workflow. The tool generates a self-contained HTML instruction document (\texttt{Decrypt\_Instructions.html}) with an embedded PowerShell one-liner, shown in simplified form in Listing~\ref{lst:oneliner}:
 
 \begin{lstlisting}[style=powershell, caption={Decryption logic (simplified from production code)}, label={lst:oneliner}]
 $f=Read-Host "File"
@@ -590,10 +590,12 @@ Agent definitions are stored in a JSON configuration file that specifies each ag
 project-setup & Sonnet & Setup & --- & Repo structure, build config, templates \\
 requirements & Opus & Phase 1 & IEEE 29148 & Standard interpretation, JSON requirements \\
 implementation & Sonnet & Phase 2 & --- & Compliant code within REQ constraints \\
-documentation & Sonnet & Phase 3 & MIL-STD-498 & Decision memos, verification docs, LaTeX \\
-review & Opus & Phase 4 & IEEE 1028, NIST 800-53 AC-5 & Audit with no write access (read-only) \\
+documentation & Sonnet & Phases 3--4 & MIL-STD-498 & Decision memos, verification docs, LaTeX \\
+review & Opus & Cross-cutting & IEEE 1028, NIST 800-53 AC-5 & Audit with no write access (read-only) \\
 \bottomrule
 \end{tabularx}
+\smallskip
+\par\small\textit{Note:} Phase 5 (Version Control) is performed by all agents via GitHub issue logging. The review agent operates across phases rather than within a single phase.
 \end{table*}
 
 Model selection reflects the cognitive demands of each role: the \texttt{requirements} and \texttt{review} agents use Opus for its stronger reasoning over regulatory interpretation and cross-reference validation, while \texttt{implementation} and \texttt{documentation} use Sonnet for its favorable speed-to-quality ratio on structured, template-following tasks. Notably, the \texttt{review} agent is denied write and edit tools, enforcing a separation-of-duties principle where auditors identify problems but do not fix them.

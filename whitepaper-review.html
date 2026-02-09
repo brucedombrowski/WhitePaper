@@ -345,7 +345,8 @@ published standards—presents distinct challenges including citation
 accuracy, regulatory interpretation, and the need for conservative
 (rather than creative) text generation.</p>
 <h2 id="claude-code-architecture">Claude Code Architecture</h2>
-<p>Claude Code operates as a command-line agent with access to the
+<p>Claude Code <span class="citation" data-cites="claudecode">(Anthropic
+2025)</span> operates as a command-line agent with access to the
 developer’s local environment. Key architectural properties relevant to
 compliance work include:</p>
 <ol>
@@ -493,7 +494,10 @@ form layout), they instruct the agent to generate a formal decision
 memo.</p>
 <p>The LaTeX/Decisions repository implements a template-wrapper pattern
 where each decision memo defines metadata variables and content, then
-includes a shared template:</p>
+includes a shared template. Listing <a href="#lst:dm-pattern"
+data-reference-type="ref"
+data-reference="lst:dm-pattern">[lst:dm-pattern]</a> illustrates this
+separation:</p>
 <pre id="lst:dm-pattern" style="powershell"
 data-caption="Decision memo template pattern"
 data-label="lst:dm-pattern"><code>\newcommand{\UniqueID}{DM-2026-002}
@@ -708,7 +712,9 @@ Cryptographic Primitives Library, validated under FIPS 140-2 on Windows
 <p>A significant AI-assisted design contribution was the recipient
 decryption workflow. The tool generates a self-contained HTML
 instruction document (<code>Decrypt_Instructions.html</code>) with an
-embedded PowerShell one-liner:</p>
+embedded PowerShell one-liner, shown in simplified form in Listing <a
+href="#lst:oneliner" data-reference-type="ref"
+data-reference="lst:oneliner">[lst:oneliner]</a>:</p>
 <pre id="lst:oneliner" style="powershell"
 data-caption="Decryption logic (simplified from production code)"
 data-label="lst:oneliner"><code>$f=Read-Host &quot;File&quot;
@@ -952,7 +958,7 @@ requirements</td>
 <tr>
 <td style="text-align: left;">documentation</td>
 <td style="text-align: left;">Sonnet</td>
-<td style="text-align: left;">Phase 3</td>
+<td style="text-align: left;">Phases 3–4</td>
 <td style="text-align: left;">MIL-STD-498</td>
 <td style="text-align: left;">Decision memos, verification docs,
 LaTeX</td>
@@ -960,13 +966,16 @@ LaTeX</td>
 <tr>
 <td style="text-align: left;">review</td>
 <td style="text-align: left;">Opus</td>
-<td style="text-align: left;">Phase 4</td>
+<td style="text-align: left;">Cross-cutting</td>
 <td style="text-align: left;">IEEE 1028, NIST 800-53 AC-5</td>
 <td style="text-align: left;">Audit with no write access
 (read-only)</td>
 </tr>
 </tbody>
 </table>
+<p><em>Note:</em> Phase 5 (Version Control) is performed by all agents
+via GitHub issue logging. The review agent operates across phases rather
+than within a single phase.</p>
 </div>
 <p>Model selection reflects the cognitive demands of each role: the
 <code>requirements</code> and <code>review</code> agents use Opus for
@@ -1555,6 +1564,11 @@ href="https://github.com/brucedombrowski/WhitePaper"
 class="uri">https://github.com/brucedombrowski/WhitePaper</a>.</p>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="list">
+<div id="ref-claudecode" class="csl-entry" role="listitem">
+Anthropic. 2025. <em><span class="nocase">Claude Code: Anthropic’s
+AI-Powered Command-Line Development Tool</span></em>. Software. <a
+href="https://docs.anthropic.com/en/docs/claude-code">https://docs.anthropic.com/en/docs/claude-code</a>.
+</div>
 <div id="ref-nist80090a" class="csl-entry" role="listitem">
 Barker, Elaine, and John Kelsey. 2015. <em><span class="nocase">NIST SP
 800-90A: Recommendation for Random Number Generation Using Deterministic
