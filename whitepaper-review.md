@@ -146,10 +146,9 @@ their approval workflows.
 
 ## Agentic AI Tool Architecture
 
-AI coding agents—exemplified in this paper by Claude Code (Anthropic
-2025)—operate as command-line agents with access to the developer’s
-local environment. The architectural properties essential for compliance
-work include:
+AI coding agents operate as command-line tools with access to the
+developer’s local environment. The architectural properties essential
+for compliance work include:
 
 1.  **File system access**: The agent reads and writes files directly,
     enabling it to analyze source code and produce artifacts in-place.
@@ -162,36 +161,37 @@ work include:
     across a session, allowing iterative refinement of compliance
     artifacts.
 
-4.  **CLAUDE.md conventions**: Projects can include instruction files
-    that persist agent context across sessions, encoding
-    project-specific compliance requirements.
+4.  **Instruction files**: Projects include persistent instruction files
+    (e.g., `CLAUDE.md` in Claude Code (Anthropic 2025), `.cursorrules`
+    in Cursor) that encode project-specific compliance requirements
+    across sessions.
 
-5.  **Multi-agent mode**: The `--agents` flag enables orchestrated
-    workflows where specialized agents handle distinct aspects of a
-    project.
+5.  **Multi-agent orchestration**: Configurations that enable multiple
+    specialized agents—each with defined roles, model selection, and
+    permitted tools—to collaborate on a single project.
 
-6.  **Session continuity**: The `--resume` and `--continue` flags allow
-    sessions to persist across interruptions, preserving the accumulated
-    compliance context that would otherwise need to be reconstructed.
+6.  **Session continuity**: Sessions persist across interruptions,
+    preserving the accumulated compliance context that would otherwise
+    need to be reconstructed.
 
-Table <a href="#tab:cli-switches" data-reference-type="ref"
-data-reference="tab:cli-switches">1</a> documents the CLI switches most
-relevant to compliance workflows. These are recorded in the project’s
-`CLAUDE.md` to ensure reproducible invocation across sessions and team
-members.
+To implement this architecture, the project records its agent invocation
+configuration in a version-controlled instruction file.
+Table <a href="#tab:cli-concepts" data-reference-type="ref"
+data-reference="tab:cli-concepts">1</a> maps the methodology-level
+concepts to their implementation in the tool used in this paper’s case
+studies.
 
-<div id="tab:cli-switches">
+<div id="tab:cli-concepts">
 
-| **Switch** | **Purpose** |
-|:---|:---|
-| `--agents` | Load multi-agent config (JSON) |
-| `--model` | Select model (opus for review, sonnet for implementation) |
-| `--allowedTools` | Restrict tools per agent role |
-| `--continue` | Resume most recent session |
-| `--verbose` | Log tool calls for audit trail |
+| **Concept**        | **Implementation**                   |
+|:-------------------|:-------------------------------------|
+| Multi-agent config | `--agents` (JSON file)               |
+| Model selection    | `--model` (reasoning vs. throughput) |
+| Tool restrictions  | `--allowedTools` (per role)          |
+| Session resume     | `--continue`                         |
+| Audit logging      | `--verbose`                          |
 
-Recommended CLI switches for compliance projects (Claude Code
-implementation)
+Methodology concepts and their implementation (Claude Code)
 
 </div>
 
@@ -716,9 +716,10 @@ data-reference="fig:agents">3</a>.
 <figure id="fig:agents" data-latex-placement="htbp">
 
 <figcaption>Multi-agent architecture for compliance projects. Teal
-agents use Sonnet; blue/orange agents use Opus. The review agent has
-read-only access (NIST SP 800-53 AC-5). All agents log interactions to
-GitHub issues.</figcaption>
+agents use throughput-optimized models; blue/orange agents use
+reasoning-optimized models. The review agent has read-only access (NIST
+SP 800-53 AC-5). All agents log interactions to GitHub
+issues.</figcaption>
 </figure>
 
 ## Agent Roles
@@ -752,11 +753,11 @@ five-agent configuration developed for this paper.
 
 | **Agent** | **Model** | **Phase** | **QA Standard** | **Key Capability** |
 |:---|:---|:---|:---|:---|
-| project-setup | Sonnet | Setup | — | Repo structure, build config, templates |
-| requirements | Opus | Phase 1 | IEEE 29148 | Standard interpretation, JSON requirements |
-| implementation | Sonnet | Phase 2 | — | Compliant code within REQ constraints |
-| documentation | Sonnet | Phases 3–4 | MIL-STD-498 | Decision memos, verification docs, LaTeX |
-| review | Opus | Cross-cutting | IEEE 1028, NIST 800-53 AC-5 | Audit with no write access (read-only) |
+| project-setup | Throughput | Setup | — | Repo structure, build config, templates |
+| requirements | Reasoning | Phase 1 | IEEE 29148 | Standard interpretation, JSON requirements |
+| implementation | Throughput | Phase 2 | — | Compliant code within REQ constraints |
+| documentation | Throughput | Phases 3–4 | MIL-STD-498 | Decision memos, verification docs, LaTeX |
+| review | Reasoning | Cross-cutting | IEEE 1028, NIST 800-53 AC-5 | Audit with no write access (read-only) |
 
 *Note:* Phase 5 (Version Control) is performed by all agents via GitHub
 issue logging. The review agent operates across phases rather than
@@ -765,11 +766,14 @@ within a single phase.
 </div>
 
 Model selection reflects the cognitive demands of each role: the
-`requirements` and `review` agents use Opus for its stronger reasoning
-over regulatory interpretation and cross-reference validation, while
-`implementation` and `documentation` use Sonnet for its favorable
-speed-to-quality ratio on structured, template-following tasks. Notably,
-the `review` agent is denied write and edit tools, enforcing a
+`requirements` and `review` agents use a reasoning-optimized model for
+its stronger performance on regulatory interpretation and
+cross-reference validation, while `implementation` and `documentation`
+use a throughput-optimized model for its favorable speed-to-quality
+ratio on structured, template-following tasks. In our implementation,
+these correspond to Anthropic’s Opus and Sonnet models respectively, but
+the pattern applies to any model family with tiered capability levels.
+Notably, the `review` agent is denied write and edit tools, enforcing a
 separation-of-duties principle where auditors identify problems but do
 not fix them.
 
@@ -1363,10 +1367,11 @@ Several directions merit further investigation:
     manual compliance documentation effort across multiple projects and
     team sizes.
 
-6.  **Cross-platform validation**: Replicating the methodology with
-    alternative agentic AI tools (Cursor, Aider, Windsurf) to validate
-    the platform-agnostic claims and identify which properties of the
-    approach are tool-dependent vs. methodology-dependent.
+6.  **Cross-platform validation**: While the methodology is designed to
+    be platform-agnostic, our case studies use a single AI agent
+    implementation. Replicating the workflow with alternative agentic
+    tools would empirically validate portability and identify which
+    properties are tool-dependent vs. methodology-dependent.
 
 # Conclusion
 

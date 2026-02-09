@@ -382,10 +382,9 @@ access at the tool level rather than by convention. Claude Code
 implements this model; other agentic tools vary in the granularity of
 their approval workflows.</p>
 <h2 id="agentic-ai-tool-architecture">Agentic AI Tool Architecture</h2>
-<p>AI coding agents—exemplified in this paper by Claude Code <span
-class="citation" data-cites="claudecode">(Anthropic 2025)</span>—operate
-as command-line agents with access to the developer’s local environment.
-The architectural properties essential for compliance work include:</p>
+<p>AI coding agents operate as command-line tools with access to the
+developer’s local environment. The architectural properties essential
+for compliance work include:</p>
 <ol>
 <li><p><strong>File system access</strong>: The agent reads and writes
 files directly, enabling it to analyze source code and produce artifacts
@@ -396,53 +395,57 @@ human oversight that compliance frameworks demand.</p></li>
 <li><p><strong>Context persistence</strong>: The agent maintains
 conversation context across a session, allowing iterative refinement of
 compliance artifacts.</p></li>
-<li><p><strong>CLAUDE.md conventions</strong>: Projects can include
-instruction files that persist agent context across sessions, encoding
-project-specific compliance requirements.</p></li>
-<li><p><strong>Multi-agent mode</strong>: The <code>--agents</code> flag
-enables orchestrated workflows where specialized agents handle distinct
-aspects of a project.</p></li>
-<li><p><strong>Session continuity</strong>: The <code>--resume</code>
-and <code>--continue</code> flags allow sessions to persist across
+<li><p><strong>Instruction files</strong>: Projects include persistent
+instruction files (e.g., <code>CLAUDE.md</code> in Claude Code <span
+class="citation" data-cites="claudecode">(Anthropic 2025)</span>,
+<code>.cursorrules</code> in Cursor) that encode project-specific
+compliance requirements across sessions.</p></li>
+<li><p><strong>Multi-agent orchestration</strong>: Configurations that
+enable multiple specialized agents—each with defined roles, model
+selection, and permitted tools—to collaborate on a single
+project.</p></li>
+<li><p><strong>Session continuity</strong>: Sessions persist across
 interruptions, preserving the accumulated compliance context that would
 otherwise need to be reconstructed.</p></li>
 </ol>
-<p>Table <a href="#tab:cli-switches" data-reference-type="ref"
-data-reference="tab:cli-switches">1</a> documents the CLI switches most
-relevant to compliance workflows. These are recorded in the project’s
-<code>CLAUDE.md</code> to ensure reproducible invocation across sessions
-and team members.</p>
-<div id="tab:cli-switches">
+<p>To implement this architecture, the project records its agent
+invocation configuration in a version-controlled instruction file.
+Table <a href="#tab:cli-concepts" data-reference-type="ref"
+data-reference="tab:cli-concepts">1</a> maps the methodology-level
+concepts to their implementation in the tool used in this paper’s case
+studies.</p>
+<div id="tab:cli-concepts">
 <table>
-<caption>Recommended CLI switches for compliance projects (Claude Code
-implementation)</caption>
+<caption>Methodology concepts and their implementation (Claude
+Code)</caption>
 <thead>
 <tr>
-<th style="text-align: left;"><strong>Switch</strong></th>
-<th style="text-align: left;"><strong>Purpose</strong></th>
+<th style="text-align: left;"><strong>Concept</strong></th>
+<th style="text-align: left;"><strong>Implementation</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>--agents</code></td>
-<td style="text-align: left;">Load multi-agent config (JSON)</td>
+<td style="text-align: left;">Multi-agent config</td>
+<td style="text-align: left;"><code>--agents</code> (JSON file)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>--model</code></td>
-<td style="text-align: left;">Select model (opus for review, sonnet for
-implementation)</td>
+<td style="text-align: left;">Model selection</td>
+<td style="text-align: left;"><code>--model</code> (reasoning vs.
+throughput)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>--allowedTools</code></td>
-<td style="text-align: left;">Restrict tools per agent role</td>
+<td style="text-align: left;">Tool restrictions</td>
+<td style="text-align: left;"><code>--allowedTools</code> (per
+role)</td>
 </tr>
 <tr>
+<td style="text-align: left;">Session resume</td>
 <td style="text-align: left;"><code>--continue</code></td>
-<td style="text-align: left;">Resume most recent session</td>
 </tr>
 <tr>
+<td style="text-align: left;">Audit logging</td>
 <td style="text-align: left;"><code>--verbose</code></td>
-<td style="text-align: left;">Log tool calls for audit trail</td>
 </tr>
 </tbody>
 </table>
@@ -936,9 +939,10 @@ data-reference="fig:agents">3</a>.</p>
 <figure id="fig:agents" data-latex-placement="htbp">
 
 <figcaption>Multi-agent architecture for compliance projects. Teal
-agents use Sonnet; blue/orange agents use Opus. The review agent has
-read-only access (NIST SP 800-53 AC-5). All agents log interactions to
-GitHub issues.</figcaption>
+agents use throughput-optimized models; blue/orange agents use
+reasoning-optimized models. The review agent has read-only access (NIST
+SP 800-53 AC-5). All agents log interactions to GitHub
+issues.</figcaption>
 </figure>
 <h2 id="agent-roles">Agent Roles</h2>
 <ol>
@@ -976,7 +980,7 @@ five-agent configuration developed for this paper.</p>
 <tbody>
 <tr>
 <td style="text-align: left;">project-setup</td>
-<td style="text-align: left;">Sonnet</td>
+<td style="text-align: left;">Throughput</td>
 <td style="text-align: left;">Setup</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">Repo structure, build config,
@@ -984,7 +988,7 @@ templates</td>
 </tr>
 <tr>
 <td style="text-align: left;">requirements</td>
-<td style="text-align: left;">Opus</td>
+<td style="text-align: left;">Reasoning</td>
 <td style="text-align: left;">Phase 1</td>
 <td style="text-align: left;">IEEE 29148</td>
 <td style="text-align: left;">Standard interpretation, JSON
@@ -992,14 +996,14 @@ requirements</td>
 </tr>
 <tr>
 <td style="text-align: left;">implementation</td>
-<td style="text-align: left;">Sonnet</td>
+<td style="text-align: left;">Throughput</td>
 <td style="text-align: left;">Phase 2</td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;">Compliant code within REQ constraints</td>
 </tr>
 <tr>
 <td style="text-align: left;">documentation</td>
-<td style="text-align: left;">Sonnet</td>
+<td style="text-align: left;">Throughput</td>
 <td style="text-align: left;">Phases 3–4</td>
 <td style="text-align: left;">MIL-STD-498</td>
 <td style="text-align: left;">Decision memos, verification docs,
@@ -1007,7 +1011,7 @@ LaTeX</td>
 </tr>
 <tr>
 <td style="text-align: left;">review</td>
-<td style="text-align: left;">Opus</td>
+<td style="text-align: left;">Reasoning</td>
 <td style="text-align: left;">Cross-cutting</td>
 <td style="text-align: left;">IEEE 1028, NIST 800-53 AC-5</td>
 <td style="text-align: left;">Audit with no write access
@@ -1020,14 +1024,17 @@ via GitHub issue logging. The review agent operates across phases rather
 than within a single phase.</p>
 </div>
 <p>Model selection reflects the cognitive demands of each role: the
-<code>requirements</code> and <code>review</code> agents use Opus for
-its stronger reasoning over regulatory interpretation and
-cross-reference validation, while <code>implementation</code> and
-<code>documentation</code> use Sonnet for its favorable speed-to-quality
-ratio on structured, template-following tasks. Notably, the
-<code>review</code> agent is denied write and edit tools, enforcing a
-separation-of-duties principle where auditors identify problems but do
-not fix them.</p>
+<code>requirements</code> and <code>review</code> agents use a
+reasoning-optimized model for its stronger performance on regulatory
+interpretation and cross-reference validation, while
+<code>implementation</code> and <code>documentation</code> use a
+throughput-optimized model for its favorable speed-to-quality ratio on
+structured, template-following tasks. In our implementation, these
+correspond to Anthropic’s Opus and Sonnet models respectively, but the
+pattern applies to any model family with tiered capability levels.
+Notably, the <code>review</code> agent is denied write and edit tools,
+enforcing a separation-of-duties principle where auditors identify
+problems but do not fix them.</p>
 <h2 id="workflow-orchestration">Workflow Orchestration</h2>
 <p>The multi-agent workflow proceeds through the five phases described
 in Section <a href="#sec:methodology" data-reference-type="ref"
@@ -1651,10 +1658,11 @@ authorization packages and CMMC assessments.</p></li>
 <li><p><strong>Comparative studies</strong>: Quantitative comparison of
 AI-assisted vs. manual compliance documentation effort across multiple
 projects and team sizes.</p></li>
-<li><p><strong>Cross-platform validation</strong>: Replicating the
-methodology with alternative agentic AI tools (Cursor, Aider, Windsurf)
-to validate the platform-agnostic claims and identify which properties
-of the approach are tool-dependent vs. methodology-dependent.</p></li>
+<li><p><strong>Cross-platform validation</strong>: While the methodology
+is designed to be platform-agnostic, our case studies use a single AI
+agent implementation. Replicating the workflow with alternative agentic
+tools would empirically validate portability and identify which
+properties are tool-dependent vs. methodology-dependent.</p></li>
 </ol>
 <h1 id="sec:conclusion">Conclusion</h1>
 <p>This paper has demonstrated a five-phase methodology for combining
