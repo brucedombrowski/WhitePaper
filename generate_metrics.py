@@ -241,6 +241,12 @@ for name, gh_repo in GITHUB_REPOS.items():
 wp_issues = issue_counts.get('WhitePaper', 0)
 sec_issues = issue_counts.get('Security Toolkit', 0)
 
+# WhitePaper git commit hash (short)
+wp_path = MEASURED_REPOS.get('WhitePaper', '')
+r = subprocess.run(['git', '-C', wp_path, 'rev-parse', '--short', 'HEAD'],
+                   capture_output=True, text=True)
+wp_commit_hash = r.stdout.strip() if r.returncode == 0 else 'unknown'
+
 # ============================================================================
 # Generate metrics.tex
 # ============================================================================
@@ -278,6 +284,7 @@ lines = [
     f'\\newcommand{{\\wptags}}{{{wp_tags}}}',
     f'\\newcommand{{\\wpissues}}{{{wp_issues}}}',
     f'\\newcommand{{\\wpsessions}}{{{wp_sessions}}}',
+    f'\\newcommand{{\\wpcommithash}}{{{wp_commit_hash}}}',
 ]
 
 metrics_path = SCRIPT_DIR / 'metrics.tex'
