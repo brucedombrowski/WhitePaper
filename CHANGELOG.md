@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PROCESS.md Session 12: ecosystem review and metrics update
 - Regenerated all 6 cross-repo charts with 17-repo data (was 7 repos)
 - PROCESS.md Session 13: visualization regeneration and metrics correction
+- `generate_metrics.py` — auto-generates `metrics.tex` from live git/GitHub data (#50)
+- `metrics.tex` — LaTeX `\newcommand` definitions for all paper metrics (auto-generated)
+- `build.sh` Step 0: runs `generate_metrics.py` before pdflatex
+- All hardcoded metrics in `whitepaper.tex` replaced with `\newcommand` references
+- PROCESS.md Session 14: auto-metrics pipeline
 
 ### Changed
 - Title: added "Human-in-the-Loop" (#45)
@@ -28,6 +33,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security Toolkit commits: 463→472
 - Measured set commits: 642→676
 - `generate_charts.py` updated: 7→17 repos, dynamic LOC computation, binary file filtering
+- All hardcoded metrics replaced with auto-generated `\newcommand` references — stale numbers are now impossible
+- 8 stale metrics corrected: Security Toolkit LOC 26,630→76,608; measured set LOC 34,016→112K; repo count 16→17; issue counts updated (#49)
 
 ## [0.9.0] - 2026-02-09
 

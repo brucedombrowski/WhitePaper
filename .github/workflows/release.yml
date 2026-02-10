@@ -14,14 +14,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install TeX Live and pandoc
+      - name: Install TeX Live, pandoc, and Python deps
         run: |
           sudo apt-get update
           sudo apt-get install -y texlive-latex-recommended texlive-latex-extra \
             texlive-fonts-recommended texlive-bibtex-extra biber pandoc poppler-utils
 
       - name: Build PDF and HTML
-        run: ./build.sh
+        run: |
+          # generate_metrics.py needs git repos locally — in CI we use committed metrics.tex
+          # (build.sh will skip metrics generation gracefully if repos are absent)
+          ./build.sh
 
       - name: Get version info
         id: meta

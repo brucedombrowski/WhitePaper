@@ -20,7 +20,9 @@ WhitePaper/
 ├── PROCESS.md              # Executive summary of process
 ├── CHANGELOG.md            # Semantic versioning changelog
 ├── agents.json             # Claude Code --agents mode configuration
-├── build.sh                # LaTeX-to-PDF build script
+├── build.sh                # LaTeX-to-PDF build script (runs metrics + pdflatex + pandoc)
+├── generate_metrics.py     # Auto-generates metrics.tex from live git/GitHub data
+├── metrics.tex             # AUTO-GENERATED — LaTeX \newcommand definitions for all paper metrics
 ├── scan.sh                 # Security scanning wrapper
 ├── .gitignore              # Git ignore rules
 ├── .allowlists/            # Security scan false-positive allowlists
@@ -105,8 +107,27 @@ claude --agents "$(cat agents.json)"
 Or manually:
 
 ```bash
+python3 generate_metrics.py  # Step 0: auto-update metrics.tex
 pdflatex whitepaper.tex && bibtex whitepaper && pdflatex whitepaper.tex && pdflatex whitepaper.tex
 ```
+
+## Auto-Metrics Pipeline
+
+All quantitative claims in the paper are auto-generated. **Never hardcode numbers** in `whitepaper.tex`.
+
+### How it works
+
+1. `generate_metrics.py` queries all 17 git repos and GitHub API
+2. Outputs `metrics.tex` with `\newcommand` definitions (e.g., `\totalcommits`, `\secloc`)
+3. `whitepaper.tex` uses `\input{metrics.tex}` and references commands instead of numbers
+4. `build.sh` runs the script as Step 0 before pdflatex
+
+### Adding a new metric
+
+1. Add the computation to `generate_metrics.py`
+2. Add a `\newcommand` to the output
+3. Use `\yournewcommand{}` in `whitepaper.tex`
+4. The `{}` after the command prevents LaTeX from eating the following space
 
 ## Semantic Versioning
 

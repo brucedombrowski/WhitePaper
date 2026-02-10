@@ -24,6 +24,13 @@ fi
 
 echo "Building $BASE_NAME.pdf ..."
 
+# Step 0: Generate metrics.tex from live git/GitHub data
+if command -v python3 &> /dev/null && [ -f "$SCRIPT_DIR/generate_metrics.py" ]; then
+    echo "  [0/4] generate_metrics.py (auto-update paper numbers)"
+    python3 "$SCRIPT_DIR/generate_metrics.py" > /dev/null 2>&1 || \
+        echo "  WARNING: metrics generation failed, using stale metrics.tex"
+fi
+
 # Step 1: Initial compile (generates .aux for bibtex)
 echo "  [1/4] pdflatex (initial)"
 pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > /dev/null 2>&1

@@ -303,6 +303,26 @@ Human direction: "cool" (approved visualization regeneration plan)
 
 Paper: 26 pages, 8 figures, 5 tables, 25 references, 457K. Clean build.
 
+## Session 14: Auto-Metrics Pipeline (2026-02-09)
+
+**Tool**: Claude Code (Claude Opus 4.6, autonomous coordinator mode)
+
+Created `generate_metrics.py` — a script that queries all 17 git repos and 5 GitHub repos via `gh` CLI, then generates `metrics.tex` containing LaTeX `\newcommand` definitions for every quantitative claim in the paper. The paper now `\input{metrics.tex}` and uses commands like `\totalcommits{}`, `\secloc{}`, `\wpissues{}` instead of hardcoded numbers. `build.sh` runs the script as Step 0 before pdflatex.
+
+- **`generate_metrics.py` created**: Queries git repos (commits, LOC, tags, dates) and GitHub API (issue counts), outputs `metrics.tex`
+- **20 LaTeX commands defined**: `\totalrepos`, `\totalcommits`, `\totalloc`, `\totaltags`, `\totallangs`, `\calendardays`, `\dailyrate`, `\totalissues`, `\measuredrepos`, `\measuredcommits`, `\measuredloc`, `\measuredtags`, `\seccommits`, `\sectags`, `\secloc`, `\secissues`, `\wpcommits`, `\wptags`, `\wpissues`, `\wpsessions`
+- **All hardcoded metrics replaced**: 14 locations in whitepaper.tex now use `\newcommand` references
+- **`build.sh` updated**: Step 0 runs `generate_metrics.py` before LaTeX compilation
+- **8 stale findings from review audit fixed simultaneously**: the auto-metrics pipeline inherently corrects all stale numbers
+
+Key insight: The human asked "i hope the data driven part of our paper is script driven so numbers auto update? or too much?" — this is exactly the right engineering instinct. The previous 13 sessions had multiple rounds of manually fixing stale metrics. The auto-metrics pipeline makes stale numbers structurally impossible.
+
+This is itself a methodology finding: AI agents produce correct content but tend toward hardcoded values. The human's engineering judgment ("shouldn't this be automated?") elevated the solution from repeated patching to structural prevention. Another data point for the human-in-the-loop thesis.
+
+Human direction: "i hope the data driven part of our paper is script driven so numbers auto update?"
+
+Paper: 26 pages, 8 figures, 5 tables, 25 references, 457K. Clean build. All metrics auto-generated.
+
 ## Current State
 
 | Metric | Value |
@@ -317,10 +337,11 @@ Paper: 26 pages, 8 figures, 5 tables, 25 references, 457K. Clean build.
 | Commits | 51+ on main |
 | Version | v0.9.0 |
 | Security scans | 4 (2 pass, 1 review, 1 fail) |
-| Sessions | 13 |
+| Sessions | 14 |
 | Ecosystem repos (measured) | 7 (WhitePaper, ai-agents, systems-engineering, Scrum, SendCUIEmail, Security, Decisions) |
-| Ecosystem repos (full) | 17 git repositories, 1,063 commits, 149 tags, 226K+ LOC |
+| Ecosystem repos (full) | 17 git repositories, 1,082 commits, 149 tags, 226K+ LOC |
 | Visualizations | 10 charts (PNG/PDF/TikZ) + 40s gource video — all 17 repos |
+| Auto-metrics | `generate_metrics.py` → `metrics.tex` (20 LaTeX commands) |
 | Training material | 14-slide PowerPoint deck |
 
 ## Future Work

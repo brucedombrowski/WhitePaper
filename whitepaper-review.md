@@ -692,7 +692,7 @@ CA-7.
 ## Codebase Structure Evolution
 
 Code survival analysis using git-of-theseus reveals how the toolkit’s
-codebase structure evolved over its 472-commit history.
+codebase structure evolved over its 488-commit history.
 Figure <a href="#fig:theseus-dirs" data-reference-type="ref"
 data-reference="fig:theseus-dirs">2</a> shows that the `scripts/`
 (implementation) and `tests/` (verification) directories grew in
@@ -721,7 +721,7 @@ logging pattern adopted in this paper’s methodology. This represents a
 mature implementation of the multi-agent compliance workflow described
 in Section <a href="#sec:agents" data-reference-type="ref"
 data-reference="sec:agents">7</a>, validated across 94 version tags and
-over 140 GitHub issues.
+136 GitHub issues.
 
 # Multi-Agent Workflow
 
@@ -938,12 +938,12 @@ Table <a href="#tab:output-metrics" data-reference-type="ref"
 data-reference="tab:output-metrics">3</a> summarizes the measurable
 output of the AI-assisted methodology across the three case studies and
 supporting infrastructure, produced by a single engineer over
-67 calendar days.
+66 calendar days.
 
 <div id="tab:output-metrics">
 
 <table>
-<caption>Aggregate output metrics (67-day period, single
+<caption>Aggregate output metrics (66-day period, single
 engineer)</caption>
 <thead>
 <tr>
@@ -958,15 +958,15 @@ engineer)</caption>
 </tr>
 <tr>
 <td style="text-align: left;">Total commits (measured set)</td>
-<td style="text-align: right;">676</td>
+<td style="text-align: right;">693</td>
 </tr>
 <tr>
 <td style="text-align: left;">Lines of code (measured set)</td>
-<td style="text-align: right;">34,016</td>
+<td style="text-align: right;">112,524</td>
 </tr>
 <tr>
 <td style="text-align: left;">Release tags (measured set)</td>
-<td style="text-align: right;">136</td>
+<td style="text-align: right;">139</td>
 </tr>
 <tr>
 <td style="text-align: left;">Decision memoranda</td>
@@ -994,7 +994,7 @@ engineer)</caption>
 </tr>
 <tr>
 <td style="text-align: left;">GitHub issues (audit trail)</td>
-<td style="text-align: right;">170+</td>
+<td style="text-align: right;">201</td>
 </tr>
 <tr>
 <td colspan="2" style="text-align: left;"><em>Full ecosystem (17
@@ -1002,7 +1002,7 @@ repositories):</em></td>
 </tr>
 <tr>
 <td style="text-align: left;">Total commits</td>
-<td style="text-align: right;">1,063</td>
+<td style="text-align: right;">1,082</td>
 </tr>
 <tr>
 <td style="text-align: left;">Lines of code</td>
@@ -1021,9 +1021,9 @@ repositories):</em></td>
 
 </div>
 
-The daily commit rate averaged 15.9 commits/day, with the Security
-Verification Toolkit alone accounting for 472 commits, 94 version tags,
-and 26,630 lines of code. These figures are not presented as
+The daily commit rate averaged 16.4 commits/day, with the Security
+Verification Toolkit alone accounting for 488 commits, 94 version tags,
+and 76,608 lines of code. These figures are not presented as
 benchmarks—the commit rate reflects a development style characterized by
 frequent, atomic commits rather than large batch changes—but they
 indicate the throughput achievable when AI agents handle drafting and
@@ -1089,7 +1089,7 @@ repositories tracked in this paper’s visualization data, with additional
 supporting repositories (agent templates, process framework, privacy
 tooling, cross-platform utilities, web applications, and hardware
 projects) bringing the total to 17 repositories containing
-1,063 commits, 149 release tags, and over 226,000 lines of code.
+1,082 commits, 149 release tags, and over 226,000+ lines of code.
 
 Critically, these projects are not merely concurrent; they
 *cross-pollinate*. Patterns discovered in one project feed into others:
@@ -1143,8 +1143,8 @@ that a human author would incur.
 <figure id="fig:cumulative-commits" data-latex-placement="htbp">
 <embed src="visualizations/cumulative_commits.pdf" />
 <figcaption>Cumulative commits across all 17 repositories over the
-67-day development period. The Security Verification Toolkit dominates
-with 472 commits and exhibits the steepest growth curve. Multiple
+66-day development period. The Security Verification Toolkit dominates
+with 488 commits and exhibits the steepest growth curve. Multiple
 repositories advance concurrently, demonstrating the scalability of the
 AI-assisted review-centric workflow.</figcaption>
 </figure>
@@ -1152,7 +1152,7 @@ AI-assisted review-centric workflow.</figcaption>
 The scope of this concurrent work extends beyond software compliance.
 The author’s AI-assisted workflow originated with a CAD-based house
 construction project and a speech-processing application before evolving
-into the government compliance domain examined here. Across 16 active
+into the government compliance domain examined here. Across 17 active
 repositories—spanning systems engineering, hardware interfaces, music
 production, web development, and federal information security—the same
 patterns apply: AI agents draft artifacts, the human reviews and
@@ -1215,7 +1215,7 @@ all conditions are met.
 The generated visualizations
 (Section <a href="#sec:visualization" data-reference-type="ref"
 data-reference="sec:visualization">8.6</a>) serve a similar
-accessibility function. A chart showing over 1,000 commits across 16
+accessibility function. A chart showing over 1,082 commits across 17
 repositories communicates project scope more effectively to a
 non-technical audience than any paragraph. The animated tree
 visualization (gource) showing file creation and modification over time
@@ -1257,12 +1257,12 @@ open-source tools:
   pattern analysis (hour of day, day of week), and ecosystem timeline
   (Gantt-style active development windows).
 
-Applied to the ecosystem repositories (totaling 1,063 commits and
+Applied to the ecosystem repositories (totaling 1,082 commits and
 226,000+ lines of code across 17 repositories), the visualizations
 revealed several patterns.
 Figure <a href="#fig:repo-comparison" data-reference-type="ref"
 data-reference="fig:repo-comparison">6</a> shows the ecosystem overview:
-the Security Verification Toolkit dominates with 472 commits, 26,630
+the Security Verification Toolkit dominates with 488 commits, 76,608
 lines of code, and 94 version tags.
 Figure <a href="#fig:ecosystem-timeline" data-reference-type="ref"
 data-reference="fig:ecosystem-timeline">7</a> shows the active
@@ -1426,7 +1426,7 @@ This pathway directly addresses the classification boundary limitation
 the classification boundary, the methodology is developed *outside* the
 boundary with synthetic data, then applied inside it with organizational
 tooling and data. The AI agent assists in creating the framework; the
-human applies it to the classified context. The 1,063 commits,
+human applies it to the classified context. The 1,082 commits,
 149 release tags, and 226,000+ lines of code across 17 repositories
 represent the open-source validation stage of this pipeline, a body of
 evidence an engineer can present to organizational leadership before
@@ -1532,12 +1532,12 @@ white paper repository maintains a two-tier documentation structure:
 development session, while GitHub issues serve as the authoritative,
 machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 43 GitHub issues spanning 12
+As of this writing, the repository contains 49 GitHub issues spanning 13
 development sessions, with each issue labeled according to the scheme
 described in
 Section <a href="#sec:methodology-git" data-reference-type="ref"
 data-reference="sec:methodology-git">3.5</a>. The git history contains
-49 semantically versioned commits across 9 release tags (v0.1.0 through
+52 semantically versioned commits across 9 release tags (v0.1.0 through
 v0.9.0), each corresponding to a distinct compliance-relevant action.
 The repository also contains a visualization toolkit that generates 10
 publication-quality charts from git data across the ecosystem, of which
@@ -1638,11 +1638,11 @@ government compliance work.
 
 This work is not a proof of concept. The methodology, agent
 configurations, and process artifacts presented here are in active use
-across 16 repositories spanning government compliance, systems
+across 17 repositories spanning government compliance, systems
 engineering, security tooling, and CAD—real projects with real
-deliverables. The approach produces measurable outcomes: 1,063 commits,
+deliverables. The approach produces measurable outcomes: 1,082 commits,
 226,000+ lines of code, 149 release tags, and over 130 compliance
-artifacts across 17 repositories in 67 calendar days—produced by a
+artifacts across 17 repositories in 66 calendar days—produced by a
 single engineer with AI agent support. This demonstrates more consistent
 documentation (fewer gaps, stronger traceability), faster delivery (the
 review-centric workflow eliminates the authoring bottleneck), and
