@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-02-10
+
 ### Added
 - Comprehensive 16-repo ecosystem review: 1,010 commits, 149 tags, 335K+ LOC, 8 languages
 - Table 5 expanded with full ecosystem metrics alongside 7-repo measured set
@@ -18,11 +20,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PROCESS.md Session 12: ecosystem review and metrics update
 - Regenerated all 6 cross-repo charts with 17-repo data (was 7 repos)
 - PROCESS.md Session 13: visualization regeneration and metrics correction
-- `generate_metrics.py` — auto-generates `metrics.tex` from live git/GitHub data (#50)
+- `scripts/generate_metrics.py` — auto-generates `metrics.tex` from live git/GitHub data (#50)
 - `metrics.tex` — LaTeX `\newcommand` definitions for all paper metrics (auto-generated)
-- `build.sh` Step 0: runs `generate_metrics.py` before pdflatex
+- `scripts/build.sh` Step 0: runs `generate_metrics.py` before pdflatex
 - All hardcoded metrics in `whitepaper.tex` replaced with `\newcommand` references
 - PROCESS.md Session 14: auto-metrics pipeline
+- `scripts/` directory for build and automation scripts
 
 ### Changed
 - Title: added "Human-in-the-Loop" (#45)
@@ -35,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `generate_charts.py` updated: 7→17 repos, dynamic LOC computation, binary file filtering
 - All hardcoded metrics replaced with auto-generated `\newcommand` references — stale numbers are now impossible
 - 8 stale metrics corrected: Security Toolkit LOC 26,630→76,608; measured set LOC 34,016→112K; repo count 16→17; issue counts updated (#49)
+- Moved `build.sh`, `generate_metrics.py`, `scan.sh` into `scripts/` directory for cleaner repo root
 
 ## [0.9.0] - 2026-02-09
 
@@ -194,7 +198,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `PROCESS.md` — process documentation
 - `.gitignore` — LaTeX artifacts, OS files, editor files
 
-[Unreleased]: https://github.com/brucedombrowski/WhitePaper/compare/v0.9.0...HEAD
+[Unreleased]: https://github.com/brucedombrowski/WhitePaper/compare/v0.10.0...HEAD
+[0.10.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.9.0...v0.10.0
 [0.9.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.6.0...v0.7.0

@@ -16,16 +16,17 @@ Bruce Dombrowski (GitHub: brucedombrowski)
 WhitePaper/
 ├── whitepaper.tex          # Main LaTeX document
 ├── references.bib          # BibTeX references
+├── metrics.tex             # AUTO-GENERATED — LaTeX \newcommand definitions for all paper metrics
 ├── CLAUDE.md               # This file
 ├── PROCESS.md              # Executive summary of process
 ├── CHANGELOG.md            # Semantic versioning changelog
 ├── agents.json             # Claude Code --agents mode configuration
-├── build.sh                # LaTeX-to-PDF build script (runs metrics + pdflatex + pandoc)
-├── generate_metrics.py     # Auto-generates metrics.tex from live git/GitHub data
-├── metrics.tex             # AUTO-GENERATED — LaTeX \newcommand definitions for all paper metrics
-├── scan.sh                 # Security scanning wrapper
 ├── .gitignore              # Git ignore rules
 ├── .allowlists/            # Security scan false-positive allowlists
+├── scripts/                # Build and automation scripts
+│   ├── build.sh            # LaTeX-to-PDF build script (runs metrics + pdflatex + pandoc)
+│   ├── generate_metrics.py # Auto-generates metrics.tex from live git/GitHub data
+│   └── scan.sh             # Security scanning wrapper
 └── visualizations/         # Git data visualizations
     ├── generate_charts.py  # Cross-repo chart generator (6 figures)
     ├── generate_theseus.py # git-of-theseus analysis (4 figures)
@@ -101,13 +102,13 @@ claude --agents "$(cat agents.json)"
 ### Compile the white paper
 
 ```bash
-./build.sh
+./scripts/build.sh
 ```
 
 Or manually:
 
 ```bash
-python3 generate_metrics.py  # Step 0: auto-update metrics.tex
+python3 scripts/generate_metrics.py  # Step 0: auto-update metrics.tex
 pdflatex whitepaper.tex && bibtex whitepaper && pdflatex whitepaper.tex && pdflatex whitepaper.tex
 ```
 
@@ -117,14 +118,14 @@ All quantitative claims in the paper are auto-generated. **Never hardcode number
 
 ### How it works
 
-1. `generate_metrics.py` queries all 17 git repos and GitHub API
-2. Outputs `metrics.tex` with `\newcommand` definitions (e.g., `\totalcommits`, `\secloc`)
+1. `scripts/generate_metrics.py` queries all 17 git repos and GitHub API
+2. Outputs `metrics.tex` (in repo root) with `\newcommand` definitions (e.g., `\totalcommits`, `\secloc`)
 3. `whitepaper.tex` uses `\input{metrics.tex}` and references commands instead of numbers
-4. `build.sh` runs the script as Step 0 before pdflatex
+4. `scripts/build.sh` runs the script as Step 0 before pdflatex
 
 ### Adding a new metric
 
-1. Add the computation to `generate_metrics.py`
+1. Add the computation to `scripts/generate_metrics.py`
 2. Add a `\newcommand` to the output
 3. Use `\yournewcommand{}` in `whitepaper.tex`
 4. The `{}` after the command prevents LaTeX from eating the following space

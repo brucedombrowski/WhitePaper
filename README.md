@@ -26,7 +26,7 @@ A methodology for using git version control and AI coding agents to meet federal
 Requires `pdflatex`, `bibtex`, and optionally `pandoc`:
 
 ```bash
-./build.sh
+./scripts/build.sh
 ```
 
 Produces `whitepaper.pdf`, `whitepaper-review.md`, and `whitepaper-review.html`.
@@ -36,13 +36,15 @@ Produces `whitepaper.pdf`, `whitepaper-review.md`, and `whitepaper-review.html`.
 ```
 whitepaper.tex          Main paper (LaTeX)
 references.bib          BibTeX references (25 entries)
-build.sh                Reproducible build script
 agents.json             Multi-agent configuration (5 agents)
 PROCESS.md              Session-by-session development log
 CHANGELOG.md            Keep a Changelog format
 CLAUDE.md               Agent instructions
-scan.sh                 Security scanning wrapper
 .allowlists/            Documented scan exceptions
+scripts/                Build and automation scripts
+  build.sh              Reproducible build script
+  generate_metrics.py   Auto-generates metrics.tex from live data
+  scan.sh               Security scanning wrapper
 visualizations/         10 charts (PNG/PDF/TikZ) + generation scripts
 ```
 

@@ -15,6 +15,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 SCRIPT_DIR = Path(__file__).parent
+REPO_DIR = SCRIPT_DIR.parent
 
 # ============================================================================
 # Repository definitions (must match generate_charts.py)
@@ -116,7 +117,7 @@ def get_github_issues(gh_repo):
 
 def count_sessions():
     """Count sessions from PROCESS.md."""
-    process_file = SCRIPT_DIR / 'PROCESS.md'
+    process_file = REPO_DIR / 'PROCESS.md'
     if not process_file.exists():
         return 0
     count = 0
@@ -287,7 +288,7 @@ lines = [
     f'\\newcommand{{\\wpcommithash}}{{{wp_commit_hash}}}',
 ]
 
-metrics_path = SCRIPT_DIR / 'metrics.tex'
+metrics_path = REPO_DIR / 'metrics.tex'
 metrics_path.write_text('\n'.join(lines) + '\n')
 print(f'  Saved: {metrics_path}')
 

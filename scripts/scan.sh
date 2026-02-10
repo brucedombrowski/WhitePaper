@@ -9,14 +9,15 @@
 #   - NIST SP 800-53: SA-11 (Developer Testing), SI-12 (Information Retention)
 #   - NIST SP 800-171: 3.14.1 (Flaw Remediation)
 #
-# Usage: ./scan.sh
+# Usage: ./scripts/scan.sh
 #
 
 set -eu
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 TOOLKIT_DIR="${SECURITY_TOOLKIT_DIR:-$HOME/Security}"
-SCANS_DIR="$SCRIPT_DIR/.scans"
+SCANS_DIR="$REPO_DIR/.scans"
 TIMESTAMP=$(date -u "+%Y-%m-%dT%H:%M:%SZ")
 
 # Verify toolkit is available
@@ -34,7 +35,7 @@ echo "============================================="
 echo "WhitePaper Security Scan"
 echo "============================================="
 echo "Timestamp: $TIMESTAMP"
-echo "Target:    $SCRIPT_DIR"
+echo "Target:    $REPO_DIR"
 echo "Toolkit:   $TOOLKIT_DIR"
 echo ""
 
@@ -51,7 +52,7 @@ run_scan() {
     local log_file="$SCANS_DIR/${slug}-scan.log"
 
     echo "--- $name ---"
-    "$TOOLKIT_DIR/scripts/$script" "$SCRIPT_DIR" > "$log_file" 2>&1 || true
+    "$TOOLKIT_DIR/scripts/$script" "$REPO_DIR" > "$log_file" 2>&1 || true
     local result
     result=$(tail -5 "$log_file" | grep -o "PASS\|FAIL\|REVIEW" | head -1)
     case "$result" in

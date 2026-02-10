@@ -8,13 +8,14 @@
 # Standards:
 #   - NIST SP 800-53 CM-3: Reproducible build from version-controlled source
 #
-# Usage: ./build.sh
+# Usage: ./scripts/build.sh
 #
 
 set -eu
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEX_FILE="$SCRIPT_DIR/whitepaper.tex"
+REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+TEX_FILE="$REPO_DIR/whitepaper.tex"
 BASE_NAME="whitepaper"
 
 if [ ! -f "$TEX_FILE" ]; then
@@ -33,42 +34,42 @@ fi
 
 # Step 1: Initial compile (generates .aux for bibtex)
 echo "  [1/4] pdflatex (initial)"
-pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > /dev/null 2>&1
+pdflatex -interaction=nonstopmode -output-directory="$REPO_DIR" "$TEX_FILE" > /dev/null 2>&1
 
 # Step 2: Process bibliography
 echo "  [2/4] bibtex"
-(cd "$SCRIPT_DIR" && bibtex "$BASE_NAME") > /dev/null 2>&1
+(cd "$REPO_DIR" && bibtex "$BASE_NAME") > /dev/null 2>&1
 
 # Step 3: Second compile (incorporates bibliography)
 echo "  [3/4] pdflatex (bibliography)"
-pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > /dev/null 2>&1
+pdflatex -interaction=nonstopmode -output-directory="$REPO_DIR" "$TEX_FILE" > /dev/null 2>&1
 
 # Step 4: Third compile (resolves all cross-references)
 echo "  [4/4] pdflatex (cross-references)"
-pdflatex -interaction=nonstopmode -output-directory="$SCRIPT_DIR" "$TEX_FILE" > /dev/null 2>&1
+pdflatex -interaction=nonstopmode -output-directory="$REPO_DIR" "$TEX_FILE" > /dev/null 2>&1
 
 # Generate reviewable outputs (Markdown + HTML)
 if command -v pandoc &> /dev/null; then
     echo "  [5/6] pandoc (markdown for review)"
     pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto \
-        --citeproc --bibliography="$SCRIPT_DIR/references.bib" \
-        -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null || \
+        --citeproc --bibliography="$REPO_DIR/references.bib" \
+        -o "$REPO_DIR/${BASE_NAME}-review.md" 2>/dev/null || \
     pandoc "$TEX_FILE" -f latex -t gfm --wrap=auto \
-        -o "$SCRIPT_DIR/${BASE_NAME}-review.md" 2>/dev/null
+        -o "$REPO_DIR/${BASE_NAME}-review.md" 2>/dev/null
 
     echo "  [6/6] pandoc (HTML for browser review)"
     pandoc "$TEX_FILE" -f latex -t html5 --standalone --mathjax \
         --metadata title="Git and AI Coding Agents for Government Compliance: A Human-in-the-Loop Methodology" \
-        --citeproc --bibliography="$SCRIPT_DIR/references.bib" \
-        -o "$SCRIPT_DIR/${BASE_NAME}-review.html" 2>/dev/null || \
+        --citeproc --bibliography="$REPO_DIR/references.bib" \
+        -o "$REPO_DIR/${BASE_NAME}-review.html" 2>/dev/null || \
     pandoc "$TEX_FILE" -f latex -t html5 --standalone --mathjax \
-        -o "$SCRIPT_DIR/${BASE_NAME}-review.html" 2>/dev/null
+        -o "$REPO_DIR/${BASE_NAME}-review.html" 2>/dev/null
 fi
 
 # Verify output
-if [ -f "$SCRIPT_DIR/$BASE_NAME.pdf" ]; then
-    PAGES=$(pdfinfo "$SCRIPT_DIR/$BASE_NAME.pdf" 2>/dev/null | grep "Pages:" | awk '{print $2}' || echo "?")
-    SIZE=$(ls -lh "$SCRIPT_DIR/$BASE_NAME.pdf" | awk '{print $5}')
+if [ -f "$REPO_DIR/$BASE_NAME.pdf" ]; then
+    PAGES=$(pdfinfo "$REPO_DIR/$BASE_NAME.pdf" 2>/dev/null | grep "Pages:" | awk '{print $2}' || echo "?")
+    SIZE=$(ls -lh "$REPO_DIR/$BASE_NAME.pdf" | awk '{print $5}')
     echo ""
     echo "SUCCESS: $BASE_NAME.pdf ($PAGES pages, $SIZE)"
 else
