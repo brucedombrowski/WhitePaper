@@ -74,7 +74,7 @@
 
 % ============================================================
 \begin{abstract}
-Government software development demands rigorous compliance with federal standards including NIST Special Publications, FIPS cryptographic requirements, and CUI handling regulations under 32~CFR~Part~2002. These requirements impose significant documentation overhead---formal requirements traceability, decision memoranda, verification matrices, and regulatory cross-references---that traditionally consumes substantial engineering effort. This paper presents a methodology for combining \textit{git version control} and \textit{AI coding agents} to address this burden. Git provides the tamper-evident audit trail, branching workflow, and configuration management that government frameworks require; AI coding agents draft compliance artifacts, generate structured requirements, and produce traceability documentation under human review. Together, they shift the engineer's role from author to reviewer while maintaining the human-in-the-loop oversight that compliance frameworks demand. We present a five-phase methodology---from requirements capture through version-controlled interaction traceability---and evaluate it through three case studies: a CUI email encryption tool, a formal decision documentation system, and a Security Verification Toolkit implementing automated NIST SP 800-53 control verification. Using Claude Code (Anthropic) as the AI agent implementation, a single engineer produced 1,010~commits, 335,000+ lines of code, and 149~release tags across 16~repositories in 26~calendar days---including 7~decision memoranda, 29~formally traced requirements, and automated verification of 14~NIST SP 800-53 controls. The methodology is agent-platform agnostic; the principles apply to any agentic AI tool with file system access and human approval workflows.
+Government software development demands rigorous compliance with federal standards including NIST Special Publications, FIPS cryptographic requirements, and CUI handling regulations under 32~CFR~Part~2002. These requirements impose significant documentation overhead---formal requirements traceability, decision memoranda, verification matrices, and regulatory cross-references---that traditionally consumes substantial engineering effort. This paper presents a methodology for combining \textit{git version control} and \textit{AI coding agents} to address this burden. Git provides the tamper-evident audit trail, branching workflow, and configuration management that government frameworks require; AI coding agents draft compliance artifacts, generate structured requirements, and produce traceability documentation under human review. Together, they shift the engineer's role from author to reviewer while maintaining the human-in-the-loop oversight that compliance frameworks demand. We present a five-phase methodology---from requirements capture through version-controlled interaction traceability---and evaluate it through three case studies: a CUI email encryption tool, a formal decision documentation system, and a Security Verification Toolkit implementing automated NIST SP 800-53 control verification. Using Claude Code (Anthropic) as the AI agent implementation, a single engineer produced 1,063~commits, 226,000+ lines of code, and 149~release tags across 17~repositories in 67~calendar days---including 7~decision memoranda, 29~formally traced requirements, and automated verification of 14~NIST SP 800-53 controls. The methodology is agent-platform agnostic; the principles apply to any agentic AI tool with file system access and human approval workflows.
 \end{abstract}
 
 \medskip
@@ -486,7 +486,7 @@ The toolkit's design philosophy---\textit{``You are only as good as your last sc
 
 \subsection{Codebase Structure Evolution}
 
-Code survival analysis using git-of-theseus reveals how the toolkit's codebase structure evolved over its 463-commit history. Figure~\ref{fig:theseus-dirs} shows that the \texttt{scripts/} (implementation) and \texttt{tests/} (verification) directories grew in lockstep throughout the development period---from approximately 10,000 and 3,000 lines respectively at the start of the analyzed period to 27,000 and 8,000 lines at the time of writing. This parallel growth indicates disciplined test coverage practices maintained throughout AI-assisted development: new scanning capabilities were consistently accompanied by corresponding test cases.
+Code survival analysis using git-of-theseus reveals how the toolkit's codebase structure evolved over its 472-commit history. Figure~\ref{fig:theseus-dirs} shows that the \texttt{scripts/} (implementation) and \texttt{tests/} (verification) directories grew in lockstep throughout the development period---from approximately 10,000 and 3,000 lines respectively at the start of the analyzed period to 27,000 and 8,000 lines at the time of writing. This parallel growth indicates disciplined test coverage practices maintained throughout AI-assisted development: new scanning capabilities were consistently accompanied by corresponding test cases.
 
 \begin{figure}[htbp]
 \centering
@@ -678,18 +678,18 @@ Areas requiring human review include:
 
 \subsection{Quantitative Output Analysis}
 
-Table~\ref{tab:output-metrics} summarizes the measurable output of the AI-assisted methodology across the three case studies and supporting infrastructure, produced by a single engineer over 26~calendar days.
+Table~\ref{tab:output-metrics} summarizes the measurable output of the AI-assisted methodology across the three case studies and supporting infrastructure, produced by a single engineer over 67~calendar days.
 
 \begin{table}[htbp]
 \centering
-\caption{Aggregate output metrics (26-day period, single engineer)}
+\caption{Aggregate output metrics (67-day period, single engineer)}
 \label{tab:output-metrics}
 \begin{tabularx}{\columnwidth}{Xr}
 \toprule
 \textbf{Metric} & \textbf{Value} \\
 \midrule
 Git repositories (measured set) & 7 \\
-Total commits (measured set) & 642 \\
+Total commits (measured set) & 676 \\
 Lines of code (measured set) & 34,016 \\
 Release tags (measured set) & 136 \\
 Decision memoranda & 7 \\
@@ -700,16 +700,16 @@ Test scripts & 14 \\
 NIST controls automated & 14 \\
 GitHub issues (audit trail) & 170+ \\
 \midrule
-\multicolumn{2}{l}{\textit{Full ecosystem (16 repositories):}} \\
-Total commits & 1,010 \\
-Lines of code & 335,000+ \\
+\multicolumn{2}{l}{\textit{Full ecosystem (17 repositories):}} \\
+Total commits & 1,063 \\
+Lines of code & 226,000+ \\
 Release tags & 149 \\
 Languages & 8 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The daily commit rate averaged 24.7~commits/day, with the Security Verification Toolkit alone accounting for 463~commits, 94~version tags, and 26,630~lines of code. These figures are not presented as benchmarks---the commit rate reflects a development style characterized by frequent, atomic commits rather than large batch changes---but they indicate the throughput achievable when AI agents handle drafting and the engineer focuses on review and direction.
+The daily commit rate averaged 15.9~commits/day, with the Security Verification Toolkit alone accounting for 472~commits, 94~version tags, and 26,630~lines of code. These figures are not presented as benchmarks---the commit rate reflects a development style characterized by frequent, atomic commits rather than large batch changes---but they indicate the throughput achievable when AI agents handle drafting and the engineer focuses on review and direction.
 
 Figure~\ref{fig:code-churn} shows the daily code churn across all repositories. Every period shows net-positive creation (green additions exceeding red deletions), with a sustained deletion rate indicating active refactoring rather than write-once code. The 48,000-line addition spike (late January) corresponds to the Security Verification Toolkit's test suite expansion---a compliance-critical investment that the AI agent produced concurrently with the scanning scripts.
 
@@ -730,7 +730,7 @@ This shift has two implications. First, it is faster: reviewing a draft is consi
 
 \subsection{Concurrent Multi-Project Scalability}
 
-The review-centric workflow has a second-order implication: because the human's role shifts from author to reviewer, a single engineer can oversee multiple AI-assisted projects concurrently. During the development of this paper, the author maintained five active projects simultaneously---SendCUIEmail (CUI encryption), a decision documentation system, a Security Verification Toolkit, this white paper, and a Scrum-based agent orchestration system---each with its own AI agent sessions and compliance artifacts. These five projects span seven git repositories tracked in this paper's visualization data, with additional supporting repositories (agent templates, process framework, privacy tooling, cross-platform utilities, web applications, and hardware projects) bringing the total to 16 repositories containing 1,010~commits, 149~release tags, and over 335,000~lines of code.
+The review-centric workflow has a second-order implication: because the human's role shifts from author to reviewer, a single engineer can oversee multiple AI-assisted projects concurrently. During the development of this paper, the author maintained five active projects simultaneously---SendCUIEmail (CUI encryption), a decision documentation system, a Security Verification Toolkit, this white paper, and a Scrum-based agent orchestration system---each with its own AI agent sessions and compliance artifacts. These five projects span seven git repositories tracked in this paper's visualization data, with additional supporting repositories (agent templates, process framework, privacy tooling, cross-platform utilities, web applications, and hardware projects) bringing the total to 17 repositories containing 1,063~commits, 149~release tags, and over 226,000~lines of code.
 
 Critically, these projects are not merely concurrent; they \textit{cross-pollinate}. Patterns discovered in one project feed into others: the Security Verification Toolkit's scanning infrastructure was applied to the white paper repository (Section~\ref{sec:casestudy-toolkit}); the SendCUIEmail project's agent conventions (\texttt{AGENTS.md}) informed the multi-agent architecture described in Section~\ref{sec:agents}; the Scrum repo's team structure informed Section~\ref{sec:scrum}; and this paper documents the methodology used across all projects, creating a feedback loop that improves each project's compliance posture.
 
@@ -743,7 +743,7 @@ Moreover, the methodology itself is refined iteratively as the projects progress
 \begin{figure*}[htbp]
 \centering
 \includegraphics[width=\textwidth]{visualizations/cumulative_commits.pdf}
-\caption{Cumulative commits across all seven repositories over the four-week development period. The Security Verification Toolkit (green, dotted) dominates with 463 commits and exhibits the steepest growth curve. Multiple repositories advance concurrently, demonstrating the scalability of the AI-assisted review-centric workflow.}
+\caption{Cumulative commits across all 17 repositories over the 67-day development period. The Security Verification Toolkit dominates with 472 commits and exhibits the steepest growth curve. Multiple repositories advance concurrently, demonstrating the scalability of the AI-assisted review-centric workflow.}
 \label{fig:cumulative-commits}
 \end{figure*}
 
@@ -779,7 +779,7 @@ The toolkit comprises both custom analysis scripts and established open-source t
     \item \textbf{Custom cross-repo analysis}: Cumulative commit timelines, daily activity by repository, code churn (additions vs. deletions), commit pattern analysis (hour of day, day of week), and ecosystem timeline (Gantt-style active development windows).
 \end{itemize}
 
-Applied to the ecosystem repositories (totaling 1,010 commits and 335,000+ lines of code across 16 repositories), the visualizations revealed several patterns. Figure~\ref{fig:repo-comparison} shows the ecosystem overview: the Security Verification Toolkit dominates with 463 commits, 26,630 lines of code, and 94 version tags. Figure~\ref{fig:ecosystem-timeline} shows the active development windows---multiple repositories developed concurrently by a single engineer with AI agent support. Additional findings include: \texttt{scripts/} and \texttt{tests/} directories grew in lockstep (indicating disciplined test coverage); development activity concentrated on weekdays with near-zero weekend commits; and the code cohort analysis confirmed that all code is 2026-vintage---consistent with a rapidly growing project where code survival analysis is not yet meaningful but growth trajectories are clearly visible.
+Applied to the ecosystem repositories (totaling 1,063 commits and 226,000+ lines of code across 17 repositories), the visualizations revealed several patterns. Figure~\ref{fig:repo-comparison} shows the ecosystem overview: the Security Verification Toolkit dominates with 472 commits, 26,630 lines of code, and 94 version tags. Figure~\ref{fig:ecosystem-timeline} shows the active development windows---multiple repositories developed concurrently by a single engineer with AI agent support. Additional findings include: \texttt{scripts/} and \texttt{tests/} directories grew in lockstep (indicating disciplined test coverage); development activity concentrated on weekdays with near-zero weekend commits; and the code cohort analysis confirmed that all code is 2026-vintage---consistent with a rapidly growing project where code survival analysis is not yet meaningful but growth trajectories are clearly visible.
 
 \begin{figure*}[htbp]
 \centering
@@ -857,7 +857,7 @@ A practical barrier to adopting AI-assisted compliance workflows within governme
 
 Critically, the open-source development stage forces the engineer to solve problems \textit{generically}. Because the repositories are public, no CUI, PII, or proprietary information can appear in the code, templates, or documentation. This constraint---which might seem limiting---is in fact an advantage: the resulting artifacts are inherently safe to share, demonstrate, and review without security concerns. The open-source work serves as a ``clean room'' implementation that the organization's in-house work can inherit. The same templates that encrypt hypothetical files in SendCUIEmail can encrypt real CUI in production; the same scanning scripts that verify compliance on synthetic test data can verify it on organizational systems.
 
-This pathway directly addresses the classification boundary limitation (Limitation~4 below): rather than requiring AI tools to operate within the classification boundary, the methodology is developed \textit{outside} the boundary with synthetic data, then applied inside it with organizational tooling and data. The AI agent assists in creating the framework; the human applies it to the classified context. The 1,010~commits, 149~release tags, and 335,000+ lines of code across 16~repositories represent the open-source validation stage of this pipeline, a body of evidence an engineer can present to organizational leadership before requesting formal adoption.
+This pathway directly addresses the classification boundary limitation (Limitation~4 below): rather than requiring AI tools to operate within the classification boundary, the methodology is developed \textit{outside} the boundary with synthetic data, then applied inside it with organizational tooling and data. The AI agent assists in creating the framework; the human applies it to the classified context. The 1,063~commits, 149~release tags, and 226,000+ lines of code across 17~repositories represent the open-source validation stage of this pipeline, a body of evidence an engineer can present to organizational leadership before requesting formal adoption.
 
 \subsubsection{Enterprise Deployment Options}
 
@@ -923,7 +923,7 @@ The key insight is not that AI replaces compliance expertise, but that it \texti
 
 This paper itself demonstrates the methodology: it was produced across multiple AI agent sessions, with every human directive and agent action logged as GitHub issues, every change captured in semantically versioned git commits, and the entire process reproducible from the public repository. The fact that an AI agent can assist in producing both the compliance artifacts \textit{and} the auditable process documentation for those artifacts suggests a path toward significantly reducing the overhead of government compliance work.
 
-This work is not a proof of concept. The methodology, agent configurations, and process artifacts presented here are in active use across 16 repositories spanning government compliance, systems engineering, security tooling, and CAD---real projects with real deliverables. The approach produces measurable outcomes: 1,010~commits, 335,000+ lines of code, 149~release tags, and over 130~compliance artifacts across 16~repositories in 26~calendar days---produced by a single engineer with AI agent support. This demonstrates more consistent documentation (fewer gaps, stronger traceability), faster delivery (the review-centric workflow eliminates the authoring bottleneck), and reduced personnel requirements (one engineer with AI agents sustains the documentation overhead that traditionally demands a dedicated compliance team). The engineering experience itself improves when the tedious parts of compliance work are handled by agents and the human focuses on judgment, direction, and review. As government agencies and contractors face increasing pressure to demonstrate compliance across expanding regulatory frameworks, the methodology presented here offers a practical, field-tested foundation for getting real work done.
+This work is not a proof of concept. The methodology, agent configurations, and process artifacts presented here are in active use across 16 repositories spanning government compliance, systems engineering, security tooling, and CAD---real projects with real deliverables. The approach produces measurable outcomes: 1,063~commits, 226,000+ lines of code, 149~release tags, and over 130~compliance artifacts across 17~repositories in 67~calendar days---produced by a single engineer with AI agent support. This demonstrates more consistent documentation (fewer gaps, stronger traceability), faster delivery (the review-centric workflow eliminates the authoring bottleneck), and reduced personnel requirements (one engineer with AI agents sustains the documentation overhead that traditionally demands a dedicated compliance team). The engineering experience itself improves when the tedious parts of compliance work are handled by agents and the human focuses on judgment, direction, and review. As government agencies and contractors face increasing pressure to demonstrate compliance across expanding regulatory frameworks, the methodology presented here offers a practical, field-tested foundation for getting real work done.
 
 % ============================================================
 \section*{Acknowledgments}

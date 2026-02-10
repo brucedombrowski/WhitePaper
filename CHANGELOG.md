@@ -16,11 +16,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - YOLO vs meaningful oversight analysis in Human-in-the-Loop subsection (#46)
 - `.github/workflows/release.yml` — auto-attach PDF+HTML to tagged releases (#42)
 - PROCESS.md Session 12: ecosystem review and metrics update
+- Regenerated all 6 cross-repo charts with 17-repo data (was 7 repos)
+- PROCESS.md Session 13: visualization regeneration and metrics correction
 
 ### Changed
 - Title: added "Human-in-the-Loop" (#45)
 - Human-in-the-Loop subsection expanded: auto-accept vs rubber-stamp failure modes, 40% corrective intervention rate
 - Reproducibility metrics: 43 issues, 49 commits, 9 tags, v0.9.0
+- Ecosystem metrics corrected: 1,010→1,063 commits, 335K→226K LOC (binary .exe files excluded), 16→17 repos
+- Development period corrected: 26→67 calendar days (Dec 6, 2025 – Feb 10, 2026)
+- Security Toolkit commits: 463→472
+- Measured set commits: 642→676
+- `generate_charts.py` updated: 7→17 repos, dynamic LOC computation, binary file filtering
 
 ## [0.9.0] - 2026-02-09
 

@@ -4,15 +4,25 @@
 \definecolor{crimson2143940}{RGB}{214,39,40}
 \definecolor{darkgray176}{RGB}{176,176,176}
 \definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{darkturquoise23190207}{RGB}{23,190,207}
 \definecolor{forestgreen4416044}{RGB}{44,160,44}
+\definecolor{goldenrod18818934}{RGB}{188,189,34}
+\definecolor{gray127}{RGB}{127,127,127}
+\definecolor{lightgreen152223138}{RGB}{152,223,138}
+\definecolor{lightsalmon255152150}{RGB}{255,152,150}
+\definecolor{lightsalmon255187120}{RGB}{255,187,120}
+\definecolor{lightsteelblue174199232}{RGB}{174,199,232}
 \definecolor{mediumpurple148103189}{RGB}{148,103,189}
 \definecolor{orchid227119194}{RGB}{227,119,194}
+\definecolor{pink247182210}{RGB}{247,182,210}
+\definecolor{rosybrown196156148}{RGB}{196,156,148}
 \definecolor{sienna1408675}{RGB}{140,86,75}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
+\definecolor{thistle197176213}{RGB}{197,176,213}
 
 \begin{axis}[
 legend cell align={left},
-legend columns=2,
+legend columns=3,
 legend style={
   fill opacity=0.8,
   draw opacity=1,
@@ -25,47 +35,54 @@ tick pos=both,
 title={Daily Commit Activity by Repository},
 x grid style={darkgray176},
 xlabel={Date},
-xmin=20465.26, xmax=20494.74,
+xmin=20424.26, xmax=20497.74,
 xtick style={color=black},
-xtick={20466,20470,20474,20478,20482,20485,20489,20493},
+xtick={20437,20454,20468,20485},
 xticklabel style={rotate=30.0,anchor=east},
-xticklabels={
-  2026-01-13,
-  2026-01-17,
-  2026-01-21,
-  2026-01-25,
-  2026-01-29,
-  2026-02-01,
-  2026-02-05,
-  2026-02-09
-},
+xticklabels={2025-12-15,2026-01-01,2026-01-15,2026-02-01},
 y grid style={darkgray176},
 ylabel={Commits per Day},
 ymajorgrids,
-ymin=0, ymax=73,
+ymin=0, ymax=95,
 ytick style={color=black},
-ytick={0,10,20,30,40,50,60,70,80},
+ytick={0,20,40,60,80,100},
 yticklabels={
   \(\displaystyle {0}\),
-  \(\displaystyle {10}\),
   \(\displaystyle {20}\),
-  \(\displaystyle {30}\),
   \(\displaystyle {40}\),
-  \(\displaystyle {50}\),
   \(\displaystyle {60}\),
-  \(\displaystyle {70}\),
-  \(\displaystyle {80}\)
+  \(\displaystyle {80}\),
+  \(\displaystyle {100}\)
 }
 ]
-\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20466.6,0) rectangle (axis cs:20467.4,58);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20427.6,0) rectangle (axis cs:20428.4,0);
 \addlegendimage{ybar,ybar legend,draw=none,fill=steelblue31119180,fill opacity=0.85}
 \addlegendentry{Decisions}
 
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20428.6,0) rectangle (axis cs:20429.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20429.6,0) rectangle (axis cs:20430.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20430.6,0) rectangle (axis cs:20431.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20432.6,0) rectangle (axis cs:20433.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20440.6,0) rectangle (axis cs:20441.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20441.6,0) rectangle (axis cs:20442.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20444.6,0) rectangle (axis cs:20445.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20450.6,0) rectangle (axis cs:20451.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20451.6,0) rectangle (axis cs:20452.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20453.6,0) rectangle (axis cs:20454.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20454.6,0) rectangle (axis cs:20455.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20455.6,0) rectangle (axis cs:20456.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20457.6,0) rectangle (axis cs:20458.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20466.6,0) rectangle (axis cs:20467.4,58);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,0);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,0);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20472.6,0) rectangle (axis cs:20473.4,8);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20473.6,0) rectangle (axis cs:20474.4,30);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20474.6,0) rectangle (axis cs:20475.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20475.6,0) rectangle (axis cs:20476.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,0);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,0);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,0);
@@ -75,15 +92,35 @@ yticklabels={
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,0);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,0);
 \draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20492.6,0) rectangle (axis cs:20493.4,0);
-\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20466.6,58) rectangle (axis cs:20467.4,58);
+\draw[draw=none,fill=steelblue31119180,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20427.6,0) rectangle (axis cs:20428.4,0);
 \addlegendimage{ybar,ybar legend,draw=none,fill=darkorange25512714,fill opacity=0.85}
-\addlegendentry{Scrum}
+\addlegendentry{Hardware}
 
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20428.6,0) rectangle (axis cs:20429.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20429.6,0) rectangle (axis cs:20430.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20430.6,0) rectangle (axis cs:20431.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20432.6,0) rectangle (axis cs:20433.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20440.6,0) rectangle (axis cs:20441.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20441.6,0) rectangle (axis cs:20442.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20444.6,0) rectangle (axis cs:20445.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20450.6,0) rectangle (axis cs:20451.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20451.6,0) rectangle (axis cs:20452.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20453.6,0) rectangle (axis cs:20454.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20454.6,0) rectangle (axis cs:20455.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20455.6,0) rectangle (axis cs:20456.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20457.6,0) rectangle (axis cs:20458.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20466.6,58) rectangle (axis cs:20467.4,58);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,0);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,0);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
-\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20474.6,0) rectangle (axis cs:20475.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20474.6,0) rectangle (axis cs:20475.4,14);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20475.6,0) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,0);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,0);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,0);
@@ -92,97 +129,578 @@ yticklabels={
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20487.6,0) rectangle (axis cs:20488.4,0);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,0);
 \draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,0);
-\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20492.6,0) rectangle (axis cs:20493.4,1);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20466.6,58) rectangle (axis cs:20467.4,63);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20492.6,0) rectangle (axis cs:20493.4,0);
+\draw[draw=none,fill=darkorange25512714,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20427.6,0) rectangle (axis cs:20428.4,0);
 \addlegendimage{ybar,ybar legend,draw=none,fill=forestgreen4416044,fill opacity=0.85}
-\addlegendentry{Security Toolkit}
+\addlegendentry{MusicProduction}
 
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,72);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20428.6,0) rectangle (axis cs:20429.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20429.6,0) rectangle (axis cs:20430.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20430.6,0) rectangle (axis cs:20431.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20432.6,0) rectangle (axis cs:20433.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20440.6,0) rectangle (axis cs:20441.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20441.6,0) rectangle (axis cs:20442.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20444.6,0) rectangle (axis cs:20445.4,1);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20450.6,0) rectangle (axis cs:20451.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20451.6,0) rectangle (axis cs:20452.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20453.6,0) rectangle (axis cs:20454.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20454.6,0) rectangle (axis cs:20455.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20455.6,0) rectangle (axis cs:20456.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20457.6,0) rectangle (axis cs:20458.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20466.6,58) rectangle (axis cs:20467.4,58);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,0);
 \draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
 \draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20474.6,0) rectangle (axis cs:20475.4,0);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,57);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,49);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,5);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20485.6,0) rectangle (axis cs:20486.4,7);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20486.6,0) rectangle (axis cs:20487.4,68);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20487.6,0) rectangle (axis cs:20488.4,54);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,38);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,73);
-\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20492.6,1) rectangle (axis cs:20493.4,1);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20466.6,63) rectangle (axis cs:20467.4,63);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20474.6,14) rectangle (axis cs:20475.4,14);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20485.6,0) rectangle (axis cs:20486.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20486.6,0) rectangle (axis cs:20487.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20487.6,0) rectangle (axis cs:20488.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20492.6,0) rectangle (axis cs:20493.4,0);
+\draw[draw=none,fill=forestgreen4416044,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20427.6,0) rectangle (axis cs:20428.4,63);
 \addlegendimage{ybar,ybar legend,draw=none,fill=crimson2143940,fill opacity=0.85}
-\addlegendentry{SendCUIEmail}
+\addlegendentry{OpenSourceHouseProject}
 
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20428.6,0) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20429.6,0) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20430.6,0) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20432.6,0) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20440.6,0) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20441.6,0) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20444.6,1) rectangle (axis cs:20445.4,1);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20450.6,0) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20451.6,0) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20453.6,0) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20454.6,0) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20455.6,0) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20457.6,0) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20466.6,58) rectangle (axis cs:20467.4,58);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,0);
 \draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
 \draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20474.6,0) rectangle (axis cs:20475.4,49);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20489.6,73) rectangle (axis cs:20490.4,73);
-\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20492.6,1) rectangle (axis cs:20493.4,1);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20466.6,63) rectangle (axis cs:20467.4,63);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20474.6,14) rectangle (axis cs:20475.4,14);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20485.6,0) rectangle (axis cs:20486.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20486.6,0) rectangle (axis cs:20487.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20487.6,0) rectangle (axis cs:20488.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20492.6,0) rectangle (axis cs:20493.4,0);
+\draw[draw=none,fill=crimson2143940,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
 \addlegendimage{ybar,ybar legend,draw=none,fill=mediumpurple148103189,fill opacity=0.85}
-\addlegendentry{WhitePaper}
+\addlegendentry{PdfSigner}
 
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20444.6,1) rectangle (axis cs:20445.4,1);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20466.6,58) rectangle (axis cs:20467.4,81);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,0);
 \draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
 \draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20474.6,49) rectangle (axis cs:20475.4,49);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20489.6,73) rectangle (axis cs:20490.4,73);
-\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20492.6,1) rectangle (axis cs:20493.4,29);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20466.6,63) rectangle (axis cs:20467.4,63);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20474.6,14) rectangle (axis cs:20475.4,14);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20485.6,0) rectangle (axis cs:20486.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20486.6,0) rectangle (axis cs:20487.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20487.6,0) rectangle (axis cs:20488.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20492.6,0) rectangle (axis cs:20493.4,0);
+\draw[draw=none,fill=mediumpurple148103189,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
 \addlegendimage{ybar,ybar legend,draw=none,fill=sienna1408675,fill opacity=0.85}
-\addlegendentry{ai-agents}
+\addlegendentry{Scrum}
 
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20444.6,1) rectangle (axis cs:20445.4,1);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20466.6,81) rectangle (axis cs:20467.4,81);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,0);
 \draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
 \draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20474.6,49) rectangle (axis cs:20475.4,49);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20489.6,73) rectangle (axis cs:20490.4,73);
-\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20492.6,29) rectangle (axis cs:20493.4,30);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20466.6,63) rectangle (axis cs:20467.4,63);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20474.6,14) rectangle (axis cs:20475.4,14);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20485.6,0) rectangle (axis cs:20486.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20486.6,0) rectangle (axis cs:20487.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20487.6,0) rectangle (axis cs:20488.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,0);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20492.6,0) rectangle (axis cs:20493.4,1);
+\draw[draw=none,fill=sienna1408675,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
 \addlegendimage{ybar,ybar legend,draw=none,fill=orchid227119194,fill opacity=0.85}
-\addlegendentry{systems-engineering}
+\addlegendentry{Security Toolkit}
 
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20444.6,1) rectangle (axis cs:20445.4,1);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20466.6,81) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20467.6,0) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20468.6,0) rectangle (axis cs:20469.4,35);
 \draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
 \draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20474.6,49) rectangle (axis cs:20475.4,49);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20489.6,73) rectangle (axis cs:20490.4,73);
-\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20492.6,30) rectangle (axis cs:20493.4,34);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20474.6,14) rectangle (axis cs:20475.4,14);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20481.6,0) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20482.6,0) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20483.6,0) rectangle (axis cs:20484.4,5);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20485.6,0) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20486.6,0) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20487.6,0) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20488.6,0) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20489.6,0) rectangle (axis cs:20490.4,79);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20492.6,1) rectangle (axis cs:20493.4,4);
+\draw[draw=none,fill=orchid227119194,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=gray127,fill opacity=0.85}
+\addlegendentry{SendCUIEmail}
+
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,0);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20444.6,1) rectangle (axis cs:20445.4,1);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,0);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20474.6,14) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20489.6,79) rectangle (axis cs:20490.4,79);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20492.6,4) rectangle (axis cs:20493.4,4);
+\draw[draw=none,fill=gray127,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=goldenrod18818934,fill opacity=0.85}
+\addlegendentry{SpeakUp}
+
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20443.6,0) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20444.6,1) rectangle (axis cs:20445.4,33);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20458.6,0) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,0);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,0);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20489.6,79) rectangle (axis cs:20490.4,79);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20492.6,4) rectangle (axis cs:20493.4,4);
+\draw[draw=none,fill=goldenrod18818934,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=darkturquoise23190207,fill opacity=0.85}
+\addlegendentry{WeddingWebsite}
+
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20444.6,33) rectangle (axis cs:20445.4,33);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20476.6,0) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20479.6,0) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20489.6,79) rectangle (axis cs:20490.4,79);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20492.6,4) rectangle (axis cs:20493.4,7);
+\draw[draw=none,fill=darkturquoise23190207,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,0);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=lightsteelblue174199232,fill opacity=0.85}
+\addlegendentry{WhitePaper}
+
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20444.6,33) rectangle (axis cs:20445.4,33);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20476.6,3) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20479.6,3) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20489.6,79) rectangle (axis cs:20490.4,79);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20492.6,7) rectangle (axis cs:20493.4,56);
+\draw[draw=none,fill=lightsteelblue174199232,fill opacity=0.85] (axis cs:20493.6,0) rectangle (axis cs:20494.4,2);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=lightsalmon255187120,fill opacity=0.85}
+\addlegendentry{ai-agents}
+
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20444.6,33) rectangle (axis cs:20445.4,33);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20476.6,3) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20479.6,3) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20489.6,79) rectangle (axis cs:20490.4,79);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20492.6,56) rectangle (axis cs:20493.4,57);
+\draw[draw=none,fill=lightsalmon255187120,fill opacity=0.85] (axis cs:20493.6,2) rectangle (axis cs:20494.4,4);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=lightgreen152223138,fill opacity=0.85}
+\addlegendentry{claude-dangerously}
+
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20444.6,33) rectangle (axis cs:20445.4,33);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20476.6,3) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20479.6,3) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,5);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20489.6,79) rectangle (axis cs:20490.4,85);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20492.6,57) rectangle (axis cs:20493.4,57);
+\draw[draw=none,fill=lightgreen152223138,fill opacity=0.85] (axis cs:20493.6,4) rectangle (axis cs:20494.4,4);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=lightsalmon255152150,fill opacity=0.85}
+\addlegendentry{homebrew-tap}
+
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20444.6,33) rectangle (axis cs:20445.4,33);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20476.6,3) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20479.6,3) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20483.6,5) rectangle (axis cs:20484.4,7);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20489.6,85) rectangle (axis cs:20490.4,85);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20492.6,57) rectangle (axis cs:20493.4,57);
+\draw[draw=none,fill=lightsalmon255152150,fill opacity=0.85] (axis cs:20493.6,4) rectangle (axis cs:20494.4,4);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=thistle197176213,fill opacity=0.85}
+\addlegendentry{privacy}
+
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20444.6,33) rectangle (axis cs:20445.4,35);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20476.6,3) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20479.6,3) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20483.6,7) rectangle (axis cs:20484.4,7);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20489.6,85) rectangle (axis cs:20490.4,85);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20492.6,57) rectangle (axis cs:20493.4,58);
+\draw[draw=none,fill=thistle197176213,fill opacity=0.85] (axis cs:20493.6,4) rectangle (axis cs:20494.4,5);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=rosybrown196156148,fill opacity=0.85}
+\addlegendentry{screen2cam}
+
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20444.6,35) rectangle (axis cs:20445.4,35);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20476.6,3) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20479.6,3) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20483.6,7) rectangle (axis cs:20484.4,7);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20489.6,85) rectangle (axis cs:20490.4,95);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20492.6,58) rectangle (axis cs:20493.4,58);
+\draw[draw=none,fill=rosybrown196156148,fill opacity=0.85] (axis cs:20493.6,5) rectangle (axis cs:20494.4,5);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20427.6,63) rectangle (axis cs:20428.4,63);
+\addlegendimage{ybar,ybar legend,draw=none,fill=pink247182210,fill opacity=0.85}
+\addlegendentry{systems-engineering}
+
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20428.6,35) rectangle (axis cs:20429.4,35);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20429.6,21) rectangle (axis cs:20430.4,21);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20430.6,58) rectangle (axis cs:20431.4,58);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20432.6,41) rectangle (axis cs:20433.4,41);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20440.6,19) rectangle (axis cs:20441.4,19);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20441.6,12) rectangle (axis cs:20442.4,12);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20443.6,18) rectangle (axis cs:20444.4,18);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20444.6,35) rectangle (axis cs:20445.4,35);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20450.6,5) rectangle (axis cs:20451.4,5);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20451.6,2) rectangle (axis cs:20452.4,2);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20453.6,1) rectangle (axis cs:20454.4,1);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20454.6,2) rectangle (axis cs:20455.4,2);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20455.6,3) rectangle (axis cs:20456.4,3);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20457.6,2) rectangle (axis cs:20458.4,2);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20458.6,2) rectangle (axis cs:20459.4,2);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20466.6,86) rectangle (axis cs:20467.4,86);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20467.6,72) rectangle (axis cs:20468.4,72);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20468.6,35) rectangle (axis cs:20469.4,35);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20472.6,8) rectangle (axis cs:20473.4,8);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20473.6,30) rectangle (axis cs:20474.4,30);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20474.6,63) rectangle (axis cs:20475.4,63);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20475.6,2) rectangle (axis cs:20476.4,2);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20476.6,3) rectangle (axis cs:20477.4,3);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20479.6,3) rectangle (axis cs:20480.4,3);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20481.6,57) rectangle (axis cs:20482.4,57);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20482.6,49) rectangle (axis cs:20483.4,49);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20483.6,7) rectangle (axis cs:20484.4,7);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20485.6,7) rectangle (axis cs:20486.4,7);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20486.6,68) rectangle (axis cs:20487.4,68);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20487.6,54) rectangle (axis cs:20488.4,54);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20488.6,38) rectangle (axis cs:20489.4,38);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20489.6,95) rectangle (axis cs:20490.4,95);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20492.6,58) rectangle (axis cs:20493.4,62);
+\draw[draw=none,fill=pink247182210,fill opacity=0.85] (axis cs:20493.6,5) rectangle (axis cs:20494.4,5);
 \end{axis}
 
 \end{tikzpicture}

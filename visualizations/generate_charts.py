@@ -33,21 +33,30 @@ except Exception:
 
 OUTPUT_DIR = Path(__file__).parent
 REPOS = {
-    'WhitePaper': '/Users/brucedombrowski/WhitePaper',
-    'SendCUIEmail': '/Users/brucedombrowski/Git/SendCUIEmail',
-    'Decisions': '/Users/brucedombrowski/LaTeX/Decisions',
-    'Security Toolkit': '/Users/brucedombrowski/Security',
+    # Core case study repos (measured set in paper)
+    'WhitePaper':             '/Users/brucedombrowski/WhitePaper',
+    'SendCUIEmail':           '/Users/brucedombrowski/Git/SendCUIEmail',
+    'Decisions':              '/Users/brucedombrowski/LaTeX',
+    'Security Toolkit':       '/Users/brucedombrowski/Security',
+    'Scrum':                  '/Users/brucedombrowski/Scrum',
+    'ai-agents':              '/Users/brucedombrowski/ai-agents',
+    'systems-engineering':    '/Users/brucedombrowski/systems-engineering',
+    # Extended ecosystem repos
+    'Hardware':               '/Users/brucedombrowski/Git/Hardware',
+    'WeddingWebsite':         '/Users/brucedombrowski/Git/WeddingWebsite',
+    'OpenSourceHouseProject': '/Users/brucedombrowski/OpenSourceHouseProject',
+    'PdfSigner':              '/Users/brucedombrowski/PdfSigner',
+    'SpeakUp':                '/Users/brucedombrowski/SpeakUp',
+    'screen2cam':             '/Users/brucedombrowski/screen2cam',
+    'claude-dangerously':     '/Users/brucedombrowski/claude-dangerously',
+    'privacy':                '/Users/brucedombrowski/privacy',
+    'MusicProduction':        '/Users/brucedombrowski/MusicProduction',
+    'homebrew-tap':           '/Users/brucedombrowski/Security/homebrew-tap',
 }
 
-# Also check for newer repos
-EXTRA_REPOS = {
-    'Scrum': '/Users/brucedombrowski/Scrum',
-    'ai-agents': '/tmp/ai-agents',
-    'systems-engineering': '/tmp/systems-engineering',
-}
-for name, path in EXTRA_REPOS.items():
-    if Path(path).exists() and (Path(path) / '.git').exists():
-        REPOS[name] = path
+# Filter to repos that actually exist
+REPOS = {k: v for k, v in REPOS.items()
+         if Path(v).exists() and (Path(v) / '.git').exists()}
 
 
 def extract_git_log(repo_path, repo_name):
@@ -157,7 +166,9 @@ print(f'\nTotal: {len(df)} commits across {len(REPOS)} repos\n')
 print('Chart 1: Cumulative commits over time...')
 fig, ax = plt.subplots(figsize=(8, 4))
 
-colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2']
+colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2',
+          '#7f7f7f', '#bcbd22', '#17becf', '#aec7e8', '#ffbb78', '#98df8a', '#ff9896',
+          '#c5b0d5', '#c49c94', '#f7b6d2', '#c7c7c7', '#dbdb8d', '#9edae5']
 for i, (repo_name, group) in enumerate(df.groupby('repo')):
     daily = group.groupby('date').size().sort_index().cumsum()
     ax.step(daily.index, daily.values, where='post',
@@ -167,7 +178,7 @@ for i, (repo_name, group) in enumerate(df.groupby('repo')):
 ax.set_xlabel('Date')
 ax.set_ylabel('Cumulative Commits')
 ax.set_title('Cumulative Commits Across All Repositories')
-ax.legend(loc='upper left', fontsize=8)
+ax.legend(loc='upper left', fontsize=6, ncol=2)
 ax.grid(True, alpha=0.3)
 fig.autofmt_xdate()
 save_figure(fig, 'cumulative_commits')
@@ -193,7 +204,7 @@ for i, repo_name in enumerate(repo_daily.columns):
 ax.set_xlabel('Date')
 ax.set_ylabel('Commits per Day')
 ax.set_title('Daily Commit Activity by Repository')
-ax.legend(loc='upper left', fontsize=7, ncol=2)
+ax.legend(loc='upper left', fontsize=6, ncol=3)
 ax.grid(True, alpha=0.3, axis='y')
 fig.autofmt_xdate()
 save_figure(fig, 'daily_activity')
@@ -230,7 +241,7 @@ if not df_changes.empty:
 # Chart 4: Repo Size Comparison (Horizontal Bar)
 # ============================================================================
 print('Chart 4: Repository comparison...')
-fig, axes = plt.subplots(1, 3, figsize=(10, 3.5))
+fig, axes = plt.subplots(1, 3, figsize=(12, max(5, len(REPOS) * 0.35)))
 
 repo_stats = df.groupby('repo').agg(
     commits=('hash', 'count'),
@@ -241,18 +252,29 @@ axes[0].barh(repo_stats.index, repo_stats['commits'], color=colors[:len(repo_sta
 axes[0].set_xlabel('Commits')
 axes[0].set_title('Total Commits')
 for i, v in enumerate(repo_stats['commits']):
-    axes[0].text(v + 1, i, str(v), va='center', fontsize=8)
+    axes[0].text(v + 1, i, str(v), va='center', fontsize=6)
 
-# Lines of code (from onefetch data)
-loc_data = {
-    'WhitePaper': 661,
-    'SendCUIEmail': 5026,
-    'Decisions': 1699,
-    'Security Toolkit': 26630,
-}
-# Add any extra repos with estimated LOC
-for name in REPOS:
-    if name not in loc_data:
+# Lines of code (computed dynamically, filtering binary files)
+BINARY_EXTS = {'.pdf', '.png', '.jpg', '.jpeg', '.gif', '.mp4', '.mp3', '.wav',
+               '.pptx', '.xlsx', '.docx', '.zip', '.tar', '.gz', '.ico', '.svg',
+               '.woff', '.woff2', '.ttf', '.eot', '.pyc', '.o', '.a', '.so', '.dylib',
+               '.exe', '.dll', '.bin', '.dat', '.db', '.sqlite', '.class', '.jar'}
+loc_data = {}
+for name, path in REPOS.items():
+    try:
+        ls_cmd = subprocess.run(['git', '-C', path, 'ls-files'], capture_output=True, text=True)
+        files = [f for f in ls_cmd.stdout.strip().split('\n')
+                 if f and not any(f.lower().endswith(ext) for ext in BINARY_EXTS)]
+        if files:
+            abs_files = [f'{path}/{f}' for f in files]
+            wc_cmd = subprocess.run(['wc', '-l'] + abs_files, capture_output=True, text=True)
+            # Last line of wc -l with multiple files is the total
+            lines = wc_cmd.stdout.strip().split('\n')
+            total_line = lines[-1] if len(files) > 1 else lines[0]
+            loc_data[name] = int(total_line.strip().split()[0])
+        else:
+            loc_data[name] = 0
+    except Exception:
         loc_data[name] = 0
 
 loc_series = pd.Series(loc_data).sort_values()
@@ -261,7 +283,7 @@ axes[1].barh(loc_series.index, loc_series.values, color='#2ca02c', alpha=0.85)
 axes[1].set_xlabel('Lines of Code')
 axes[1].set_title('Lines of Code')
 for i, v in enumerate(loc_series):
-    axes[1].text(v + 100, i, f'{v:,}', va='center', fontsize=8)
+    axes[1].text(v + 100, i, f'{v:,}', va='center', fontsize=6)
 
 # Tags (version releases)
 tag_data = {}
@@ -274,7 +296,7 @@ axes[2].barh(tag_series.index, tag_series.values, color='#ff7f0e', alpha=0.85)
 axes[2].set_xlabel('Version Tags')
 axes[2].set_title('Releases (Tags)')
 for i, v in enumerate(tag_series):
-    axes[2].text(v + 0.5, i, str(v), va='center', fontsize=8)
+    axes[2].text(v + 0.5, i, str(v), va='center', fontsize=6)
 
 fig.suptitle('Repository Ecosystem Overview', fontsize=12, fontweight='bold')
 plt.tight_layout()

@@ -280,23 +280,47 @@ Human direction during this session:
 
 Paper: 25 pages, 8 figures, 5 tables, 25 references, 440K. Zero LaTeX warnings.
 
+## Session 13: Visualization Regeneration & Metrics Correction (2026-02-09)
+
+**Tool**: Claude Code (Claude Opus 4.6, autonomous coordinator mode)
+
+Regenerated all 6 cross-repo charts to include the full 17-repo ecosystem (previously only 7 repos were charted). During the process, discovered and corrected several stale metrics.
+
+- **`generate_charts.py` updated**: REPOS dict expanded from 7 to 17 repos with correct filesystem paths
+- **Dynamic LOC computation**: Replaced hardcoded LOC data with runtime `wc -l` of git-tracked files, filtering binary extensions (.exe, .pdf, .png, etc.)
+- **Binary artifact discovery**: Decisions repo had two copies of PdfSigner.exe tracked in git, inflating LOC from 12,719 to 1,399,143 — filtered out
+- **Corrected ecosystem metrics**: 1,010→1,063 commits, 335K→226K LOC, 16→17 repos, 26→67 calendar days
+- **Security Toolkit commits**: 463→472 (active development since last count)
+- **Measured set commits**: 642→676
+- **All 6 charts regenerated**: cumulative_commits, daily_activity, code_churn, repo_comparison, commit_patterns, ecosystem_timeline (PNG/PDF/TikZ)
+- **Paper updated**: Abstract, Table 5, Discussion, Visualization section, Adoption Pathway, Conclusion — all metrics synchronized
+- **Extended color palette**: 7→20 colors for 17-repo charts
+- **Chart layout adjustments**: Dynamic figure height, smaller fonts for crowded labels, multi-column legends
+
+Key insight: The LOC correction (335K→226K) was a data quality issue — tracked binary executables were being counted as source code. This is itself a lesson for the methodology: automated metrics need binary-aware filtering.
+
+Human direction: "cool" (approved visualization regeneration plan)
+
+Paper: 26 pages, 8 figures, 5 tables, 25 references, 457K. Clean build.
+
 ## Current State
 
 | Metric | Value |
 |--------|-------|
-| Paper | 25 pages, two-column format |
+| Paper | 26 pages, two-column format |
 | Figures | 2 TikZ + 6 embedded charts (8 total in paper), 10 generated charts |
 | Tables | 5 (verification, CLI concepts, agent config, QA standards, output metrics) |
 | Case studies | 3 (SendCUIEmail, Decisions, Security Toolkit) |
 | References | 25 BibTeX entries |
 | Agents | 5 (agents.json) |
-| GitHub issues | 39 (33 closed, 6 open) |
-| Commits | 49 on main |
-| Version | v0.8.0 |
+| GitHub issues | 47+ |
+| Commits | 51+ on main |
+| Version | v0.9.0 |
 | Security scans | 4 (2 pass, 1 review, 1 fail) |
+| Sessions | 13 |
 | Ecosystem repos (measured) | 7 (WhitePaper, ai-agents, systems-engineering, Scrum, SendCUIEmail, Security, Decisions) |
-| Ecosystem repos (full) | 16 git repositories, 1,010 commits, 149 tags, 335K+ LOC |
-| Visualizations | 10 charts (PNG/PDF/TikZ) + 40s gource video |
+| Ecosystem repos (full) | 17 git repositories, 1,063 commits, 149 tags, 226K+ LOC |
+| Visualizations | 10 charts (PNG/PDF/TikZ) + 40s gource video — all 17 repos |
 | Training material | 14-slide PowerPoint deck |
 
 ## Future Work

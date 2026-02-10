@@ -4,14 +4,25 @@
 \definecolor{crimson2143940}{RGB}{214,39,40}
 \definecolor{darkgray176}{RGB}{176,176,176}
 \definecolor{darkorange25512714}{RGB}{255,127,14}
+\definecolor{darkturquoise23190207}{RGB}{23,190,207}
 \definecolor{forestgreen4416044}{RGB}{44,160,44}
+\definecolor{goldenrod18818934}{RGB}{188,189,34}
+\definecolor{gray127}{RGB}{127,127,127}
+\definecolor{lightgreen152223138}{RGB}{152,223,138}
+\definecolor{lightsalmon255152150}{RGB}{255,152,150}
+\definecolor{lightsalmon255187120}{RGB}{255,187,120}
+\definecolor{lightsteelblue174199232}{RGB}{174,199,232}
 \definecolor{mediumpurple148103189}{RGB}{148,103,189}
 \definecolor{orchid227119194}{RGB}{227,119,194}
+\definecolor{pink247182210}{RGB}{247,182,210}
+\definecolor{rosybrown196156148}{RGB}{196,156,148}
 \definecolor{sienna1408675}{RGB}{140,86,75}
 \definecolor{steelblue31119180}{RGB}{31,119,180}
+\definecolor{thistle197176213}{RGB}{197,176,213}
 
 \begin{axis}[
 legend cell align={left},
+legend columns=2,
 legend style={
   fill opacity=0.8,
   draw opacity=1,
@@ -25,24 +36,15 @@ title={Cumulative Commits Across All Repositories},
 x grid style={darkgray176},
 xlabel={Date},
 xmajorgrids,
-xmin=20465.7, xmax=20494.3,
+xmin=20424.7, xmax=20497.3,
 xtick style={color=black},
-xtick={20466,20470,20474,20478,20482,20485,20489,20493},
+xtick={20437,20454,20468,20485},
 xticklabel style={rotate=30.0,anchor=east},
-xticklabels={
-  2026-01-13,
-  2026-01-17,
-  2026-01-21,
-  2026-01-25,
-  2026-01-29,
-  2026-02-01,
-  2026-02-05,
-  2026-02-09
-},
+xticklabels={2025-12-15,2026-01-01,2026-01-15,2026-02-01},
 y grid style={darkgray176},
 ylabel={Cumulative Commits},
 ymajorgrids,
-ymin=-22.1, ymax=486.1,
+ymin=-22.55, ymax=495.55,
 ytick style={color=black},
 ytick={-100,0,100,200,300,400,500},
 yticklabels={
@@ -64,10 +66,43 @@ table {%
 \addlegendentry{Decisions (96)}
 \addplot [semithick, darkorange25512714, const plot mark left, dashed]
 table {%
+20475 14
+20476 16
+};
+\addlegendentry{Hardware (16)}
+\addplot [semithick, forestgreen4416044, const plot mark left, dotted]
+table {%
+20445 1
+};
+\addlegendentry{MusicProduction (1)}
+\addplot [semithick, crimson2143940, const plot mark left, dash pattern=on 1pt off 3pt on 3pt off 3pt]
+table {%
+20428 63
+20429 98
+20430 119
+20431 177
+20433 218
+20441 237
+20442 249
+20451 254
+20452 256
+20454 257
+20455 259
+20456 262
+20458 264
+};
+\addlegendentry{OpenSourceHouseProject (264)}
+\addplot [semithick, mediumpurple148103189, const plot mark left]
+table {%
+20467 23
+};
+\addlegendentry{PdfSigner (23)}
+\addplot [semithick, sienna1408675, const plot mark left, dashed]
+table {%
 20493 1
 };
 \addlegendentry{Scrum (1)}
-\addplot [semithick, forestgreen4416044, const plot mark left, dotted]
+\addplot [semithick, orchid227119194, const plot mark left, dotted]
 table {%
 20467 5
 20468 77
@@ -79,25 +114,64 @@ table {%
 20487 298
 20488 352
 20489 390
-20490 463
+20490 469
+20493 472
 };
-\addlegendentry{Security Toolkit (463)}
-\addplot [semithick, crimson2143940, const plot mark left, dash pattern=on 1pt off 3pt on 3pt off 3pt]
+\addlegendentry{Security Toolkit (472)}
+\addplot [semithick, gray127, const plot mark left, dash pattern=on 1pt off 3pt on 3pt off 3pt]
 table {%
 20475 49
 };
 \addlegendentry{SendCUIEmail (49)}
-\addplot [semithick, mediumpurple148103189, const plot mark left]
+\addplot [semithick, goldenrod18818934, const plot mark left]
 table {%
-20493 28
+20444 18
+20445 50
+20459 52
 };
-\addlegendentry{WhitePaper (28)}
-\addplot [semithick, sienna1408675, const plot mark left, dashed]
+\addlegendentry{SpeakUp (52)}
+\addplot [semithick, darkturquoise23190207, const plot mark left, dashed]
+table {%
+20477 3
+20480 6
+20493 9
+};
+\addlegendentry{WeddingWebsite (9)}
+\addplot [semithick, lightsteelblue174199232, const plot mark left, dotted]
+table {%
+20493 49
+20494 51
+};
+\addlegendentry{WhitePaper (51)}
+\addplot [semithick, lightsalmon255187120, const plot mark left, dash pattern=on 1pt off 3pt on 3pt off 3pt]
 table {%
 20493 1
+20494 3
 };
-\addlegendentry{ai-agents (1)}
-\addplot [semithick, orchid227119194, const plot mark left, dotted]
+\addlegendentry{ai-agents (3)}
+\addplot [semithick, lightgreen152223138, const plot mark left]
+table {%
+20490 6
+};
+\addlegendentry{claude-dangerously (6)}
+\addplot [semithick, lightsalmon255152150, const plot mark left, dashed]
+table {%
+20484 2
+};
+\addlegendentry{homebrew-tap (2)}
+\addplot [semithick, thistle197176213, const plot mark left, dotted]
+table {%
+20445 2
+20493 3
+20494 4
+};
+\addlegendentry{privacy (4)}
+\addplot [semithick, rosybrown196156148, const plot mark left, dash pattern=on 1pt off 3pt on 3pt off 3pt]
+table {%
+20490 10
+};
+\addlegendentry{screen2cam (10)}
+\addplot [semithick, pink247182210, const plot mark left]
 table {%
 20493 4
 };
