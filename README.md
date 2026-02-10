@@ -4,7 +4,7 @@ A methodology for using git version control and AI coding agents to meet federal
 
 ## Paper
 
-**Title**: Git and AI Coding Agents for Government Compliance: A Methodology for Federal Information Security Requirements
+**Title**: Git and AI Coding Agents for Government Compliance: A Human-in-the-Loop Methodology for Federal Information Security Requirements
 
 **Format**: 25-page academic paper, two-column, IEEE-style
 

@@ -942,21 +942,82 @@ supporting infrastructure, produced by a single engineer over
 
 <div id="tab:output-metrics">
 
-| **Metric**                  | **Value** |
-|:----------------------------|----------:|
-| Git repositories            |         7 |
-| Total commits               |       642 |
-| Lines of code               |    34,016 |
-| Release tags                |       136 |
-| Decision memoranda          |         7 |
-| Requirements (JSON)         |        29 |
-| Verification mappings       |        29 |
-| Security scan scripts       |        14 |
-| Test scripts                |        14 |
-| NIST controls automated     |        14 |
-| GitHub issues (audit trail) |      170+ |
-
-Aggregate output metrics (26-day period, single engineer)
+<table>
+<caption>Aggregate output metrics (26-day period, single
+engineer)</caption>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Metric</strong></th>
+<th style="text-align: right;"><strong>Value</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Git repositories (measured set)</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Total commits (measured set)</td>
+<td style="text-align: right;">642</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lines of code (measured set)</td>
+<td style="text-align: right;">34,016</td>
+</tr>
+<tr>
+<td style="text-align: left;">Release tags (measured set)</td>
+<td style="text-align: right;">136</td>
+</tr>
+<tr>
+<td style="text-align: left;">Decision memoranda</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Requirements (JSON)</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr>
+<td style="text-align: left;">Verification mappings</td>
+<td style="text-align: right;">29</td>
+</tr>
+<tr>
+<td style="text-align: left;">Security scan scripts</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td style="text-align: left;">Test scripts</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td style="text-align: left;">NIST controls automated</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr>
+<td style="text-align: left;">GitHub issues (audit trail)</td>
+<td style="text-align: right;">170+</td>
+</tr>
+<tr>
+<td colspan="2" style="text-align: left;"><em>Full ecosystem (16
+repositories):</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Total commits</td>
+<td style="text-align: right;">1,010</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lines of code</td>
+<td style="text-align: right;">335,000+</td>
+</tr>
+<tr>
+<td style="text-align: left;">Release tags</td>
+<td style="text-align: right;">149</td>
+</tr>
+<tr>
+<td style="text-align: left;">Languages</td>
+<td style="text-align: right;">8</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 
@@ -1025,8 +1086,10 @@ system, a Security Verification Toolkit, this white paper, and a
 Scrum-based agent orchestration system—each with its own AI agent
 sessions and compliance artifacts. These five projects span seven git
 repositories tracked in this paper’s visualization data, with additional
-supporting repositories (agent templates, process framework) bringing
-the total to 16.
+supporting repositories (agent templates, process framework, privacy
+tooling, cross-platform utilities, web applications, and hardware
+projects) bringing the total to 16 repositories containing
+1,010 commits, 149 release tags, and over 335,000 lines of code.
 
 Critically, these projects are not merely concurrent; they
 *cross-pollinate*. Patterns discovered in one project feed into others:
@@ -1152,13 +1215,13 @@ all conditions are met.
 The generated visualizations
 (Section <a href="#sec:visualization" data-reference-type="ref"
 data-reference="sec:visualization">8.6</a>) serve a similar
-accessibility function. A chart showing 642 commits across 7
-repositories in under four weeks communicates project scope more
-effectively to a non-technical audience than any paragraph. The animated
-tree visualization (gource) showing file creation and modification over
-time has proven particularly effective for conveying the scale and
-structure of development activity to stakeholders unfamiliar with
-version control concepts.
+accessibility function. A chart showing over 1,000 commits across 16
+repositories communicates project scope more effectively to a
+non-technical audience than any paragraph. The animated tree
+visualization (gource) showing file creation and modification over time
+has proven particularly effective for conveying the scale and structure
+of development activity to stakeholders unfamiliar with version control
+concepts.
 
 ## Git Data Visualization
 
@@ -1194,8 +1257,8 @@ open-source tools:
   pattern analysis (hour of day, day of week), and ecosystem timeline
   (Gantt-style active development windows).
 
-Applied to the seven repositories in this ecosystem (totaling 642
-commits and 34,000+ lines of code over four weeks), the visualizations
+Applied to the ecosystem repositories (totaling 1,010 commits and
+335,000+ lines of code across 16 repositories), the visualizations
 revealed several patterns.
 Figure <a href="#fig:repo-comparison" data-reference-type="ref"
 data-reference="fig:repo-comparison">6</a> shows the ecosystem overview:
@@ -1337,11 +1400,11 @@ This pathway directly addresses the classification boundary limitation
 the classification boundary, the methodology is developed *outside* the
 boundary with synthetic data, then applied inside it with organizational
 tooling and data. The AI agent assists in creating the framework; the
-human applies it to the classified context. The 642 commits, 136 release
-tags, and 34,000+ lines of code across seven measured repositories—part
-of a broader 16-repository ecosystem—represent the open-source
-validation stage of this pipeline, a body of evidence an engineer can
-present to organizational leadership before requesting formal adoption.
+human applies it to the classified context. The 1,010 commits,
+149 release tags, and 335,000+ lines of code across 16 repositories
+represent the open-source validation stage of this pipeline, a body of
+evidence an engineer can present to organizational leadership before
+requesting formal adoption.
 
 ### Enterprise Deployment Options
 
@@ -1443,13 +1506,13 @@ white paper repository maintains a two-tier documentation structure:
 development session, while GitHub issues serve as the authoritative,
 machine-queryable record of all human-agent interactions.
 
-As of this writing, the repository contains 39 GitHub issues spanning 11
+As of this writing, the repository contains 43 GitHub issues spanning 12
 development sessions, with each issue labeled according to the scheme
 described in
 Section <a href="#sec:methodology-git" data-reference-type="ref"
 data-reference="sec:methodology-git">3.5</a>. The git history contains
-45 semantically versioned commits across 8 release tags (v0.1.0 through
-v0.8.0), each corresponding to a distinct compliance-relevant action.
+49 semantically versioned commits across 9 release tags (v0.1.0 through
+v0.9.0), each corresponding to a distinct compliance-relevant action.
 The repository also contains a visualization toolkit that generates 10
 publication-quality charts from git data across the ecosystem, of which
 6 are included as figures in this paper
@@ -1466,6 +1529,23 @@ configuration management (NIST SP 800-53 CM-3) and audit logging (NIST
 SP 800-53 AU-3) that government frameworks prescribe. The combination
 ensures that the process is documented at both the artifact level (what
 changed) and the decision level (why it changed).
+
+A concrete illustration occurred during this paper’s own development:
+the AI agent completed a full session of work—scanning 16 repositories,
+updating quantitative metrics, creating release workflows, and feeding
+improvements back to upstream template repositories—without filing any
+GitHub issues documenting the interaction. The human reviewer identified
+the omission in two words: “all this tracked in github issues?” The
+resulting corrective action produced four issues across two repositories
+(the audit trail itself), a process finding filed per IEEE 1028
+(issue #43), and an upstream template fix ensuring future agents treat
+issue creation as mandatory rather than deferrable (ai-agents
+issue #13). This episode demonstrates the value of human-in-the-loop
+oversight: the agent produced correct artifacts but violated the process
+that makes those artifacts auditable. The human caught the gap, and the
+fix was federated across the ecosystem within minutes. The methodology
+is self-correcting precisely because every deviation becomes a traceable
+finding.
 
 # Future Work
 
@@ -1534,9 +1614,9 @@ This work is not a proof of concept. The methodology, agent
 configurations, and process artifacts presented here are in active use
 across 16 repositories spanning government compliance, systems
 engineering, security tooling, and CAD—real projects with real
-deliverables. The approach produces measurable outcomes: 642 commits,
-34,000+ lines of code, 136 release tags, and over 130 compliance
-artifacts across seven repositories in 26 calendar days—produced by a
+deliverables. The approach produces measurable outcomes: 1,010 commits,
+335,000+ lines of code, 149 release tags, and over 130 compliance
+artifacts across 16 repositories in 26 calendar days—produced by a
 single engineer with AI agent support. This demonstrates more consistent
 documentation (fewer gaps, stronger traceability), faster delivery (the
 review-centric workflow eliminates the authoring bottleneck), and
