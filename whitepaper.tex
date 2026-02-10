@@ -15,6 +15,12 @@
 \usepackage{tabularx}
 \usepackage{enumitem}
 \usepackage{tikz}
+% DRAFT watermark on every page
+\AddToHook{shipout/background}{%
+  \put(0.5\paperwidth,-0.5\paperheight){%
+    \makebox(0,0){\rotatebox{45}{\textcolor[gray]{0.35}{\fontsize{200}{200}\selectfont\bfseries DRAFT}}}%
+  }%
+}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, calc}
 % Page numbers
 \pagestyle{plain}
@@ -175,24 +181,29 @@ We developed a methodology for AI-assisted government compliance development org
 \resizebox{\columnwidth}{!}{%
 \begin{tikzpicture}[
     phase/.style={
-        rectangle, rounded corners=3pt, draw=blue!70!black,
-        fill=blue!8, text width=1.9cm, minimum height=0.9cm,
+        rectangle, rounded corners=4pt, draw=blue!70!black,
+        fill=blue!8, text width=3.2cm, minimum height=0.7cm,
         align=center, font=\footnotesize\bfseries
     },
     artifact/.style={
-        rectangle, draw=gray!60, fill=gray!8,
-        text width=1.7cm, align=center,
-        font=\scriptsize, minimum height=0.6cm
+        rectangle, rounded corners=2pt, draw=gray!50, fill=gray!6,
+        text width=2.0cm, align=center,
+        font=\scriptsize, minimum height=0.5cm
     },
-    arr/.style={-{Stealth[length=2mm]}, thick, blue!70!black},
-    labelstyle/.style={font=\scriptsize\itshape, text=gray!70!black}
+    reviewdot/.style={
+        circle, draw=red!60!black, fill=red!15,
+        inner sep=1pt, font=\scriptsize\bfseries,
+        text=red!60!black
+    },
+    arr/.style={-{Stealth[length=2.5mm]}, thick, blue!70!black},
+    revarr/.style={-{Stealth[length=1.5mm]}, thin, gray!50, dashed}
 ]
-% Phases in a flow
-\node[phase] (p1) {1. Requirements\\Capture};
-\node[phase, right=0.35cm of p1] (p2) {2. Implemen-\\tation};
-\node[phase, right=0.35cm of p2] (p3) {3. Decision\\Docs};
-\node[phase, below=1.0cm of p1] (p4) {4. Verifi-\\cation};
-\node[phase, right=0.35cm of p4] (p5) {5. Version\\Control};
+% Vertical phase pipeline
+\node[phase] (p1) {1. Requirements Capture};
+\node[phase, below=0.55cm of p1] (p2) {2. Implementation};
+\node[phase, below=0.55cm of p2] (p3) {3. Decision Documentation};
+\node[phase, below=0.55cm of p3] (p4) {4. Verification};
+\node[phase, below=0.55cm of p4] (p5) {5. Version Control};
 
 % Arrows between phases
 \draw[arr] (p1) -- (p2);
@@ -200,18 +211,28 @@ We developed a methodology for AI-assisted government compliance development org
 \draw[arr] (p3) -- (p4);
 \draw[arr] (p4) -- (p5);
 
-% Artifacts
-\node[artifact, below=0.3cm of p1] (a1) {REQ JSON};
-\node[artifact, below=0.3cm of p2] (a2) {Source code};
-\node[artifact, below=0.3cm of p3] (a3) {DM LaTeX};
-\node[artifact, below=0.3cm of p4] (a4) {VER matrix};
-\node[artifact, right=0.35cm of p5] (a5) {git + issues};
+% Artifacts to the right
+\node[artifact, right=0.6cm of p1] (a1) {REQ JSON};
+\node[artifact, right=0.6cm of p2] (a2) {Source code};
+\node[artifact, right=0.6cm of p3] (a3) {DM LaTeX};
+\node[artifact, right=0.6cm of p4] (a4) {VER matrix};
+\node[artifact, right=0.6cm of p5] (a5) {git + issues};
 
-% Human review bar
-\node[rectangle, draw=red!60!black, fill=red!5,
-      text width=6.8cm, align=center, font=\scriptsize\bfseries,
-      minimum height=0.45cm, below=1.0cm of $(p4)!0.5!(p5)$]
-      (review) {Human Review at Every Phase};
+% Artifact arrows
+\draw[revarr] (p1) -- (a1);
+\draw[revarr] (p2) -- (a2);
+\draw[revarr] (p3) -- (a3);
+\draw[revarr] (p4) -- (a4);
+\draw[revarr] (p5) -- (a5);
+
+% Human review checkpoints (left side)
+\foreach \i in {1,...,5} {
+    \node[reviewdot, left=0.5cm of p\i] (r\i) {\checkmark};
+}
+
+% Human review label
+\node[font=\scriptsize\itshape, text=red!60!black, rotate=90, anchor=south,
+      left=0.95cm of p3] {Human Review};
 
 \end{tikzpicture}%
 }
