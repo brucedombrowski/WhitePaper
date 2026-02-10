@@ -810,6 +810,15 @@ These visualizations serve dual purpose: they are research artifacts that quanti
 
 Government frameworks increasingly require evidence of human oversight in automated processes. Agentic AI tools with explicit permission models---where each file write, command execution, and code edit requires developer approval---provide natural evidence of human-in-the-loop oversight. Every action taken by the agent is logged and approved, creating an audit trail that maps to the ``authorized use'' requirements common in government security frameworks.
 
+However, not all human oversight is equal. Two failure modes undermine the value of human-in-the-loop workflows:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Auto-accept mode}: The human approves every agent suggestion without reviewing the content. This satisfies the letter of NIST SP 800-53 AC-5 (a human approved it) but not the spirit (a human exercised judgment).
+    \item \textbf{Rubber-stamp mode}: When no suggestion exists, the human provides only undirected prompts (``go,'' ``continue'') without evaluating what the agent should do next.
+\end{enumerate}
+
+The distinguishing characteristic of \textit{meaningful} oversight is the \textit{corrective intervention}---a prompt where the human's domain expertise catches a gap that the agent's pattern-matching missed. During this paper's development, approximately 40\% of human prompts were corrective interventions that changed outcomes the agent would have shipped incorrectly: identifying a missing audit trail, requiring built artifacts in releases, directing cross-repository template improvements, and reframing the paper's title to reflect its central argument. The remaining 60\% were directional (``keep going,'' ``this is top priority'')---necessary for maintaining momentum but not corrective. The methodology's value is not that a human clicks approve; it is that the human's domain expertise catches gaps at a rate sufficient to maintain compliance integrity.
+
 The \texttt{CLAUDE.md} convention further supports compliance by encoding organizational and project-specific constraints that persist across sessions. An organization's compliance officer could define \texttt{CLAUDE.md} templates that encode mandatory requirements, ensuring that all AI-assisted development within the organization operates within approved boundaries.
 
 \subsection{Standards-Based Review Process}

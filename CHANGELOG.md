@@ -8,6 +8,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Comprehensive 16-repo ecosystem review: 1,010 commits, 149 tags, 335K+ LOC, 8 languages
+- Table 5 expanded with full ecosystem metrics alongside 7-repo measured set
+- Abstract, conclusion, adoption pathway, visualization sections updated with 16-repo numbers
+- Reproducibility section updated: 49 commits, 9 tags, 12 sessions
+- Self-auditing case study in Reproducibility: agent skipped issue creation, human caught it (#43, #44)
+- YOLO vs meaningful oversight analysis in Human-in-the-Loop subsection (#46)
+- `.github/workflows/release.yml` — auto-attach PDF+HTML to tagged releases (#42)
+- PROCESS.md Session 12: ecosystem review and metrics update
+
+### Changed
+- Title: added "Human-in-the-Loop" (#45)
+- Human-in-the-Loop subsection expanded: auto-accept vs rubber-stamp failure modes, 40% corrective intervention rate
+- Reproducibility metrics: 43 issues, 49 commits, 9 tags, v0.9.0
+
+## [0.9.0] - 2026-02-09
+
+### Added
 - `CHANGELOG.md` following Keep a Changelog format (#10)
 - `build.sh` for reproducible LaTeX-to-PDF compilation (#12)
 - Semantic versioning requirements in project-setup agent prompt (#10)
@@ -163,7 +180,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `PROCESS.md` — process documentation
 - `.gitignore` — LaTeX artifacts, OS files, editor files
 
-[Unreleased]: https://github.com/brucedombrowski/WhitePaper/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/brucedombrowski/WhitePaper/compare/v0.9.0...HEAD
+[0.9.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/brucedombrowski/WhitePaper/compare/v0.5.0...v0.6.0

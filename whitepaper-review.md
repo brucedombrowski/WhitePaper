@@ -1326,6 +1326,32 @@ oversight. Every action taken by the agent is logged and approved,
 creating an audit trail that maps to the “authorized use” requirements
 common in government security frameworks.
 
+However, not all human oversight is equal. Two failure modes undermine
+the value of human-in-the-loop workflows:
+
+1.  **Auto-accept mode**: The human approves every agent suggestion
+    without reviewing the content. This satisfies the letter of NIST SP
+    800-53 AC-5 (a human approved it) but not the spirit (a human
+    exercised judgment).
+
+2.  **Rubber-stamp mode**: When no suggestion exists, the human provides
+    only undirected prompts (“go,” “continue”) without evaluating what
+    the agent should do next.
+
+The distinguishing characteristic of *meaningful* oversight is the
+*corrective intervention*—a prompt where the human’s domain expertise
+catches a gap that the agent’s pattern-matching missed. During this
+paper’s development, approximately 40% of human prompts were corrective
+interventions that changed outcomes the agent would have shipped
+incorrectly: identifying a missing audit trail, requiring built
+artifacts in releases, directing cross-repository template improvements,
+and reframing the paper’s title to reflect its central argument. The
+remaining 60% were directional (“keep going,” “this is top
+priority”)—necessary for maintaining momentum but not corrective. The
+methodology’s value is not that a human clicks approve; it is that the
+human’s domain expertise catches gaps at a rate sufficient to maintain
+compliance integrity.
+
 The `CLAUDE.md` convention further supports compliance by encoding
 organizational and project-specific constraints that persist across
 sessions. An organization’s compliance officer could define `CLAUDE.md`
